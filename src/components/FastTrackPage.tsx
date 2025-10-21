@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 // Import your JSON data
-import fastTrackAssetsData from '../data/fastTrackAssets.json';
+import fastTrackAssetsData from '../data/fastTrackAssets.json'
 
 interface FastTrackAsset {
     id: string
