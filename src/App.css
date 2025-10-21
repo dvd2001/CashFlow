@@ -1,0 +1,2192 @@
+/* Start Page Styles (unchanged) */
+#root {
+  width: 100%;
+  min-height: 100vh;
+  margin: 0 auto;
+}
+
+.app-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.content-card {
+  background: white;
+  border-radius: 20px;
+  padding: 3rem 2rem;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+.title {
+  color: #2d3748;
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  font-weight: 700;
+}
+
+.game-select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: white;
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
+.game-select:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.start-button {
+  width: 100%;
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.start-button:hover {
+  transform: translateY(-2px);
+}
+
+/* Game Page with Gradient Background */
+
+input[type="number"] {
+  -moz-appearance: textfield;
+  -webkit-appearance: none;
+  appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.game-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+}
+
+/* Game Page Layout */
+.game-container {
+  display: flex;
+  min-height: calc(100vh - 40px);
+  gap: 20px;
+}
+
+/* Left Panel - Fixed */
+.left-panel {
+  width: 400px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.panel-content {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 1.5rem;
+}
+
+/* Panel Title */
+.panel-title {
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0;
+}
+
+/* Profession Display */
+.profession-display {
+  text-align: center;
+  padding: 1.5rem;
+  background: #f7fafc;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+}
+
+.profession-display h2 {
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin: 0;
+  letter-spacing: 1px;
+}
+
+/* Financial Summary */
+.financial-summary {
+  background: #f0fff4;
+  border-radius: 10px;
+  padding: 1.5rem;
+  border: 2px solid #c6f6d5;
+}
+
+.summary-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.summary-item:last-child {
+  border-bottom: none;
+}
+
+.summary-item.net-cash-flow {
+  border-top: 2px solid #e2e8f0;
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+.summary-item span:first-child {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.summary-item span:last-child {
+  color: #2d3748;
+  font-weight: 700;
+}
+
+/* Salary Display */
+.salary-display {
+  background: #ebf8ff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  border: 2px solid #bee3f8;
+}
+
+.salary-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.salary-info span:first-child {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.salary-info span:last-child {
+  color: #2d3748;
+  font-weight: 700;
+  font-size: 1.1rem;
+}
+
+/* Financial Sections */
+.financial-sections {
+  display: flex;
+  gap: 1rem;
+}
+
+.section {
+  flex: 1;
+  background: #f8fafc;
+  border-radius: 8px;
+  padding: 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.section-title {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  text-align: center;
+  border-bottom: 2px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.item-name {
+  color: #4a5568;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.item-amount {
+  color: #2d3748;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Children Section */
+.children-section {
+  background: #faf5ff;
+  border-radius: 10px;
+  padding: 1.5rem;
+  border: 2px solid #e9d8fd;
+}
+
+.children-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.children-input label {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.children-input input {
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.children-input input:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.child-expense-note {
+  text-align: center;
+  color: #553c9a;
+  font-size: 0.9rem;
+  font-weight: 500;
+  margin-top: 0.5rem;
+}
+
+/* Action Buttons */
+.action-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.action-btn {
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  text-align: center;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.payday-btn {
+  background: #f6d077;
+  color: #2d3748;
+}
+
+.payday-btn:hover {
+  background: #e9c25e;
+  color: #2d3748;
+}
+
+.repay-btn {
+  background: #ed8936;
+  color: white;
+}
+
+.repay-btn:hover {
+  background: #dd6b20;
+}
+
+.loan-btn {
+  background: #9f7aea;
+  color: white;
+}
+
+.loan-btn:hover {
+  background: #805ad5;
+}
+
+/* Back Button */
+.back-button {
+  width: 100%;
+  padding: 1rem;
+  background: #718096;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: auto;
+}
+
+.back-button:hover {
+  background: #4a5568;
+}
+
+/* Right Panel - Scrollable */
+.right-panel {
+  flex: 1;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  overflow-y: auto;
+  min-width: 0;
+}
+
+.scroll-content {
+  padding: 2rem;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Assets Sections */
+.assets-section {
+  margin-bottom: 3rem;
+}
+
+/* Section Header with Buy Button */
+.section-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  border-bottom: 3px solid #667eea;
+  padding-bottom: 0.5rem;
+}
+
+.section-main-title {
+  color: #2d3748;
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.buy-asset-btn {
+  background: #48bb78;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.buy-asset-btn:hover {
+  background: #38a169;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.buy-asset-btn:active {
+  transform: translateY(0);
+}
+
+/* Paper Assets List */
+.assets-list {
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  overflow: hidden;
+  min-height: 120px;
+}
+
+.asset-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr;
+  background: #667eea;
+  color: white;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+/* Property Assets List */
+.properties-list {
+  background: #f8fafc;
+  border-radius: 10px;
+  border: 2px solid #e2e8f0;
+  overflow: hidden;
+  min-height: 120px;
+}
+
+.property-header {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr;
+  background: #ed8936;
+  color: white;
+  padding: 1rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  gap: 0.5rem;
+}
+
+/* Empty State */
+.empty-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  color: #718096;
+  font-style: italic;
+  text-align: center;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+/* Mobile Styles for Section Headers */
+@media (max-width: 768px) {
+  .scroll-content {
+    padding: 1.5rem;
+  }
+
+  .section-header {
+    flex-direction: column;
+    gap: 1rem;
+    text-align: center;
+  }
+
+  .section-main-title {
+    font-size: 1.5rem;
+  }
+
+  .buy-asset-btn {
+    width: 100%;
+    max-width: 200px;
+  }
+
+  .asset-header {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .asset-header span:nth-child(1) {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+
+  .property-header {
+    grid-template-columns: 1fr 1fr;
+    gap: 0.5rem;
+  }
+
+  .property-header span:nth-child(1) {
+    grid-column: 1 / -1;
+    text-align: center;
+    margin-bottom: 0.5rem;
+  }
+}
+
+/* For very small screens */
+@media (max-width: 480px) {
+
+  .asset-header,
+  .property-header {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .asset-header span,
+  .property-header span {
+    grid-column: 1 / -1;
+  }
+
+  .empty-state {
+    padding: 2rem 0.5rem;
+  }
+}
+
+/* Back Button */
+.back-button {
+  width: 100%;
+  padding: 1rem;
+  background: #718096;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+  margin-top: auto;
+}
+
+.back-button:hover {
+  background: #4a5568;
+}
+
+/* Fixed Savings Section */
+.savings-section {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #f6d077;
+  color: #2d3748;
+  padding: 1rem 2rem;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+  z-index: 1000;
+}
+
+.savings-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.savings-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.savings-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.savings-amount {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.savings-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.savings-btn {
+  padding: 0.5rem 1rem;
+  border: 2px solid #2d3748;
+  border-radius: 8px;
+  background: transparent;
+  color: #2d3748;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.savings-btn:hover {
+  background: #2d3748;
+  color: #f6d077;
+}
+
+/* Adjust game container to account for fixed savings section */
+.game-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  padding: 20px;
+  padding-bottom: 80px;
+  /* Space for fixed savings section */
+}
+
+/* Mobile styles for savings section */
+@media (max-width: 768px) {
+  .savings-section {
+    padding: 0.75rem 1rem;
+  }
+
+  .savings-content {
+    flex-direction: column;
+    gap: 0.75rem;
+    text-align: center;
+  }
+
+  .savings-info {
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .savings-label {
+    font-size: 1rem;
+  }
+
+  .savings-amount {
+    font-size: 1.3rem;
+  }
+
+  .savings-actions {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .game-page {
+    padding-bottom: 120px;
+    /* More space on mobile */
+  }
+}
+
+/* Modal Styles */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+  padding: 1rem;
+}
+
+.modal-content {
+  background: white;
+  border-radius: 15px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.modal-title {
+  color: #2d3748;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  border-bottom: 2px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+/* Liability Selection */
+.liability-selection h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.liability-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.liability-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.liability-option:hover {
+  border-color: #667eea;
+  background: #f7fafc;
+}
+
+.liability-option.selected {
+  border-color: #48bb78;
+  background: #f0fff4;
+}
+
+.liability-name {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.liability-amount {
+  font-weight: 700;
+  color: #2d3748;
+}
+
+/* Expense Info in Modal */
+.expense-info {
+  background: #e6fffa;
+  padding: 0.75rem;
+  border-radius: 6px;
+  border-left: 4px solid #38b2ac;
+  margin-top: 0.5rem;
+  font-size: 0.9rem;
+}
+
+.full-repay .expense-info {
+  margin-top: 1rem;
+}
+
+/* Repay Amount Section */
+.repay-amount-section h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.bank-loan-repay p {
+  color: #718096;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.bank-loan-repay input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.bank-loan-repay input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.amount-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.amount-options button {
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f7fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.amount-options button:hover {
+  background: #edf2f7;
+  border-color: #667eea;
+}
+
+.full-repay {
+  background: #f0fff4;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #c6f6d5;
+  margin-bottom: 1.5rem;
+}
+
+.repay-summary {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+}
+
+.repay-summary p {
+  margin: 0.5rem 0;
+}
+
+.repay-summary .success {
+  color: #48bb78;
+  font-weight: 600;
+}
+
+.repay-summary .error {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+/* Modal Actions */
+.modal-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.modal-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cancel-btn {
+  background: #718096;
+  color: white;
+}
+
+.cancel-btn:hover {
+  background: #4a5568;
+}
+
+.repay-modal-btn {
+  background: #48bb78;
+  color: white;
+}
+
+.repay-modal-btn:hover:not(:disabled) {
+  background: #38a169;
+}
+
+.repay-modal-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Mobile Styles for Modal */
+@media (max-width: 768px) {
+  .modal-content {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .amount-options {
+    grid-template-columns: 1fr;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+}
+
+/* Get Loan Modal Styles */
+.loan-type-selection h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.loan-type-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.loan-type-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.loan-type-option:hover {
+  border-color: #667eea;
+  background: #f7fafc;
+}
+
+.loan-type-option.selected {
+  border-color: #9f7aea;
+  background: #faf5ff;
+}
+
+.loan-type-name {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+.loan-type-desc {
+  font-size: 0.9rem;
+  color: #718096;
+}
+
+/* Loan Amount Section */
+.loan-amount-section h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.bank-loan-amount p,
+.retail-debt-amount p {
+  color: #718096;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.bank-loan-amount input,
+.retail-debt-amount input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.bank-loan-amount input:focus,
+.retail-debt-amount input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.loan-summary {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-top: 1rem;
+}
+
+.loan-summary p {
+  margin: 0.5rem 0;
+}
+
+.info-note {
+  color: #4299e1;
+  font-style: italic;
+  font-size: 0.9rem;
+}
+
+/* Get Loan Button */
+.get-loan-btn {
+  background: #9f7aea;
+  color: white;
+}
+
+.get-loan-btn:hover:not(:disabled) {
+  background: #805ad5;
+}
+
+.get-loan-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Retail Debt Input Group */
+.retail-input-group {
+  margin-bottom: 1rem;
+}
+
+.retail-input-group label {
+  display: block;
+  color: #4a5568;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.retail-input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.retail-input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Warning Note */
+.warning-note {
+  color: #e53e3e;
+  font-style: italic;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+/* Buy Paper Asset Modal Styles */
+.paper-asset-selection h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.paper-asset-options {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.paper-asset-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.paper-asset-option:hover {
+  border-color: #667eea;
+  background: #f7fafc;
+}
+
+.paper-asset-option.selected {
+  border-color: #4299e1;
+  background: #ebf8ff;
+}
+
+.paper-asset-name {
+  font-weight: 600;
+  color: #2d3748;
+}
+
+/* Paper Asset Details */
+.paper-asset-details h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+}
+
+.paper-asset-input-group {
+  margin-bottom: 1rem;
+}
+
+.paper-asset-input-group label {
+  display: block;
+  color: #4a5568;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.paper-asset-input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.paper-asset-input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.paper-asset-summary {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-top: 1rem;
+}
+
+.paper-asset-summary p {
+  margin: 0.5rem 0;
+}
+
+/* Buy Paper Asset Modal Styles */
+.paper-asset-selection {
+  margin-bottom: 1.5rem;
+}
+
+.paper-asset-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.paper-asset-input-group label {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.paper-asset-select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.paper-asset-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Paper Asset Details */
+.paper-asset-details h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.paper-asset-input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.paper-asset-input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.paper-asset-summary {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-top: 1rem;
+}
+
+.paper-asset-summary p {
+  margin: 0.5rem 0;
+}
+
+/* Buy Paper Asset Button */
+.buy-paper-asset-btn {
+  background: #4299e1;
+  color: white;
+}
+
+.buy-paper-asset-btn:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.buy-paper-asset-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Buy Property Asset Modal Styles */
+.property-asset-selection {
+  margin-bottom: 1.5rem;
+}
+
+.property-asset-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1rem;
+}
+
+.property-asset-input-group label {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.property-asset-select {
+  width: 100%;
+  padding: 1rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 10px;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.property-asset-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Property Asset Details */
+.property-asset-details h3 {
+  color: #4a5568;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #e2e8f0;
+  padding-bottom: 0.5rem;
+}
+
+.property-asset-input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.property-asset-input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.property-asset-summary {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin-top: 1rem;
+}
+
+.property-asset-summary p {
+  margin: 0.5rem 0;
+}
+
+/* Buy Property Asset Button */
+.buy-property-asset-btn {
+  background: #ed8936;
+  color: white;
+}
+
+.buy-property-asset-btn:hover:not(:disabled) {
+  background: #dd6b20;
+}
+
+.buy-property-asset-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Assets Cards Container */
+.assets-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+/* Asset Card Styles */
+.asset-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.asset-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+/* Card Headers */
+.asset-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f7fafc;
+}
+
+.asset-name {
+  color: #2d3748;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.asset-quantity {
+  background: #667eea;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* Card Details */
+.asset-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.asset-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.detail-label {
+  color: #718096;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.detail-value {
+  color: #2d3748;
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Property Card Styles (keep existing property styles) */
+.property-card {
+  background: white;
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  border: 1px solid #e2e8f0;
+  transition: all 0.3s ease;
+}
+
+.property-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+}
+
+.property-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 2px solid #f7fafc;
+}
+
+.property-name {
+  color: #2d3748;
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.property-income.positive {
+  background: #48bb78;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.property-card-details {
+  margin-top: 0.5rem;
+}
+
+.property-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.property-detail {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Empty State Improvements */
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 3rem 1.5rem;
+  color: #718096;
+  text-align: center;
+  background: #f8fafc;
+  border-radius: 12px;
+  border: 2px dashed #e2e8f0;
+}
+
+.empty-state p {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.empty-state-subtitle {
+  margin-top: 0.5rem !important;
+  font-size: 0.95rem !important;
+  color: #a0aec0;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .assets-cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .asset-card-header,
+  .property-card-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+  }
+
+  .property-detail-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .asset-card,
+  .property-card {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .assets-cards-container {
+    grid-template-columns: 1fr;
+  }
+
+  .asset-card,
+  .property-card {
+    padding: 1rem;
+  }
+}
+
+/* Clickable card styles */
+.clickable {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.clickable:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Asset Management Modal Styles */
+.asset-management-section,
+.asset-sale-section,
+.property-sale-section {
+  margin-bottom: 2rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.asset-management-section h3,
+.asset-sale-section h3,
+.property-sale-section h3 {
+  color: #2d3748;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+}
+
+.input-group {
+  margin-bottom: 1rem;
+}
+
+.input-group label {
+  display: block;
+  color: #4a5568;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+/* Action Buttons Horizontal */
+.action-buttons-horizontal {
+  display: flex;
+  gap: 1rem;
+  margin-top: 1rem;
+}
+
+.action-buttons-horizontal .modal-btn {
+  flex: 1;
+  padding: 0.75rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.update-btn {
+  background: #4299e1;
+  color: white;
+}
+
+.update-btn:hover:not(:disabled) {
+  background: #3182ce;
+}
+
+.sell-btn {
+  background: #ed8936;
+  color: white;
+}
+
+.sell-btn:hover:not(:disabled) {
+  background: #dd6b20;
+}
+
+.sell-btn:disabled {
+  background: #a0aec0;
+  cursor: not-allowed;
+}
+
+/* Sale Summary */
+.sale-summary {
+  background: #f7fafc;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #e2e8f0;
+  margin: 1rem 0;
+}
+
+.sale-summary p {
+  margin: 0.5rem 0;
+  color: #2d3748;
+}
+
+.net-proceeds {
+  border-top: 2px solid #e2e8f0;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem !important;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+/* Property Current Info */
+.property-current-info {
+  background: #f0fff4;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #c6f6d5;
+  margin-bottom: 1.5rem;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.info-label {
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.info-value {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.info-value.positive {
+  color: #48bb78;
+}
+
+/* Warning Note */
+.warning-note {
+  color: #e53e3e;
+  font-weight: 600;
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .action-buttons-horizontal {
+    flex-direction: column;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .asset-management-section,
+  .asset-sale-section,
+  .property-sale-section {
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+  }
+}
+
+/* App.css - Add these styles */
+
+/* Quantity Options */
+.quantity-options {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 0.5rem;
+  margin: 1rem 0;
+}
+
+.quantity-options button {
+  padding: 0.5rem;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  background: #f7fafc;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.quantity-options button:hover {
+  background: #edf2f7;
+  border-color: #667eea;
+}
+
+/* Sale Summary Updates */
+.sale-summary p {
+  margin: 0.5rem 0;
+  color: #2d3748;
+  display: flex;
+  justify-content: space-between;
+}
+
+.sale-summary p strong {
+  font-weight: 600;
+}
+
+.net-proceeds {
+  border-top: 2px solid #e2e8f0;
+  padding-top: 0.75rem;
+  margin-top: 0.75rem !important;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #2d3748;
+}
+
+/* Mobile Responsive for Quantity Options */
+@media (max-width: 768px) {
+  .quantity-options {
+    grid-template-columns: 1fr;
+  }
+
+  .quantity-options button {
+    padding: 0.75rem;
+  }
+}
+
+/* App.css - Add these styles */
+
+/* Asset Info Section */
+.asset-info-section {
+  background: #ebf8ff;
+  padding: 1rem;
+  border-radius: 8px;
+  border: 1px solid #bee3f8;
+  margin-bottom: 1.5rem;
+}
+
+.asset-info-section .info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.75rem;
+}
+
+.asset-info-section .info-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
+}
+
+.asset-info-section .info-label {
+  color: #4a5568;
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.asset-info-section .info-value {
+  color: #2d3748;
+  font-weight: 600;
+}
+
+.asset-info-section .info-value.positive {
+  color: #48bb78;
+}
+
+/* Update asset card details for passive income */
+.asset-card-details {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.asset-detail {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.25rem 0;
+}
+
+.detail-value.positive {
+  color: #48bb78;
+  font-weight: 600;
+}
+
+/* Sale summary updates */
+.sale-summary p {
+  margin: 0.4rem 0;
+  color: #2d3748;
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+}
+
+.sale-summary p strong {
+  font-weight: 600;
+}
+
+/* Mobile responsive updates */
+@media (max-width: 768px) {
+  .asset-info-section .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .asset-card-details {
+    gap: 0.25rem;
+  }
+}
+
+/* Congratulations Modal Styles */
+.congrats-overlay {
+  background-color: rgba(0, 0, 0, 0.8);
+  z-index: 1000;
+}
+
+.congrats-modal {
+  max-width: 500px;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.congrats-header {
+  text-align: center;
+  padding: 20px;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.congrats-title {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.congrats-body {
+  padding: 30px;
+  text-align: center;
+}
+
+.congrats-message {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 25px;
+  line-height: 1.4;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+.congrats-submessage {
+  font-size: 1rem;
+  margin-top: 20px;
+  opacity: 0.9;
+  line-height: 1.5;
+}
+
+.financial-summary-congrats {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  padding: 20px;
+  margin: 20px 0;
+  backdrop-filter: blur(10px);
+}
+
+.financial-summary-congrats .summary-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.financial-summary-congrats .net-cash-flow {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  padding-top: 10px;
+  margin-top: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+.continue-btn {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  border: none;
+  padding: 12px 30px;
+  font-size: 1.1rem;
+  border-radius: 25px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.continue-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.positive {
+  color: #4CAF50;
+  font-weight: bold;
+}
+
+/* Progress Bar Styles */
+.goal-progress {
+  margin: 20px 0;
+  padding: 15px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+}
+
+.goal-progress h3 {
+  margin: 0 0 10px 0;
+  color: #333;
+}
+
+.progress-bar {
+  width: 100%;
+  height: 20px;
+  background: #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 8px;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #4CAF50, #45a049);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  text-align: center;
+  font-weight: bold;
+  color: #333;
+}
+
+.goal-achieved {
+  background: linear-gradient(135deg, #4CAF50, #45a049);
+  color: white;
+  padding: 10px;
+  border-radius: 8px;
+  text-align: center;
+  font-weight: bold;
+  margin-top: 10px;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.05);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.negative {
+  color: #ff4444;
+  font-weight: bold;
+}
+
+.positive {
+  color: #00aa00;
+  font-weight: bold;
+}
+
+/* Fast Track Action Buttons */
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin: 20px 0;
+}
+
+.action-btn {
+  padding: 12px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+  color: #333;
+}
+
+.cashflow-day-btn {
+  background-color: #f9d17e;
+}
+
+.tax-audit-btn {
+  background-color: #ac87c0;
+  color: white;
+}
+
+.divorce-btn {
+  background-color: #ac87c0;
+  color: white;
+}
+
+.cashflow-day-btn:hover {
+  background-color: #f7c55a;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.tax-audit-btn:hover {
+  background-color: #9a76b0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.divorce-btn:hover {
+  background-color: #9a76b0;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.action-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+  color: #666;
+}
+
+/* Asset Preview Card in Modal */
+.asset-preview-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  border-left: 4px solid #f9d17e;
+}
+
+.asset-preview-card h4 {
+  margin: 0 0 10px 0;
+  color: #333;
+  font-size: 1.2rem;
+}
+
+.asset-preview-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.preview-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.preview-label {
+  font-weight: bold;
+  color: #555;
+}
+
+.preview-value {
+  font-weight: bold;
+}
+
+.preview-value.positive {
+  color: #00aa00;
+}
+
+/* Buy Your Dream Button */
+.buy-dream-btn {
+  background-color: #e4a9c8 !important;
+  color: #333;
+}
+
+.buy-dream-btn:hover {
+  background-color: #d895b8 !important;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Buy Dream Confirm Button */
+.buy-dream-confirm-btn {
+  background: linear-gradient(135deg, #e4a9c8, #d895b8);
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.buy-dream-confirm-btn:hover {
+  background: linear-gradient(135deg, #d895b8, #e4a9c8);
+  transform: translateY(-2px);
+}
+
+/* Dream Modal Content */
+.dream-modal-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.dream-note {
+  font-style: italic;
+  color: #666;
+  margin-top: 10px;
+}
+
+/* Dream Summary */
+.dream-summary {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 15px;
+  margin: 15px 0;
+  border-left: 4px solid #e4a9c8;
+}
+
+.dream-summary p {
+  margin: 8px 0;
+}
+
+.dream-modal-content {
+  text-align: center;
+  padding: 20px;
+}
+
+.dream-note {
+  font-style: italic;
+  color: #666;
+  margin-top: 15px;
+  font-size: 0.9rem;
+}
+
+/* Enhanced Mobile Responsiveness for Game Container */
+@media (max-width: 768px) {
+  .game-container {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .left-panel {
+    width: 100%;
+    order: 1;
+    /* Ensure left panel comes first */
+  }
+
+  .right-panel {
+    width: 100%;
+    order: 2;
+    /* Ensure right panel comes second */
+  }
+
+  .panel-content {
+    padding: 1.5rem;
+  }
+
+  .financial-sections {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .action-buttons {
+    grid-template-columns: 1fr;
+    gap: 0.5rem;
+  }
+
+  .assets-cards-container {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .game-page {
+    padding: 10px;
+  }
+
+  .panel-content {
+    padding: 1rem;
+  }
+
+  .asset-card,
+  .property-card {
+    padding: 1rem;
+  }
+
+  .savings-content {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .savings-actions {
+    width: 100%;
+    justify-content: center;
+  }
+}

@@ -1,0 +1,98 @@
+[
+    {
+        "value": "familyRestaurantChain",
+        "label": "Family Restaurant Chain",
+        "downPayment": 300000,
+        "passiveIncome": 14000
+    },
+    {
+        "value": "burgerFranchise",
+        "label": "Burger Franchise",
+        "downPayment": 300000,
+        "passiveIncome": 9500
+    },
+    {
+        "value": "quickFoodMarts",
+        "label": "Quick Food Marts",
+        "downPayment": 120000,
+        "passiveIncome": 5000
+    },
+    {
+        "value": "heatAndA/CService",
+        "label": "Heat and A/C Service",
+        "downPayment": 200000,
+        "passiveIncome": 10000
+    },
+    {
+        "value": "truckParts",
+        "label": "Truck Parts",
+        "downPayment": 150000,
+        "passiveIncome": 5000
+    },
+    {
+        "value": "buildAGoldMine",
+        "label": "Build A Gold Mine",
+        "downPayment": 150000,
+        "passiveIncome": 25000
+    },
+    {
+        "value": "chikenFrenchise",
+        "label": "Chiken Franchise",
+        "downPayment": 300000,
+        "passiveIncome": 10000
+    },
+    {
+        "value": "beautySalon",
+        "label": "Beauty Salon",
+        "downPayment": 250000,
+        "passiveIncome": 10000
+    },
+    {
+        "value": "autoRepairShop",
+        "label": "Auto Repair Shop",
+        "downPayment": 150000,
+        "passiveIncome": 6000
+    },
+    {
+        "value": "russianOilDeal",
+        "label": "Russian Oil Deal",
+        "downPayment": 300000,
+        "passiveIncome": 75000
+    },
+    {
+        "value": "t-shirtStore",
+        "label": "T-Shirt Store",
+        "downPayment": 200000,
+        "passiveIncome": 8000
+    },
+    {
+        "value": "apartmentBuilding",
+        "label": "Apartment Building",
+        "downPayment": 300000,
+        "passiveIncome": 8000
+    },
+    {
+        "value": "pizzaFranchise",
+        "label": "Pizza Franchise",
+        "downPayment": 225000,
+        "passiveIncome": 7000
+    },
+    {
+        "value": "miniStorage",
+        "label": "Mini Storage",
+        "downPayment": 200000,
+        "passiveIncome": 6000
+    },
+    {
+        "value": "dryCleaner",
+        "label": "Dry Cleaner",
+        "downPayment": 100000,
+        "passiveIncome": 3000
+    },
+    {
+        "value": "tvShop",
+        "label": "TV Shop",
+        "downPayment": 225000,
+        "passiveIncome": 50000
+    }
+]
