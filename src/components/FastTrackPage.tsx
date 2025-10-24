@@ -72,6 +72,19 @@ function FastTrackPage() {
         }
     }, [totalCashFlow, initialCashFlow, dreamBought, showCongratsModal, t]);
 
+    useEffect(() => {
+        const savedDarkMode = localStorage.getItem('darkMode')
+        if (savedDarkMode) {
+            const isDarkMode = JSON.parse(savedDarkMode)
+            // Apply dark mode class to body if needed
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode')
+            } else {
+                document.body.classList.remove('dark-mode')
+            }
+        }
+    }, [])
+
     // Button handlers
     const handleCashflowDay = () => {
         // Add total cash flow to savings

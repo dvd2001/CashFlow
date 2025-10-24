@@ -2775,3 +2775,218 @@ input:checked+.slider:before {
     margin-bottom: 1rem;
   }
 }
+
+/* Fix full-repay section in dark mode */
+.dark-mode .full-repay {
+  background: #4a5568 !important;
+  border: 1px solid #5a6576 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .full-repay p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .full-repay strong {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .full-repay .expense-info {
+  background: #2d5c48 !important;
+  border-left: 4px solid #48bb78 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .full-repay .expense-info strong {
+  color: #e2e8f0 !important;
+}
+
+/* Also fix the expense-info in other contexts */
+.dark-mode .expense-info {
+  background: #2d5c48 !important;
+  border-left: 4px solid #48bb78 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .expense-info strong {
+  color: #e2e8f0 !important;
+}
+
+/* Fix salary display text in dark mode */
+.dark-mode .salary-display .salary-info span:first-child {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .salary-display .salary-info span:last-child {
+  color: #e2e8f0 !important;
+}
+
+/* Fix financial summary text in dark mode */
+.dark-mode .financial-summary .summary-item span:first-child {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .financial-summary .summary-item span:last-child {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .financial-summary .summary-item.net-cash-flow span:last-child {
+  color: #48bb78 !important;
+}
+
+/* Fix property buying modal labels and headers in dark mode */
+.dark-mode .property-asset-details h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .property-asset-input-group label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .property-asset-summary p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .property-asset-summary strong {
+  color: #e2e8f0 !important;
+}
+
+/* Fix property editing modal labels and headers in dark mode */
+.dark-mode .property-edit-section h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .property-edit-section .input-group label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .property-sale-section h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .property-sale-section .input-group label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .property-current-info .info-label {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .property-current-info .info-value {
+  color: #e2e8f0 !important;
+}
+
+/* Fix paper asset buying modal labels and headers in dark mode */
+.dark-mode .paper-asset-details h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-input-group label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-summary p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-summary strong {
+  color: #e2e8f0 !important;
+}
+
+/* Fix paper asset editing modal labels and headers in dark mode */
+.dark-mode .asset-info-section .info-label {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .asset-info-section .info-value {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .asset-management-section h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .asset-management-section .input-group label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .asset-sale-section h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .asset-sale-section .input-group label {
+  color: #e2e8f0 !important;
+}
+
+/* Fix get loan modal labels and headers in dark mode */
+.dark-mode .loan-type-selection h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .loan-type-option .loan-type-name {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .loan-type-option .loan-type-desc {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .loan-amount-section h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .bank-loan-amount label,
+.dark-mode .retail-debt-amount label,
+.dark-mode .retail-input-group label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .bank-loan-amount p,
+.dark-mode .retail-debt-amount p {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .loan-summary p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .loan-summary strong {
+  color: #e2e8f0 !important;
+}
+
+/* Fix repay liability modal labels and headers in dark mode */
+.dark-mode .liability-selection h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .liability-option .liability-name {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .liability-option .liability-amount {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .repay-amount-section h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .bank-loan-repay p {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .full-repay p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .full-repay strong {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .repay-summary p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .repay-summary strong {
+  color: #e2e8f0 !important;
+}

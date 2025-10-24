@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react' // Add useEffect import
 import { useNavigate } from 'react-router-dom'
 import { useLanguage } from '../contexts/languageContext'
 import professions from '../data/professions.json'
@@ -15,22 +15,36 @@ interface Profession {
     schoolLoanPayment: number
     carLoanPayment: number
     creditCardPayment: number
-    retailDebtPayment: number
+    retailDebtPayment?: number
     otherExpenses: number
     expensePerChild: number
     mortageAmount: number
     schoolLoanAmount: number
     carLoanAmount: number
     creditCardDebt: number
-    retailDebt: number
+    retailDebt?: number
     savings: number
 }
 
 function StartPage() {
     const [selectedProfession, setSelectedProfession] = useState<string>(professions[0].value)
-    const [darkMode, setDarkMode] = useState<boolean>(false)
+    const [darkMode, setDarkMode] = useState<boolean>(false) // Initialize with false
     const { language, setLanguage, t } = useLanguage()
     const navigate = useNavigate()
+
+    // Read dark mode from localStorage on component mount
+    useEffect(() => {
+        const savedDarkMode = localStorage.getItem('darkMode')
+        if (savedDarkMode) {
+            const isDarkMode = JSON.parse(savedDarkMode)
+            setDarkMode(isDarkMode)
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode')
+            } else {
+                document.body.classList.remove('dark-mode')
+            }
+        }
+    }, [])
 
     const handleStartGame = () => {
         const selected = professions.find(p => p.value === selectedProfession)
@@ -38,6 +52,8 @@ function StartPage() {
             // Convert profession label to string based on current language
             const professionWithStringLabel = {
                 ...selected,
+                retailDebtPayment: selected.retailDebtPayment || 0,
+                retailDebt: selected.retailDebt || 0,
                 label: selected.label[language]
             }
             navigate('/game', { state: { profession: professionWithStringLabel, darkMode, language } })
@@ -47,6 +63,10 @@ function StartPage() {
     const toggleDarkMode = () => {
         const newDarkMode = !darkMode
         setDarkMode(newDarkMode)
+
+        // Save to localStorage
+        localStorage.setItem('darkMode', JSON.stringify(newDarkMode))
+
         if (newDarkMode) {
             document.body.classList.add('dark-mode')
         } else {
@@ -89,7 +109,7 @@ function StartPage() {
                         <div className="toggle-switch">
                             <input
                                 type="checkbox"
-                                checked={darkMode}
+                                checked={darkMode} // This will now reflect the correct state from localStorage
                                 onChange={toggleDarkMode}
                             />
                             <span className="slider"></span>

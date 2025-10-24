@@ -229,6 +229,19 @@ function GamePage() {
         }
     }, [totalPassiveIncome, totalExpenses]);
 
+    useEffect(() => {
+        const savedDarkMode = localStorage.getItem('darkMode')
+        if (savedDarkMode) {
+            const isDarkMode = JSON.parse(savedDarkMode)
+            // Apply dark mode class to body if needed
+            if (isDarkMode) {
+                document.body.classList.add('dark-mode')
+            } else {
+                document.body.classList.remove('dark-mode')
+            }
+        }
+    }, [])
+
     // Button handlers
     const handlePayday = () => {
         setSavings(prev => prev + monthlyCashFlow)
@@ -793,7 +806,7 @@ function GamePage() {
                                             </div>
                                             <div className="asset-card-details">
                                                 <div className="asset-detail">
-                                                    <span className="detail-label">{t('alerts.pricePerUnit')}:</span>
+                                                    <span className="detail-label">{t('alerts.pricePerUnit')}</span>
                                                     <span className="detail-value">${asset.pricePerUnit.toLocaleString()}</span>
                                                 </div>
                                                 <div className="asset-detail">
@@ -1176,7 +1189,7 @@ function GamePage() {
                                     />
                                 </div>
                                 <div className="paper-asset-input-group">
-                                    <label>{t('modals.pricePerUnit')}:</label>
+                                    <label>{t('modals.pricePerUnit')}</label>
                                     <input
                                         type="number"
                                         min="1"
@@ -1188,7 +1201,7 @@ function GamePage() {
                                     />
                                 </div>
                                 <div className="paper-asset-input-group">
-                                    <label>{t('modals.monthlyPassiveIncomePerUnit')}:</label>
+                                    <label>{t('modals.monthlyPassiveIncomePerUnit')}</label>
                                     <input
                                         type="number"
                                         value={paperAssetPassiveIncome}
@@ -1257,7 +1270,7 @@ function GamePage() {
                             <div className="property-asset-details">
                                 <h3>{t('modals.propertyDetails')}</h3>
                                 <div className="property-asset-input-group">
-                                    <label>{t('modals.downPayment')}:</label>
+                                    <label>{t('modals.downPayment')}</label>
                                     <input
                                         type="number"
                                         min="0"
@@ -1268,7 +1281,7 @@ function GamePage() {
                                     />
                                 </div>
                                 <div className="property-asset-input-group">
-                                    <label>{t('modals.totalCost')}:</label>
+                                    <label>{t('modals.totalCost')}</label>
                                     <input
                                         type="number"
                                         min="0"
@@ -1279,7 +1292,7 @@ function GamePage() {
                                     />
                                 </div>
                                 <div className="property-asset-input-group">
-                                    <label>{t('modals.mortgage')}:</label>
+                                    <label>{t('modals.mortgage')}</label>
                                     <input
                                         type="number"
                                         min="0"
@@ -1290,7 +1303,7 @@ function GamePage() {
                                     />
                                 </div>
                                 <div className="property-asset-input-group">
-                                    <label>{t('modals.monthlyPassiveIncome')}:</label>
+                                    <label>{t('modals.monthlyPassiveIncome')}</label>
                                     <input
                                         type="number"
                                         value={propertyPassiveIncome}
@@ -1375,7 +1388,7 @@ function GamePage() {
                         <div className="asset-management-section">
                             <h3>{t('modals.editQuantity')}</h3>
                             <div className="input-group">
-                                <label>{t('modals.newQuantity')}:</label>
+                                <label>{t('modals.newQuantity')}</label>
                                 <input
                                     type="number"
                                     min="1"
@@ -1399,7 +1412,7 @@ function GamePage() {
                         <div className="asset-sale-section">
                             <h3>{t('modals.sellAsset')}</h3>
                             <div className="input-group">
-                                <label>{t('modals.sellPricePerUnit')}:</label>
+                                <label>{t('modals.sellPricePerUnit')}</label>
                                 <input
                                     type="number"
                                     min="1"
@@ -1473,7 +1486,7 @@ function GamePage() {
                         <div className="property-edit-section">
                             <h3>{t('modals.editPassiveIncome')}</h3>
                             <div className="input-group">
-                                <label>{t('modals.monthlyPassiveIncome')}:</label>
+                                <label>{t('modals.monthlyPassiveIncome')}</label>
                                 <input
                                     type="number"
                                     value={editPropertyPassiveIncome}
@@ -1529,7 +1542,7 @@ function GamePage() {
                             </div>
 
                             <div className="input-group">
-                                <label>{t('modals.sellingPrice')}:</label>
+                                <label>{t('modals.sellingPrice')}</label>
                                 <input
                                     type="number"
                                     min="1"
