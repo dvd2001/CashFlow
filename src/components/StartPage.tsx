@@ -1,51 +1,91 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useLanguage } from '../contexts/languageContext'
 import professions from '../data/professions.json'
 
 interface Profession {
     value: string
-    label: string
+    label: {
+        en: string
+        hu: string
+    }
+    payment: number
+    taxes: number
+    mortgagePayment: number
+    schoolLoanPayment: number
+    carLoanPayment: number
+    creditCardPayment: number
+    retailDebtPayment: number
+    otherExpenses: number
+    expensePerChild: number
+    mortageAmount: number
+    schoolLoanAmount: number
+    carLoanAmount: number
+    creditCardDebt: number
+    retailDebt: number
+    savings: number
 }
 
 function StartPage() {
     const [selectedProfession, setSelectedProfession] = useState<string>(professions[0].value)
     const [darkMode, setDarkMode] = useState<boolean>(false)
+    const { language, setLanguage, t } = useLanguage()
     const navigate = useNavigate()
 
     const handleStartGame = () => {
         const selected = professions.find(p => p.value === selectedProfession)
-        navigate('/game', { state: { profession: selected, darkMode } })
+        if (selected) {
+            // Convert profession label to string based on current language
+            const professionWithStringLabel = {
+                ...selected,
+                label: selected.label[language]
+            }
+            navigate('/game', { state: { profession: professionWithStringLabel, darkMode, language } })
+        }
     }
 
     const toggleDarkMode = () => {
         const newDarkMode = !darkMode
         setDarkMode(newDarkMode)
-
         if (newDarkMode) {
             document.body.classList.add('dark-mode')
-            localStorage.setItem('darkMode', 'true')
         } else {
             document.body.classList.remove('dark-mode')
-            localStorage.setItem('darkMode', 'false')
         }
     }
 
-    // And in the component, initialize from localStorage
-    useEffect(() => {
-        const savedDarkMode = localStorage.getItem('darkMode') === 'true'
-        setDarkMode(savedDarkMode)
-        if (savedDarkMode) {
-            document.body.classList.add('dark-mode')
-        }
-    }, [])
+    const handleLanguageChange = (newLanguage: 'en' | 'hu') => {
+        setLanguage(newLanguage)
+    }
 
     return (
         <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
             <div className="content-card">
+                {/* Language Selection */}
+                <div className="language-selection">
+                    <label className="language-label">
+                        <span>{t('language')}:</span>
+                        <div className="language-buttons">
+                            <button
+                                className={`language-btn ${language === 'en' ? 'active' : ''}`}
+                                onClick={() => handleLanguageChange('en')}
+                            >
+                                {t('english')}
+                            </button>
+                            <button
+                                className={`language-btn ${language === 'hu' ? 'active' : ''}`}
+                                onClick={() => handleLanguageChange('hu')}
+                            >
+                                {t('hungarian')}
+                            </button>
+                        </div>
+                    </label>
+                </div>
+
                 {/* Dark Mode Toggle */}
                 <div className="dark-mode-toggle">
                     <label className="toggle-label">
-                        <span>Dark Mode</span>
+                        <span>{t('darkMode')}</span>
                         <div className="toggle-switch">
                             <input
                                 type="checkbox"
@@ -57,7 +97,7 @@ function StartPage() {
                     </label>
                 </div>
 
-                <h1 className="title">CashFlow</h1>
+                <h1 className="title">{t('appTitle')}</h1>
 
                 <select
                     className="game-select"
@@ -66,7 +106,7 @@ function StartPage() {
                 >
                     {professions.map((profession: Profession) => (
                         <option key={profession.value} value={profession.value}>
-                            {profession.label}
+                            {profession.label[language]}
                         </option>
                     ))}
                 </select>
@@ -75,7 +115,7 @@ function StartPage() {
                     className="start-button"
                     onClick={handleStartGame}
                 >
-                    Start Game
+                    {t('startGame')}
                 </button>
             </div>
         </div>

@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { useLanguage } from '../contexts/languageContext';
 
 interface Profession {
     value: string
@@ -24,6 +25,7 @@ interface Profession {
 interface LocationState {
     profession: Profession
     darkMode?: boolean
+    language?: string
 }
 
 interface Liability {
@@ -43,7 +45,7 @@ interface PaperAsset {
     name: string
     quantity: number
     pricePerUnit: number
-    passiveIncomePerUnit: number // Change from passiveIncome to passiveIncomePerUnit
+    passiveIncomePerUnit: number
 }
 
 interface PropertyAsset {
@@ -58,11 +60,12 @@ interface PropertyAsset {
 function GamePage() {
     const location = useLocation()
     const navigate = useNavigate()
+    const { t } = useLanguage()
     const { profession, darkMode } = location.state as LocationState
     const [numberOfChildren, setNumberOfChildren] = useState(0)
     const [bankLoan, setBankLoan] = useState(0)
-    const [savings, setSavings] = useState(profession.savings) // Use profession savings
-    const [retailDebt, setRetailDebt] = useState(1000) // Always $1000 as specified
+    const [savings, setSavings] = useState(profession.savings)
+    const [retailDebt, setRetailDebt] = useState(1000)
     const [showRepayModal, setShowRepayModal] = useState(false)
     const [showGetLoanModal, setShowGetLoanModal] = useState(false)
     const [showBuyPaperAssetModal, setShowBuyPaperAssetModal] = useState(false)
@@ -71,7 +74,7 @@ function GamePage() {
     const [repayAmount, setRepayAmount] = useState(0)
     const [loanAmount, setLoanAmount] = useState(0)
     const [selectedLoanType, setSelectedLoanType] = useState<'bank' | 'retail' | null>(null)
-    const [retailExpenseAmount, setRetailExpenseAmount] = useState(50) // Always $50 as specified
+    const [retailExpenseAmount, setRetailExpenseAmount] = useState(50)
 
     // Paper asset purchase state
     const [selectedPaperAssetType, setSelectedPaperAssetType] = useState<string>('')
@@ -99,15 +102,15 @@ function GamePage() {
 
     // State for expenses that can be modified
     const [expenses, setExpenses] = useState<Expense[]>([
-        { name: 'Taxes', amount: profession.taxes },
-        { name: 'Home Mortgage', amount: profession.mortgagePayment },
-        { name: 'School Loan', amount: profession.schoolLoanPayment },
-        { name: 'Car Loan', amount: profession.carLoanPayment },
-        { name: 'Credit Card', amount: profession.creditCardPayment },
-        { name: 'Retail', amount: 50 }, // Always $50
-        { name: 'Other Expenses', amount: profession.otherExpenses },
-        { name: 'Child Expenses', amount: 0 }, // Will be calculated
-        { name: 'Bank Loan Payment', amount: 0 } // Will be calculated
+        { name: t('expenses.taxes'), amount: profession.taxes },
+        { name: t('expenses.homeMortgage'), amount: profession.mortgagePayment },
+        { name: t('expenses.schoolLoan'), amount: profession.schoolLoanPayment },
+        { name: t('expenses.carLoan'), amount: profession.carLoanPayment },
+        { name: t('expenses.creditCard'), amount: profession.creditCardPayment },
+        { name: t('expenses.retail'), amount: 50 },
+        { name: t('expenses.otherExpenses'), amount: profession.otherExpenses },
+        { name: t('expenses.childExpenses'), amount: 0 },
+        { name: t('expenses.bankLoanPayment'), amount: 0 }
     ])
 
     // State for assets
@@ -136,7 +139,6 @@ function GamePage() {
         'Bed & Breakfast'
     ]
 
-    // Calculate total passive income from all property assets
     // Calculate total passive income from all paper assets (per unit * quantity)
     const totalPaperPassiveIncome = paperAssets.reduce((sum, asset) =>
         sum + (asset.passiveIncomePerUnit * asset.quantity), 0)
@@ -154,15 +156,15 @@ function GamePage() {
 
     const perChildExpense = profession.expensePerChild
     const totalChildExpenses = perChildExpense * numberOfChildren
-    const bankLoanExpense = bankLoan * 0.10 // 10% of bank loan
+    const bankLoanExpense = bankLoan * 0.10
     const salary = profession.payment
 
     // Update expenses with calculated values
     const updatedExpenses = expenses.map(expense => {
-        if (expense.name === 'Child Expenses') {
+        if (expense.name === t('expenses.childExpenses')) {
             return { ...expense, amount: totalChildExpenses }
         }
-        if (expense.name === 'Bank Loan Payment') {
+        if (expense.name === t('expenses.bankLoanPayment')) {
             return { ...expense, amount: bankLoanExpense }
         }
         return expense
@@ -171,39 +173,39 @@ function GamePage() {
     // Liabilities data with expense mapping
     const liabilities: Liability[] = [
         {
-            name: 'Home Mortgage',
+            name: t('liabilities.homeMortgage'),
             amount: profession.mortageAmount,
-            expenseName: 'Home Mortgage',
+            expenseName: t('expenses.homeMortgage'),
             expenseAmount: profession.mortgagePayment
         },
         {
-            name: 'School Loan',
+            name: t('liabilities.schoolLoan'),
             amount: profession.schoolLoanAmount,
-            expenseName: 'School Loan',
+            expenseName: t('expenses.schoolLoan'),
             expenseAmount: profession.schoolLoanPayment
         },
         {
-            name: 'Car Loan',
+            name: t('liabilities.carLoan'),
             amount: profession.carLoanAmount,
-            expenseName: 'Car Loan',
+            expenseName: t('expenses.carLoan'),
             expenseAmount: profession.carLoanPayment
         },
         {
-            name: 'Credit Card',
+            name: t('liabilities.creditCard'),
             amount: profession.creditCardDebt,
-            expenseName: 'Credit Card',
+            expenseName: t('expenses.creditCard'),
             expenseAmount: profession.creditCardPayment
         },
         {
-            name: 'Retail Debt',
+            name: t('liabilities.retailDebt'),
             amount: retailDebt,
-            expenseName: 'Retail',
-            expenseAmount: updatedExpenses.find(e => e.name === 'Retail')?.amount || 110
+            expenseName: t('expenses.retail'),
+            expenseAmount: updatedExpenses.find(e => e.name === t('expenses.retail'))?.amount || 110
         },
         {
-            name: 'Bank Loan',
+            name: t('liabilities.bankLoan'),
             amount: bankLoan,
-            expenseName: 'Bank Loan Payment',
+            expenseName: t('expenses.bankLoanPayment'),
             expenseAmount: bankLoanExpense
         }
     ]
@@ -216,7 +218,6 @@ function GamePage() {
     const paperAssetTotalCost = paperAssetQuantity * paperAssetPrice
 
     const launchConfetti = () => {
-        // Simple confetti effect using emojis in an alert (or use a proper confetti library)
         console.log("🎉🎊🎉🎊 Congratulations! 🎉🎊🎉🎊");
     };
 
@@ -230,9 +231,8 @@ function GamePage() {
 
     // Button handlers
     const handlePayday = () => {
-        // Add monthly cash flow to savings
         setSavings(prev => prev + monthlyCashFlow)
-        alert(`Payday! $${monthlyCashFlow} added to savings.`)
+        alert(`${t('alerts.payday')} $${monthlyCashFlow} ${t('alerts.addedToSavings')}`)
     }
 
     const handleRepayLiability = () => {
@@ -266,17 +266,17 @@ function GamePage() {
 
     const handleBuyPaperAssetConfirm = () => {
         if (!selectedPaperAssetType || paperAssetQuantity < 1 || paperAssetPrice <= 0) {
-            alert('Please fill in all fields correctly.')
+            alert(t('alerts.fillAllFields'))
             return
         }
 
         if (paperAssetQuantity > 5000) {
-            alert('Maximum quantity is 5000.')
+            alert(t('alerts.maxQuantity5000'))
             return
         }
 
         if (paperAssetTotalCost > savings) {
-            alert('Insufficient savings to make this purchase!')
+            alert(t('alerts.insufficientSavings'))
             return
         }
 
@@ -286,7 +286,7 @@ function GamePage() {
             name: selectedPaperAssetType,
             quantity: paperAssetQuantity,
             pricePerUnit: paperAssetPrice,
-            passiveIncomePerUnit: paperAssetPassiveIncome // Store per unit
+            passiveIncomePerUnit: paperAssetPassiveIncome
         }
 
         // Add to paper assets
@@ -296,8 +296,8 @@ function GamePage() {
         setSavings(prev => prev - paperAssetTotalCost)
 
         // Show success message
-        alert(`Successfully purchased ${paperAssetQuantity} units of ${selectedPaperAssetType} for $${paperAssetTotalCost}!\n` +
-            `Monthly passive income: $${paperAssetPassiveIncome}`)
+        alert(`${t('alerts.purchased')} ${paperAssetQuantity} ${t('alerts.unitsOf')} ${selectedPaperAssetType} ${t('alerts.for')} $${paperAssetTotalCost}!\n` +
+            `${t('alerts.monthlyPassiveIncome')}: $${paperAssetPassiveIncome}`)
 
         // Close modal and reset form
         setShowBuyPaperAssetModal(false)
@@ -309,17 +309,17 @@ function GamePage() {
 
     const handleBuyPropertyAssetConfirm = () => {
         if (!selectedPropertyType || propertyDownPayment <= 0 || propertyTotalCost <= 0) {
-            alert('Please fill in all fields correctly.')
+            alert(t('alerts.fillAllFields'))
             return
         }
 
         if (propertyDownPayment > savings) {
-            alert('Insufficient savings for the down payment!')
+            alert(t('alerts.insufficientDownPayment'))
             return
         }
 
         if (propertyDownPayment + propertyMortgage !== propertyTotalCost) {
-            alert('Down payment + mortgage should equal total cost.')
+            alert(t('alerts.downPaymentPlusMortgage'))
             return
         }
 
@@ -340,12 +340,12 @@ function GamePage() {
         setSavings(prev => prev - propertyDownPayment)
 
         // Show success message
-        alert(`Successfully purchased ${selectedPropertyType}!\n\n` +
-            `Down payment: $${propertyDownPayment.toLocaleString()}\n` +
-            `Total cost: $${propertyTotalCost.toLocaleString()}\n` +
-            `Mortgage: $${propertyMortgage.toLocaleString()}\n` +
-            `Monthly passive income: ${propertyPassiveIncome >= 0 ? '+' : ''}$${propertyPassiveIncome.toLocaleString()}\n\n` +
-            `Your total passive income increased to $${(totalPassiveIncome + propertyPassiveIncome).toLocaleString()}`)
+        alert(`${t('alerts.purchased')} ${selectedPropertyType}!\n\n` +
+            `${t('alerts.downPayment')}: $${propertyDownPayment.toLocaleString()}\n` +
+            `${t('alerts.totalCost')}: $${propertyTotalCost.toLocaleString()}\n` +
+            `${t('alerts.mortgage')}: $${propertyMortgage.toLocaleString()}\n` +
+            `${t('alerts.monthlyPassiveIncome')}: $${propertyPassiveIncome.toLocaleString()}\n\n` +
+            `${t('alerts.totalPassiveIncomeIncreased')} $${(totalPassiveIncome + propertyPassiveIncome).toLocaleString()}`)
 
         // Close modal and reset form
         setShowBuyPropertyAssetModal(false)
@@ -358,24 +358,22 @@ function GamePage() {
 
     const handleGetLoanConfirm = () => {
         if (!selectedLoanType || loanAmount <= 0) {
-            alert('Please select a loan type and enter a valid amount.');
+            alert(t('alerts.selectLoanTypeAndAmount'));
             return;
         }
 
         let finalLoanAmount = loanAmount;
 
         if (selectedLoanType === 'bank') {
-            // For bank loan, ensure it's a multiple of 1000 and at least 1000
             if (finalLoanAmount < 1000) {
-                alert('Bank loan must be at least $1,000');
+                alert(t('alerts.bankLoanMin1000'));
                 return;
             }
 
             if (finalLoanAmount % 1000 !== 0) {
-                // Auto-adjust to nearest multiple of 1000
                 finalLoanAmount = Math.round(finalLoanAmount / 1000) * 1000;
-                setLoanAmount(finalLoanAmount); // Update the display
-                alert(`Bank loan amount adjusted to $${finalLoanAmount} (must be in multiples of $1,000)`);
+                setLoanAmount(finalLoanAmount);
+                alert(t('alerts.bankLoanAdjusted').replace('${amount}', finalLoanAmount.toString()));
             }
         }
 
@@ -383,11 +381,10 @@ function GamePage() {
             setBankLoan(prev => prev + finalLoanAmount);
             setSavings(prev => prev + finalLoanAmount);
         } else {
-            // For retail debt handling...
             setRetailDebt(prev => prev + finalLoanAmount);
             setExpenses(prev =>
                 prev.map(expense =>
-                    expense.name === 'Retail'
+                    expense.name === t('expenses.retail')
                         ? { ...expense, amount: (expense.amount || 0) + retailExpenseAmount }
                         : expense
                 )
@@ -396,13 +393,13 @@ function GamePage() {
 
         // Show success message
         if (selectedLoanType === 'bank') {
-            alert(`Successfully received $${finalLoanAmount} Bank Loan!\n\n` +
-                `$${finalLoanAmount} added to your savings.\n` +
-                `Monthly expense increased by: $${finalLoanAmount * 0.10}`);
+            alert(`${t('alerts.bankLoanReceived')} $${finalLoanAmount}!\n\n` +
+                `$${finalLoanAmount} ${t('alerts.addedToSavings')}\n` +
+                `${t('alerts.monthlyExpenseIncreased')}: $${finalLoanAmount * 0.10}`);
         } else {
-            alert(`Successfully received $${finalLoanAmount} Retail Debt!\n\n` +
-                `Monthly expense increased by: $${retailExpenseAmount}\n` +
-                `Note: Retail debt amount is spent immediately and not added to savings.`);
+            alert(`${t('alerts.retailDebtReceived')} $${finalLoanAmount}!\n\n` +
+                `${t('alerts.monthlyExpenseIncreased')}: $${retailExpenseAmount}\n` +
+                `${t('alerts.retailDebtNote')}`);
         }
 
         // Close modal
@@ -414,43 +411,39 @@ function GamePage() {
 
     const handleRepay = () => {
         if (!selectedLiability) {
-            alert('Please select a liability to repay.')
+            alert(t('alerts.selectLiabilityToRepay'))
             return
         }
 
-        const amountToRepay = selectedLiability.name === 'Bank Loan' ? repayAmount : selectedLiability.amount
+        const amountToRepay = selectedLiability.name === t('liabilities.bankLoan') ? repayAmount : selectedLiability.amount
 
         if (amountToRepay <= 0) {
-            alert('Please enter a valid repayment amount.')
+            alert(t('alerts.enterValidRepaymentAmount'))
             return
         }
 
         if (amountToRepay > savings) {
-            alert('Insufficient savings to make this repayment!')
+            alert(t('alerts.insufficientSavings'))
             return
         }
 
         // Process repayment
-        if (selectedLiability.name === 'Bank Loan') {
-            // For bank loan, reduce the loan amount
+        if (selectedLiability.name === t('liabilities.bankLoan')) {
             const newBankLoan = Math.max(0, bankLoan - repayAmount)
             setBankLoan(newBankLoan)
-        } else if (selectedLiability.name === 'Retail Debt') {
-            // For retail debt, reduce the debt amount
+        } else if (selectedLiability.name === t('liabilities.retailDebt')) {
             const newRetailDebt = Math.max(0, retailDebt - repayAmount)
             setRetailDebt(newRetailDebt)
-            // Also reduce the retail expense proportionally
-            const currentRetailExpense = updatedExpenses.find(e => e.name === 'Retail')?.amount || 0
+            const currentRetailExpense = updatedExpenses.find(e => e.name === t('expenses.retail'))?.amount || 0
             const expenseReduction = (repayAmount / retailDebt) * currentRetailExpense
             setExpenses(prev =>
                 prev.map(expense =>
-                    expense.name === 'Retail'
+                    expense.name === t('expenses.retail')
                         ? { ...expense, amount: Math.max(0, expense.amount - expenseReduction) }
                         : expense
                 )
             )
         } else {
-            // For other liabilities, set the expense to 0
             setExpenses(prev =>
                 prev.map(expense =>
                     expense.name === selectedLiability.expenseName
@@ -465,24 +458,21 @@ function GamePage() {
 
         // Calculate the expense reduction amount
         let expenseReduction = 0
-        if (selectedLiability.name === 'Bank Loan') {
-            // For bank loan, calculate the reduction in expense
+        if (selectedLiability.name === t('liabilities.bankLoan')) {
             const oldExpense = bankLoanExpense
             const newExpense = (bankLoan - repayAmount) * 0.10
             expenseReduction = oldExpense - newExpense
-        } else if (selectedLiability.name === 'Retail Debt') {
-            // For retail debt, calculate the reduction in expense
-            const currentRetailExpense = updatedExpenses.find(e => e.name === 'Retail')?.amount || 0
+        } else if (selectedLiability.name === t('liabilities.retailDebt')) {
+            const currentRetailExpense = updatedExpenses.find(e => e.name === t('expenses.retail'))?.amount || 0
             expenseReduction = (repayAmount / retailDebt) * currentRetailExpense
         } else {
-            // For other liabilities, reduce by the full expense amount
             expenseReduction = selectedLiability.expenseAmount || 0
         }
 
-        // Show success message with details
-        alert(`Successfully repaid $${amountToRepay} of ${selectedLiability.name}!\n\n` +
-            `Monthly expenses reduced by: $${expenseReduction.toFixed(0)}\n` +
-            `Monthly cash flow increased by: $${expenseReduction.toFixed(0)}`)
+        // Show success message
+        alert(`${t('alerts.repaid')} $${amountToRepay} ${t('alerts.of')} ${selectedLiability.name}!\n\n` +
+            `${t('alerts.monthlyExpensesReduced')}: $${expenseReduction.toFixed(0)}\n` +
+            `${t('alerts.monthlyCashFlowIncreased')}: $${expenseReduction.toFixed(0)}`)
 
         // Close modal
         setShowRepayModal(false)
@@ -492,17 +482,14 @@ function GamePage() {
 
     const handleLiabilitySelect = (liability: Liability) => {
         setSelectedLiability(liability)
-        if (liability.name !== 'Bank Loan') {
-            // For non-bank loans, set repay amount to full amount
+        if (liability.name !== t('liabilities.bankLoan')) {
             setRepayAmount(liability.amount)
         } else {
-            // For bank loan, start with 0
             setRepayAmount(0)
         }
     }
 
     const handleBankLoanRepayChange = (value: number) => {
-        // Ensure value is a multiple of 1000 and within bounds
         if (value % 1000 === 0 && value >= 0 && value <= (selectedLiability?.amount || 0)) {
             setRepayAmount(value);
         }
@@ -516,12 +503,10 @@ function GamePage() {
 
     const handleLoanAmountChange = (value: number) => {
         if (selectedLoanType === 'bank') {
-            // For bank loan, only allow multiples of 1000
             if (value % 1000 === 0 && value >= 0) {
                 setLoanAmount(value)
             }
         } else {
-            // For retail debt, allow any amount
             if (value >= 0) {
                 setLoanAmount(value)
             }
@@ -557,7 +542,6 @@ function GamePage() {
     const handlePropertyDownPaymentChange = (value: number) => {
         if (value >= 0) {
             setPropertyDownPayment(value)
-            // Auto-calculate mortgage if total cost is set
             if (propertyTotalCost > 0) {
                 setPropertyMortgage(propertyTotalCost - value)
             }
@@ -567,7 +551,6 @@ function GamePage() {
     const handlePropertyTotalCostChange = (value: number) => {
         if (value >= 0) {
             setPropertyTotalCost(value)
-            // Auto-calculate mortgage if down payment is set
             if (propertyDownPayment > 0) {
                 setPropertyMortgage(value - propertyDownPayment)
             }
@@ -587,14 +570,14 @@ function GamePage() {
     const handlePaperAssetClick = (asset: PaperAsset) => {
         setSelectedPaperAsset(asset)
         setEditQuantity(asset.quantity)
-        setSellPrice(asset.pricePerUnit) // Default to purchase price
-        setUnitsToSell(1) // Default to 1 unit
+        setSellPrice(asset.pricePerUnit)
+        setUnitsToSell(1)
         setShowPaperAssetModal(true)
     }
 
     const handlePropertyAssetClick = (asset: PropertyAsset) => {
         setSelectedPropertyAsset(asset);
-        setEditPropertyPassiveIncome(asset.passiveIncome); // Initialize with current value
+        setEditPropertyPassiveIncome(asset.passiveIncome);
         setPropertySellPrice(asset.totalCost);
         setShowPropertyAssetModal(true);
     };
@@ -603,11 +586,10 @@ function GamePage() {
         if (!selectedPaperAsset) return
 
         if (editQuantity < 1) {
-            alert('Quantity must be at least 1')
+            alert(t('alerts.quantityAtLeast1'))
             return
         }
 
-        // Update the paper asset with new quantity
         setPaperAssets(prev =>
             prev.map(asset =>
                 asset.id === selectedPaperAsset.id
@@ -616,7 +598,7 @@ function GamePage() {
             )
         )
 
-        alert(`Updated ${selectedPaperAsset.name} quantity to ${editQuantity}`)
+        alert(`${t('alerts.updated')} ${selectedPaperAsset.name} ${t('alerts.quantityTo')} ${editQuantity}`)
         setShowPaperAssetModal(false)
         setSelectedPaperAsset(null)
     }
@@ -625,22 +607,20 @@ function GamePage() {
         if (!selectedPaperAsset) return
 
         if (sellPrice <= 0) {
-            alert('Please enter a valid sell price')
+            alert(t('alerts.enterValidSellPrice'))
             return
         }
 
         if (unitsToSell < 1 || unitsToSell > selectedPaperAsset.quantity) {
-            alert('Please enter a valid number of units to sell')
+            alert(t('alerts.enterValidUnitsToSell'))
             return
         }
 
         const totalSaleAmount = unitsToSell * sellPrice
 
         if (unitsToSell === selectedPaperAsset.quantity) {
-            // Selling all units - remove the asset completely
             setPaperAssets(prev => prev.filter(asset => asset.id !== selectedPaperAsset.id))
         } else {
-            // Selling partial units - update the quantity
             setPaperAssets(prev =>
                 prev.map(asset =>
                     asset.id === selectedPaperAsset.id
@@ -650,10 +630,9 @@ function GamePage() {
             )
         }
 
-        // Add money to savings
         setSavings(prev => prev + totalSaleAmount)
 
-        alert(`Sold ${unitsToSell} units of ${selectedPaperAsset.name} for $${totalSaleAmount.toLocaleString()}!`)
+        alert(`${t('alerts.sold')} ${unitsToSell} ${t('alerts.unitsOf')} ${selectedPaperAsset.name} ${t('alerts.for')} $${totalSaleAmount.toLocaleString()}!`)
         setShowPaperAssetModal(false)
         setSelectedPaperAsset(null)
     }
@@ -662,30 +641,27 @@ function GamePage() {
         if (!selectedPropertyAsset) return
 
         if (propertySellPrice <= 0) {
-            alert('Please enter a valid sell price')
+            alert(t('alerts.enterValidSellPrice'))
             return
         }
 
-        // Calculate net proceeds (selling price minus mortgage)
         const netProceeds = propertySellPrice - selectedPropertyAsset.mortgage
 
         if (netProceeds < 0) {
-            alert('Selling price must be at least equal to the mortgage amount!')
+            alert(t('alerts.sellingPriceMustCoverMortgage'))
             return
         }
 
-        // Remove the property and add net proceeds to savings
         setPropertyAssets(prev => prev.filter(property => property.id !== selectedPropertyAsset.id))
         setSavings(prev => prev + netProceeds)
 
-        alert(`Sold ${selectedPropertyAsset.name} for $${propertySellPrice.toLocaleString()}!\n` +
-            `After paying off mortgage of $${selectedPropertyAsset.mortgage.toLocaleString()},\n` +
-            `Net proceeds: $${netProceeds.toLocaleString()}`)
+        alert(`${t('alerts.sold')} ${selectedPropertyAsset.name} ${t('alerts.for')} $${propertySellPrice.toLocaleString()}!\n` +
+            `${t('alerts.afterPayingMortgage')} $${selectedPropertyAsset.mortgage.toLocaleString()},\n` +
+            `${t('alerts.netProceeds')}: $${netProceeds.toLocaleString()}`)
 
         setShowPropertyAssetModal(false)
         setSelectedPropertyAsset(null)
     }
-
 
     return (
         <div className={`game-page ${darkMode ? 'dark-mode' : ''}`}>
@@ -693,7 +669,7 @@ function GamePage() {
                 {/* Left Side - Fixed Panel */}
                 <div className="left-panel">
                     <div className="panel-content">
-                        <h1 className="panel-title">Your Profession</h1>
+                        <h1 className="panel-title">{t('game.yourProfession')}</h1>
 
                         <div className="profession-display">
                             <h2>{profession.label.toUpperCase()}</h2>
@@ -701,26 +677,26 @@ function GamePage() {
 
                         <div className="salary-display">
                             <div className="salary-info">
-                                <span>Monthly Salary:</span>
+                                <span>{t('game.monthlySalary')}:</span>
                                 <span>${salary.toLocaleString()}</span>
                             </div>
                         </div>
 
                         <div className="financial-summary">
                             <div className="summary-item">
-                                <span>Total Income:</span>
+                                <span>{t('game.totalIncome')}:</span>
                                 <span>${totalIncome}</span>
                             </div>
                             <div className="summary-item">
-                                <span>Passive Income:</span>
+                                <span>{t('game.passiveIncome')}:</span>
                                 <span>${totalPassiveIncome}</span>
                             </div>
                             <div className="summary-item">
-                                <span>Total Expenses:</span>
+                                <span>{t('game.totalExpenses')}:</span>
                                 <span>${totalExpenses}</span>
                             </div>
                             <div className="summary-item net-cash-flow">
-                                <span>Monthly Cash Flow:</span>
+                                <span>{t('game.monthlyCashFlow')}:</span>
                                 <span>${monthlyCashFlow}</span>
                             </div>
                         </div>
@@ -728,7 +704,7 @@ function GamePage() {
                         <div className="financial-sections">
                             {/* Expenses Section */}
                             <div className="section">
-                                <h3 className="section-title">Expenses</h3>
+                                <h3 className="section-title">{t('game.expenses')}</h3>
                                 <div className="items-list">
                                     {updatedExpenses.map((expense, index) => (
                                         <div key={index} className="item-row">
@@ -741,7 +717,7 @@ function GamePage() {
 
                             {/* Liabilities Section */}
                             <div className="section">
-                                <h3 className="section-title">Liabilities</h3>
+                                <h3 className="section-title">{t('game.liabilities')}</h3>
                                 <div className="items-list">
                                     {liabilities.map((liability, index) => (
                                         <div key={index} className="item-row">
@@ -755,19 +731,19 @@ function GamePage() {
 
                         <div className="action-buttons">
                             <button className="action-btn payday-btn" onClick={handlePayday}>
-                                Payday
+                                {t('game.payday')}
                             </button>
                             <button className="action-btn repay-btn" onClick={handleRepayLiability}>
-                                Repay Liability
+                                {t('game.repayLiability')}
                             </button>
                             <button className="action-btn loan-btn" onClick={handleGetLoan}>
-                                Get Loan
+                                {t('game.getLoan')}
                             </button>
                         </div>
 
                         <div className="children-section">
                             <div className="children-input">
-                                <label htmlFor="children-count">Number of Children (Max 3):</label>
+                                <label htmlFor="children-count">{t('game.numberOfChildren')}:</label>
                                 <input
                                     type="number"
                                     id="children-count"
@@ -778,7 +754,7 @@ function GamePage() {
                                     onWheel={(e) => e.currentTarget.blur()}
                                 />
                                 <div className="child-expense-note">
-                                    Expense per Child: ${perChildExpense}
+                                    {t('game.expensePerChild')}: ${perChildExpense}
                                 </div>
                             </div>
                         </div>
@@ -787,7 +763,7 @@ function GamePage() {
                             className="back-button"
                             onClick={handleBackToStart}
                         >
-                            Back to Start
+                            {t('game.backToStart')}
                         </button>
                     </div>
                 </div>
@@ -798,9 +774,9 @@ function GamePage() {
                         {/* Paper Assets Section */}
                         <section className="assets-section">
                             <div className="section-header">
-                                <h2 className="section-main-title">Paper Assets</h2>
+                                <h2 className="section-main-title">{t('game.paperAssets')}</h2>
                                 <button className="buy-asset-btn" onClick={handleBuyPaperAsset}>
-                                    Buy Asset
+                                    {t('game.buyAsset')}
                                 </button>
                             </div>
                             <div className="assets-cards-container">
@@ -813,15 +789,15 @@ function GamePage() {
                                         >
                                             <div className="asset-card-header">
                                                 <h3 className="asset-name">{asset.name}</h3>
-                                                <span className="asset-quantity">{asset.quantity} units</span>
+                                                <span className="asset-quantity">{asset.quantity} {t('alerts.units')}</span>
                                             </div>
                                             <div className="asset-card-details">
                                                 <div className="asset-detail">
-                                                    <span className="detail-label">Price per Unit:</span>
+                                                    <span className="detail-label">{t('alerts.pricePerUnit')}:</span>
                                                     <span className="detail-value">${asset.pricePerUnit.toLocaleString()}</span>
                                                 </div>
                                                 <div className="asset-detail">
-                                                    <span className="detail-label">Monthly Income:</span>
+                                                    <span className="detail-label">{t('alerts.monthlyIncome')}:</span>
                                                     <span className="detail-value positive">
                                                         +${(asset.passiveIncomePerUnit * asset.quantity).toLocaleString()}
                                                     </span>
@@ -831,20 +807,19 @@ function GamePage() {
                                     ))
                                 ) : (
                                     <div className="empty-state">
-                                        <p>No paper assets yet</p>
-                                        <p className="empty-state-subtitle">Click "Buy Asset" to add your first investment</p>
+                                        <p>{t('game.noPaperAssets')}</p>
+                                        <p className="empty-state-subtitle">{t('game.clickToAddFirstPaper')}</p>
                                     </div>
                                 )}
                             </div>
                         </section>
 
-
                         {/* Property Assets Section */}
                         <section className="assets-section">
                             <div className="section-header">
-                                <h2 className="section-main-title">Property Assets</h2>
+                                <h2 className="section-main-title">{t('game.propertyAssets')}</h2>
                                 <button className="buy-asset-btn" onClick={handleBuyPropertyAsset}>
-                                    Buy Asset
+                                    {t('game.buyAsset')}
                                 </button>
                             </div>
                             <div className="assets-cards-container">
@@ -864,19 +839,19 @@ function GamePage() {
                                             <div className="property-card-details">
                                                 <div className="property-detail-grid">
                                                     <div className="property-detail">
-                                                        <span className="detail-label">Down Payment:</span>
+                                                        <span className="detail-label">{t('alerts.downPayment')}:</span>
                                                         <span className="detail-value">${property.downPayment.toLocaleString()}</span>
                                                     </div>
                                                     <div className="property-detail">
-                                                        <span className="detail-label">Total Cost:</span>
+                                                        <span className="detail-label">{t('alerts.totalCost')}:</span>
                                                         <span className="detail-value">${property.totalCost.toLocaleString()}</span>
                                                     </div>
                                                     <div className="property-detail">
-                                                        <span className="detail-label">Mortgage:</span>
+                                                        <span className="detail-label">{t('alerts.mortgage')}:</span>
                                                         <span className="detail-value">${property.mortgage.toLocaleString()}</span>
                                                     </div>
                                                     <div className="property-detail">
-                                                        <span className="detail-label">Equity:</span>
+                                                        <span className="detail-label">{t('alerts.equity')}:</span>
                                                         <span className="detail-value">${(property.totalCost - property.mortgage).toLocaleString()}</span>
                                                     </div>
                                                 </div>
@@ -885,8 +860,8 @@ function GamePage() {
                                     ))
                                 ) : (
                                     <div className="empty-state">
-                                        <p>No property assets yet</p>
-                                        <p className="empty-state-subtitle">Click "Buy Asset" to add your first property</p>
+                                        <p>{t('game.noPropertyAssets')}</p>
+                                        <p className="empty-state-subtitle">{t('game.clickToAddFirstProperty')}</p>
                                     </div>
                                 )}
                             </div>
@@ -899,31 +874,31 @@ function GamePage() {
             <div className="savings-section">
                 <div className="savings-content">
                     <div className="savings-info">
-                        <span className="savings-label">Savings:</span>
+                        <span className="savings-label">{t('game.savings')}:</span>
                         <span className="savings-amount">${savings.toLocaleString()}</span>
                     </div>
                     <div className="savings-actions">
                         <button
                             className="savings-btn add-btn"
                             onClick={() => {
-                                const amount = parseInt(prompt('Enter amount to add to savings:') || '0')
+                                const amount = parseInt(prompt(t('game.addFundsPrompt')) || '0')
                                 if (amount > 0) setSavings(prev => prev + amount)
                             }}
                         >
-                            Add Funds
+                            {t('game.addFunds')}
                         </button>
                         <button
                             className="savings-btn withdraw-btn"
                             onClick={() => {
-                                const amount = parseInt(prompt('Enter amount to withdraw from savings:') || '0')
+                                const amount = parseInt(prompt(t('game.withdrawPrompt')) || '0')
                                 if (amount > 0 && amount <= savings) {
                                     setSavings(prev => prev - amount)
                                 } else if (amount > savings) {
-                                    alert('Insufficient savings!')
+                                    alert(t('alerts.insufficientSavings'))
                                 }
                             }}
                         >
-                            Withdraw
+                            {t('game.withdraw')}
                         </button>
                     </div>
                 </div>
@@ -933,10 +908,10 @@ function GamePage() {
             {showRepayModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <h2 className="modal-title">Repay Liability</h2>
+                        <h2 className="modal-title">{t('modals.repayLiability')}</h2>
 
                         <div className="liability-selection">
-                            <h3>Select Liability to Repay:</h3>
+                            <h3>{t('modals.selectLiability')}</h3>
                             <div className="liability-options">
                                 {liabilities.map((liability, index) => (
                                     <div
@@ -953,10 +928,10 @@ function GamePage() {
 
                         {selectedLiability && (
                             <div className="repay-amount-section">
-                                <h3>Repayment Amount:</h3>
-                                {selectedLiability.name === 'Bank Loan' ? (
+                                <h3>{t('modals.repaymentAmount')}</h3>
+                                {selectedLiability.name === t('liabilities.bankLoan') ? (
                                     <div className="bank-loan-repay">
-                                        <p>Bank Loan can be repaid in increments of $1,000</p>
+                                        <p>{t('modals.bankLoanIncrements')}</p>
                                         <input
                                             type="number"
                                             min="0"
@@ -974,40 +949,40 @@ function GamePage() {
                                                 }
                                                 setRepayAmount(value);
                                             }}
-                                            placeholder="Enter amount in 1000s"
+                                            placeholder={t('modals.enterAmountIn1000s')}
                                             onWheel={(e) => e.currentTarget.blur()}
                                         />
                                         {repayAmount > 0 && repayAmount % 1000 !== 0 && (
                                             <p className="warning-note" style={{ color: 'orange', marginTop: '5px' }}>
-                                                ⚠️ Amount must be in multiples of $1,000. It will be adjusted to ${Math.round(repayAmount / 1000) * 1000}.
+                                                ⚠️ {t('modals.amountMustBeMultipleOf1000')} ${Math.round(repayAmount / 1000) * 1000}.
                                             </p>
                                         )}
                                         <div className="amount-options">
                                             <button onClick={() => handleBankLoanRepayChange(1000)}>$1,000</button>
                                             <button onClick={() => handleBankLoanRepayChange(5000)}>$5,000</button>
-                                            <button onClick={() => handleBankLoanRepayChange(selectedLiability.amount)}>Full Amount</button>
+                                            <button onClick={() => handleBankLoanRepayChange(selectedLiability.amount)}>{t('modals.fullAmount')}</button>
                                         </div>
                                     </div>
                                 ) : (
                                     <div className="full-repay">
-                                        <p>Full repayment amount: <strong>${selectedLiability.amount.toLocaleString()}</strong></p>
+                                        <p>{t('modals.fullRepaymentAmount')} <strong>${selectedLiability.amount.toLocaleString()}</strong></p>
                                         <p className="expense-info">
-                                            This will eliminate your <strong>${selectedLiability.expenseAmount}</strong> monthly {selectedLiability.expenseName} expense
+                                            {t('modals.willEliminateExpense')} <strong>${selectedLiability.expenseAmount}</strong> {t('modals.monthly')} {selectedLiability.expenseName} {t('modals.expense')}
                                         </p>
                                     </div>
                                 )}
 
                                 <div className="repay-summary">
-                                    <p>Available Savings: <strong>${savings.toLocaleString()}</strong></p>
-                                    <p>Amount to Repay: <strong>${repayAmount.toLocaleString()}</strong></p>
-                                    {selectedLiability.name !== 'Bank Loan' && (
-                                        <p>Monthly Expense Reduction: <strong>${selectedLiability.expenseAmount}</strong></p>
+                                    <p>{t('modals.availableSavings')} <strong>${savings.toLocaleString()}</strong></p>
+                                    <p>{t('modals.amountToRepay')} <strong>${repayAmount.toLocaleString()}</strong></p>
+                                    {selectedLiability.name !== t('liabilities.bankLoan') && (
+                                        <p>{t('modals.monthlyExpenseReduction')} <strong>${selectedLiability.expenseAmount}</strong></p>
                                     )}
-                                    {selectedLiability.name === 'Bank Loan' && repayAmount > 0 && (
-                                        <p>Monthly Expense Reduction: <strong>${(repayAmount * 0.10).toFixed(0)}</strong></p>
+                                    {selectedLiability.name === t('liabilities.bankLoan') && repayAmount > 0 && (
+                                        <p>{t('modals.monthlyExpenseReduction')} <strong>${(repayAmount * 0.10).toFixed(0)}</strong></p>
                                     )}
                                     <p className={savings >= repayAmount ? 'success' : 'error'}>
-                                        {savings >= repayAmount ? '✓ Sufficient funds' : '✗ Insufficient funds'}
+                                        {savings >= repayAmount ? t('modals.sufficientFunds') : t('modals.insufficientFunds')}
                                     </p>
                                 </div>
                             </div>
@@ -1018,14 +993,14 @@ function GamePage() {
                                 className="modal-btn cancel-btn"
                                 onClick={() => setShowRepayModal(false)}
                             >
-                                Cancel
+                                {t('modals.cancel')}
                             </button>
                             <button
                                 className="modal-btn repay-modal-btn"
                                 onClick={handleRepay}
                                 disabled={!selectedLiability || repayAmount <= 0 || repayAmount > savings}
                             >
-                                Repay
+                                {t('modals.repayLiability')}
                             </button>
                         </div>
                     </div>
@@ -1036,34 +1011,34 @@ function GamePage() {
             {showGetLoanModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <h2 className="modal-title">Get Loan</h2>
+                        <h2 className="modal-title">{t('modals.getLoan')}</h2>
 
                         <div className="loan-type-selection">
-                            <h3>Select Loan Type:</h3>
+                            <h3>{t('modals.selectLoanType')}</h3>
                             <div className="loan-type-options">
                                 <div
                                     className={`loan-type-option ${selectedLoanType === 'bank' ? 'selected' : ''}`}
                                     onClick={() => handleLoanTypeSelect('bank')}
                                 >
-                                    <span className="loan-type-name">Bank Loan</span>
-                                    <span className="loan-type-desc">10% monthly expense, added to savings</span>
+                                    <span className="loan-type-name">{t('modals.bankLoan')}</span>
+                                    <span className="loan-type-desc">{t('modals.bankLoanDesc')}</span>
                                 </div>
                                 <div
                                     className={`loan-type-option ${selectedLoanType === 'retail' ? 'selected' : ''}`}
                                     onClick={() => handleLoanTypeSelect('retail')}
                                 >
-                                    <span className="loan-type-name">Retail Debt</span>
-                                    <span className="loan-type-desc">Set monthly expense, spent immediately</span>
+                                    <span className="loan-type-name">{t('modals.retailDebt')}</span>
+                                    <span className="loan-type-desc">{t('modals.retailDebtDesc')}</span>
                                 </div>
                             </div>
                         </div>
 
                         {selectedLoanType && (
                             <div className="loan-amount-section">
-                                <h3>Loan Details:</h3>
+                                <h3>{t('modals.loanDetails')}</h3>
                                 {selectedLoanType === 'bank' ? (
                                     <div className="bank-loan-amount">
-                                        <p>Bank Loan must be in multiples of $1,000 (minimum $1,000)</p>
+                                        <p>{t('modals.bankLoanMustBeMultiple')}</p>
                                         <input
                                             type="number"
                                             min="1000"
@@ -1074,22 +1049,20 @@ function GamePage() {
                                                 setLoanAmount(value);
                                             }}
                                             onBlur={(e) => {
-                                                // When input loses focus, validate and adjust to nearest multiple of 1000
                                                 let value = parseInt(e.target.value) || 0;
                                                 if (value < 1000) {
                                                     value = 1000;
                                                 } else if (value % 1000 !== 0) {
-                                                    // Round to nearest multiple of 1000
                                                     value = Math.round(value / 1000) * 1000;
                                                 }
                                                 setLoanAmount(value);
                                             }}
-                                            placeholder="Enter amount in multiples of 1000"
+                                            placeholder={t('modals.enterAmountMultiplesOf1000')}
                                             onWheel={(e) => e.currentTarget.blur()}
                                         />
                                         {loanAmount > 0 && loanAmount % 1000 !== 0 && (
                                             <p className="warning-note" style={{ color: 'orange', marginTop: '5px' }}>
-                                                ⚠️ Amount must be in multiples of $1,000. It will be adjusted to ${Math.round(loanAmount / 1000) * 1000} when you proceed.
+                                                ⚠️ {t('modals.amountMustBeMultipleOf1000Adjust')} ${Math.round(loanAmount / 1000) * 1000} {t('modals.whenYouProceed')}
                                             </p>
                                         )}
                                         <div className="amount-options">
@@ -1101,24 +1074,24 @@ function GamePage() {
                                 ) : (
                                     <div className="retail-debt-amount">
                                         <div className="retail-input-group">
-                                            <label>Loan Amount (any amount):</label>
+                                            <label>{t('modals.loanAmountAny')}</label>
                                             <input
                                                 type="number"
                                                 min="0"
                                                 value={loanAmount}
                                                 onChange={(e) => handleLoanAmountChange(parseInt(e.target.value) || 0)}
-                                                placeholder="Enter amount"
+                                                placeholder={t('modals.enterAmount')}
                                                 onWheel={(e) => e.currentTarget.blur()}
                                             />
                                         </div>
                                         <div className="retail-input-group">
-                                            <label>Monthly Expense:</label>
+                                            <label>{t('modals.monthlyExpense')}</label>
                                             <input
                                                 type="number"
                                                 min="0"
                                                 value={retailExpenseAmount}
                                                 onChange={(e) => handleRetailExpenseChange(parseInt(e.target.value) || 0)}
-                                                placeholder="Enter monthly expense"
+                                                placeholder={t('modals.enterMonthlyExpense')}
                                                 onWheel={(e) => e.currentTarget.blur()}
                                             />
                                         </div>
@@ -1131,12 +1104,12 @@ function GamePage() {
                                 )}
 
                                 <div className="loan-summary">
-                                    <p>Amount to {selectedLoanType === 'bank' ? 'Receive' : 'Borrow'}: <strong>${loanAmount.toLocaleString()}</strong></p>
-                                    <p>Monthly Expense Increase: <strong>${selectedLoanType === 'bank' ? (loanAmount * 0.10).toFixed(0) : retailExpenseAmount}</strong></p>
+                                    <p>{t('modals.amountToReceive')} <strong>${loanAmount.toLocaleString()}</strong></p>
+                                    <p>{t('modals.monthlyExpenseIncrease')} <strong>${selectedLoanType === 'bank' ? (loanAmount * 0.10).toFixed(0) : retailExpenseAmount}</strong></p>
                                     <p className={selectedLoanType === 'bank' ? 'info-note' : 'warning-note'}>
                                         {selectedLoanType === 'bank'
-                                            ? 'The loan amount will be added to your savings'
-                                            : 'Retail debt amount is spent immediately and NOT added to savings'
+                                            ? t('modals.bankLoanAddedToSavings')
+                                            : t('modals.retailDebtNotAddedToSavings')
                                         }
                                     </p>
                                 </div>
@@ -1148,14 +1121,14 @@ function GamePage() {
                                 className="modal-btn cancel-btn"
                                 onClick={() => setShowGetLoanModal(false)}
                             >
-                                Cancel
+                                {t('modals.cancel')}
                             </button>
                             <button
                                 className="modal-btn get-loan-btn"
                                 onClick={handleGetLoanConfirm}
                                 disabled={!selectedLoanType || loanAmount <= 0 || (selectedLoanType === 'retail' && retailExpenseAmount <= 0)}
                             >
-                                Get Loan
+                                {t('modals.getLoan')}
                             </button>
                         </div>
                     </div>
@@ -1166,18 +1139,18 @@ function GamePage() {
             {showBuyPaperAssetModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <h2 className="modal-title">Buy Paper Asset</h2>
+                        <h2 className="modal-title">{t('modals.buyPaperAsset')}</h2>
 
                         <div className="paper-asset-selection">
                             <div className="paper-asset-input-group">
-                                <label htmlFor="paper-asset-type">Select Asset Type:</label>
+                                <label htmlFor="paper-asset-type">{t('modals.selectAssetType')}</label>
                                 <select
                                     id="paper-asset-type"
                                     className="paper-asset-select"
                                     value={selectedPaperAssetType}
                                     onChange={(e) => handlePaperAssetTypeSelect(e.target.value)}
                                 >
-                                    <option value="">Choose an asset type</option>
+                                    <option value="">{t('modals.chooseAssetType')}</option>
                                     {paperAssetTypes.map((assetType, index) => (
                                         <option key={index} value={assetType}>
                                             {assetType}
@@ -1189,48 +1162,48 @@ function GamePage() {
 
                         {selectedPaperAssetType && (
                             <div className="paper-asset-details">
-                                <h3>Purchase Details:</h3>
+                                <h3>{t('modals.purchaseDetails')}</h3>
                                 <div className="paper-asset-input-group">
-                                    <label>Quantity (1-5000):</label>
+                                    <label>{t('modals.quantity')} (1-5000):</label>
                                     <input
                                         type="number"
                                         min="1"
                                         max="5000"
                                         value={paperAssetQuantity}
                                         onChange={(e) => handlePaperAssetQuantityChange(parseInt(e.target.value) || 1)}
-                                        placeholder="Enter quantity"
+                                        placeholder={t('modals.enterQuantity')}
                                         onWheel={(e) => e.currentTarget.blur()}
                                     />
                                 </div>
                                 <div className="paper-asset-input-group">
-                                    <label>Price per Unit (Whole numbers only):</label>
+                                    <label>{t('modals.pricePerUnit')}:</label>
                                     <input
                                         type="number"
                                         min="1"
                                         step="1"
                                         value={paperAssetPrice}
                                         onChange={(e) => handlePaperAssetPriceChange(parseInt(e.target.value) || 0)}
-                                        placeholder="Enter whole number price"
+                                        placeholder={t('modals.enterWholeNumberPrice')}
                                         onWheel={(e) => e.currentTarget.blur()}
                                     />
                                 </div>
                                 <div className="paper-asset-input-group">
-                                    <label>Monthly Passive Income Per Unit (Dividends/Interest):</label>
+                                    <label>{t('modals.monthlyPassiveIncomePerUnit')}:</label>
                                     <input
                                         type="number"
                                         value={paperAssetPassiveIncome}
                                         onChange={(e) => setPaperAssetPassiveIncome(parseInt(e.target.value) || 0)}
-                                        placeholder="Enter monthly passive income per unit"
+                                        placeholder={t('modals.enterMonthlyPassiveIncome')}
                                         onWheel={(e) => e.currentTarget.blur()}
                                     />
                                 </div>
 
                                 <div className="paper-asset-summary">
-                                    <p>Total Cost: <strong>${paperAssetTotalCost.toLocaleString()}</strong></p>
-                                    <p>Monthly Passive Income: <strong>+${paperAssetPassiveIncome.toLocaleString()}</strong></p>
-                                    <p>Available Savings: <strong>${savings.toLocaleString()}</strong></p>
+                                    <p>{t('modals.totalCost')} <strong>${paperAssetTotalCost.toLocaleString()}</strong></p>
+                                    <p>{t('modals.monthlyPassiveIncome')} <strong>+${paperAssetPassiveIncome.toLocaleString()}</strong></p>
+                                    <p>{t('modals.availableSavings')} <strong>${savings.toLocaleString()}</strong></p>
                                     <p className={savings >= paperAssetTotalCost ? 'success' : 'error'}>
-                                        {savings >= paperAssetTotalCost ? '✓ Sufficient funds' : '✗ Insufficient funds'}
+                                        {savings >= paperAssetTotalCost ? t('modals.sufficientFunds') : t('modals.insufficientFunds')}
                                     </p>
                                 </div>
                             </div>
@@ -1241,14 +1214,14 @@ function GamePage() {
                                 className="modal-btn cancel-btn"
                                 onClick={() => setShowBuyPaperAssetModal(false)}
                             >
-                                Cancel
+                                {t('modals.cancel')}
                             </button>
                             <button
                                 className="modal-btn buy-paper-asset-btn"
                                 onClick={handleBuyPaperAssetConfirm}
                                 disabled={!selectedPaperAssetType || paperAssetQuantity < 1 || paperAssetPrice <= 0 || paperAssetTotalCost > savings}
                             >
-                                Buy Asset
+                                {t('modals.buyPaperAsset')}
                             </button>
                         </div>
                     </div>
@@ -1259,18 +1232,18 @@ function GamePage() {
             {showBuyPropertyAssetModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
-                        <h2 className="modal-title">Buy Property Asset</h2>
+                        <h2 className="modal-title">{t('modals.buyPropertyAsset')}</h2>
 
                         <div className="property-asset-selection">
                             <div className="property-asset-input-group">
-                                <label htmlFor="property-type">Select Property Type:</label>
+                                <label htmlFor="property-type">{t('modals.selectAssetType')}</label>
                                 <select
                                     id="property-type"
                                     className="property-asset-select"
                                     value={selectedPropertyType}
                                     onChange={(e) => handlePropertyTypeSelect(e.target.value)}
                                 >
-                                    <option value="">Choose a property type</option>
+                                    <option value="">{t('modals.choosePropertyType')}</option>
                                     {propertyTypes.map((propertyType, index) => (
                                         <option key={index} value={propertyType}>
                                             {propertyType}
@@ -1282,61 +1255,62 @@ function GamePage() {
 
                         {selectedPropertyType && (
                             <div className="property-asset-details">
-                                <h3>Property Details:</h3>
+                                <h3>{t('modals.propertyDetails')}</h3>
                                 <div className="property-asset-input-group">
-                                    <label>Down Payment:</label>
+                                    <label>{t('modals.downPayment')}:</label>
                                     <input
                                         type="number"
                                         min="0"
                                         value={propertyDownPayment}
                                         onChange={(e) => handlePropertyDownPaymentChange(parseInt(e.target.value) || 0)}
-                                        placeholder="Enter down payment"
+                                        placeholder={t('modals.enterDownPayment')}
                                         onWheel={(e) => e.currentTarget.blur()}
                                     />
                                 </div>
                                 <div className="property-asset-input-group">
-                                    <label>Total Cost:</label>
+                                    <label>{t('modals.totalCost')}:</label>
                                     <input
                                         type="number"
                                         min="0"
                                         value={propertyTotalCost}
                                         onChange={(e) => handlePropertyTotalCostChange(parseInt(e.target.value) || 0)}
-                                        placeholder="Enter total cost"
+                                        placeholder={t('modals.enterTotalCost')}
                                         onWheel={(e) => e.currentTarget.blur()}
                                     />
                                 </div>
                                 <div className="property-asset-input-group">
-                                    <label>Mortgage:</label>
+                                    <label>{t('modals.mortgage')}:</label>
                                     <input
                                         type="number"
                                         min="0"
                                         value={propertyMortgage}
                                         onChange={(e) => handlePropertyMortgageChange(parseInt(e.target.value) || 0)}
-                                        placeholder="Enter mortgage amount"
+                                        placeholder={t('modals.enterMortgageAmount')}
                                         onWheel={(e) => e.currentTarget.blur()}
                                     />
                                 </div>
                                 <div className="property-asset-input-group">
-                                    <label>Monthly Passive Income:</label>
+                                    <label>{t('modals.monthlyPassiveIncome')}:</label>
                                     <input
                                         type="number"
                                         value={propertyPassiveIncome}
                                         onChange={(e) => handlePropertyPassiveIncomeChange(parseInt(e.target.value) || 0)}
-                                        placeholder="Enter monthly passive income"
+                                        placeholder={t('modals.enterMonthlyPassiveIncome')}
                                         onWheel={(e) => e.currentTarget.blur()}
                                     />
                                 </div>
 
                                 <div className="property-asset-summary">
-                                    <p>Down Payment: <strong>${propertyDownPayment.toLocaleString()}</strong></p>
-                                    <p>Total Cost: <strong>${propertyTotalCost.toLocaleString()}</strong></p>
-                                    <p>Mortgage: <strong>${propertyMortgage.toLocaleString()}</strong></p>
-                                    <p>Monthly Passive Income: <strong>{propertyPassiveIncome >= 0 ? '+' : ''}${propertyPassiveIncome.toLocaleString()}</strong></p>                                    <p>Available Savings: <strong>${savings.toLocaleString()}</strong></p>
+                                    <p>{t('modals.downPayment')} <strong>${propertyDownPayment.toLocaleString()}</strong></p>
+                                    <p>{t('modals.totalCost')} <strong>${propertyTotalCost.toLocaleString()}</strong></p>
+                                    <p>{t('modals.mortgage')} <strong>${propertyMortgage.toLocaleString()}</strong></p>
+                                    <p>{t('modals.monthlyPassiveIncome')} <strong>{propertyPassiveIncome >= 0 ? '+' : ''}${propertyPassiveIncome.toLocaleString()}</strong></p>
+                                    <p>{t('modals.availableSavings')} <strong>${savings.toLocaleString()}</strong></p>
                                     <p className={savings >= propertyDownPayment ? 'success' : 'error'}>
-                                        {savings >= propertyDownPayment ? '✓ Sufficient funds for down payment' : '✗ Insufficient funds for down payment'}
+                                        {savings >= propertyDownPayment ? t('modals.sufficientFundsForDownPayment') : t('modals.insufficientFundsForDownPayment')}
                                     </p>
                                     <p className={propertyDownPayment + propertyMortgage === propertyTotalCost ? 'success' : 'error'}>
-                                        {propertyDownPayment + propertyMortgage === propertyTotalCost ? '✓ Down payment + mortgage equals total cost' : '✗ Down payment + mortgage must equal total cost'}
+                                        {propertyDownPayment + propertyMortgage === propertyTotalCost ? t('modals.downPaymentPlusMortgageEqualsTotalCost') : t('modals.downPaymentPlusMortgageMustEqualTotalCost')}
                                     </p>
                                 </div>
                             </div>
@@ -1347,7 +1321,7 @@ function GamePage() {
                                 className="modal-btn cancel-btn"
                                 onClick={() => setShowBuyPropertyAssetModal(false)}
                             >
-                                Cancel
+                                {t('modals.cancel')}
                             </button>
                             <button
                                 className="modal-btn buy-property-asset-btn"
@@ -1360,12 +1334,14 @@ function GamePage() {
                                     propertyDownPayment > savings
                                 }
                             >
-                                Buy Property
+                                {t('modals.buyProperty')}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
+
+            {/* Paper Asset Management Modal */}
             {showPaperAssetModal && selectedPaperAsset && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -1374,38 +1350,38 @@ function GamePage() {
                         <div className="asset-info-section">
                             <div className="info-grid">
                                 <div className="info-item">
-                                    <span className="info-label">Current Quantity:</span>
+                                    <span className="info-label">{t('modals.currentQuantity')}:</span>
                                     <span className="info-value">{selectedPaperAsset.quantity}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">Price per Unit:</span>
+                                    <span className="info-label">{t('modals.pricePerUnit')}:</span>
                                     <span className="info-value">${selectedPaperAsset.pricePerUnit.toLocaleString()}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">Monthly Income Per Unit:</span>
+                                    <span className="info-label">{t('modals.monthlyIncomePerUnit')}:</span>
                                     <span className="info-value positive">+${selectedPaperAsset.passiveIncomePerUnit.toLocaleString()}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">Total Monthly Income:</span>
+                                    <span className="info-label">{t('modals.totalMonthlyIncome')}:</span>
                                     <span className="info-value positive">+${(selectedPaperAsset.passiveIncomePerUnit * selectedPaperAsset.quantity).toLocaleString()}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">Total Value:</span>
+                                    <span className="info-label">{t('modals.totalValue')}:</span>
                                     <span className="info-value">${(selectedPaperAsset.quantity * selectedPaperAsset.pricePerUnit).toLocaleString()}</span>
                                 </div>
                             </div>
                         </div>
 
                         <div className="asset-management-section">
-                            <h3>Edit Quantity</h3>
+                            <h3>{t('modals.editQuantity')}</h3>
                             <div className="input-group">
-                                <label>New Quantity:</label>
+                                <label>{t('modals.newQuantity')}:</label>
                                 <input
                                     type="number"
                                     min="1"
                                     value={editQuantity}
                                     onChange={(e) => setEditQuantity(parseInt(e.target.value) || 1)}
-                                    placeholder="Enter new quantity"
+                                    placeholder={t('modals.enterNewQuantity')}
                                     onWheel={(e) => e.currentTarget.blur()}
                                 />
                             </div>
@@ -1415,52 +1391,52 @@ function GamePage() {
                                     className="modal-btn update-btn"
                                     onClick={handleUpdatePaperAsset}
                                 >
-                                    Update Quantity
+                                    {t('modals.updateQuantity')}
                                 </button>
                             </div>
                         </div>
 
                         <div className="asset-sale-section">
-                            <h3>Sell Asset</h3>
+                            <h3>{t('modals.sellAsset')}</h3>
                             <div className="input-group">
-                                <label>Sell Price per Unit:</label>
+                                <label>{t('modals.sellPricePerUnit')}:</label>
                                 <input
                                     type="number"
                                     min="1"
                                     step="1"
                                     value={sellPrice}
                                     onChange={(e) => setSellPrice(parseInt(e.target.value) || 0)}
-                                    placeholder="Enter sell price per unit"
+                                    placeholder={t('modals.enterSellPricePerUnit')}
                                     onWheel={(e) => e.currentTarget.blur()}
                                 />
                             </div>
                             <div className="input-group">
-                                <label>Units to Sell (Max: {selectedPaperAsset.quantity}):</label>
+                                <label>{t('modals.unitsToSell')} (Max: {selectedPaperAsset.quantity}):</label>
                                 <input
                                     type="number"
                                     min="1"
                                     max={selectedPaperAsset.quantity}
                                     value={unitsToSell}
                                     onChange={(e) => setUnitsToSell(parseInt(e.target.value) || 1)}
-                                    placeholder="Enter units to sell"
+                                    placeholder={t('modals.enterUnitsToSell')}
                                     onWheel={(e) => e.currentTarget.blur()}
                                 />
                             </div>
 
                             <div className="quantity-options">
-                                <button onClick={() => setUnitsToSell(1)}>1 Unit</button>
-                                <button onClick={() => setUnitsToSell(Math.floor(selectedPaperAsset.quantity / 2))}>Half</button>
-                                <button onClick={() => setUnitsToSell(selectedPaperAsset.quantity)}>All</button>
+                                <button onClick={() => setUnitsToSell(1)}>1 {t('modals.unit')}</button>
+                                <button onClick={() => setUnitsToSell(Math.floor(selectedPaperAsset.quantity / 2))}>{t('modals.half')}</button>
+                                <button onClick={() => setUnitsToSell(selectedPaperAsset.quantity)}>{t('modals.all')}</button>
                             </div>
 
                             <div className="sale-summary">
-                                <p>Units to Sell: <strong>{unitsToSell}</strong></p>
-                                <p>Remaining After Sale: <strong>{selectedPaperAsset.quantity - unitsToSell}</strong></p>
-                                <p>Monthly Income Lost: <strong>-${(selectedPaperAsset.passiveIncomePerUnit * unitsToSell).toLocaleString()}</strong></p>
-                                <p>Sale Price per Unit: <strong>${sellPrice.toLocaleString()}</strong></p>
-                                <p className="net-proceeds">Total Sale Amount: <strong>${(unitsToSell * sellPrice).toLocaleString()}</strong></p>
+                                <p>{t('modals.unitsToSell')} <strong>{unitsToSell}</strong></p>
+                                <p>{t('modals.remainingAfterSale')} <strong>{selectedPaperAsset.quantity - unitsToSell}</strong></p>
+                                <p>{t('modals.monthlyIncomeLost')} <strong>-${(selectedPaperAsset.passiveIncomePerUnit * unitsToSell).toLocaleString()}</strong></p>
+                                <p>{t('modals.salePricePerUnit')} <strong>${sellPrice.toLocaleString()}</strong></p>
+                                <p className="net-proceeds">{t('modals.totalSaleAmount')} <strong>${(unitsToSell * sellPrice).toLocaleString()}</strong></p>
                                 {unitsToSell > selectedPaperAsset.quantity && (
-                                    <p className="warning-note">⚠️ Cannot sell more units than you own!</p>
+                                    <p className="warning-note">⚠️ {t('modals.cannotSellMoreThanOwn')}</p>
                                 )}
                             </div>
 
@@ -1470,7 +1446,7 @@ function GamePage() {
                                     onClick={handleSellPaperAsset}
                                     disabled={sellPrice <= 0 || unitsToSell < 1 || unitsToSell > selectedPaperAsset.quantity}
                                 >
-                                    {unitsToSell === selectedPaperAsset.quantity ? 'Sell All Units' : `Sell ${unitsToSell} Units`}
+                                    {unitsToSell === selectedPaperAsset.quantity ? t('modals.sellAllUnits') : `${t('modals.sell')} ${unitsToSell} ${t('modals.units')}`}
                                 </button>
                             </div>
                         </div>
@@ -1480,13 +1456,14 @@ function GamePage() {
                                 className="modal-btn cancel-btn"
                                 onClick={() => setShowPaperAssetModal(false)}
                             >
-                                Close
+                                {t('modals.close')}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
 
+            {/* Property Asset Management Modal */}
             {showPropertyAssetModal && selectedPropertyAsset && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -1494,14 +1471,14 @@ function GamePage() {
 
                         {/* Edit Passive Income Section */}
                         <div className="property-edit-section">
-                            <h3>Edit Passive Income</h3>
+                            <h3>{t('modals.editPassiveIncome')}</h3>
                             <div className="input-group">
-                                <label>Monthly Passive Income:</label>
+                                <label>{t('modals.monthlyPassiveIncome')}:</label>
                                 <input
                                     type="number"
                                     value={editPropertyPassiveIncome}
                                     onChange={(e) => setEditPropertyPassiveIncome(parseInt(e.target.value) || 0)}
-                                    placeholder="Enter monthly passive income"
+                                    placeholder={t('modals.enterMonthlyPassiveIncome')}
                                     onWheel={(e) => e.currentTarget.blur()}
                                 />
                             </div>
@@ -1509,7 +1486,6 @@ function GamePage() {
                                 <button
                                     className="modal-btn update-btn"
                                     onClick={() => {
-                                        // Update the property asset with new passive income
                                         setPropertyAssets(prev =>
                                             prev.map(property =>
                                                 property.id === selectedPropertyAsset.id
@@ -1517,62 +1493,59 @@ function GamePage() {
                                                     : property
                                             )
                                         );
-
-                                        // Update the selected property asset to reflect changes
                                         setSelectedPropertyAsset(prev =>
                                             prev ? { ...prev, passiveIncome: editPropertyPassiveIncome } : null
                                         );
-
-                                        alert(`Passive income updated to $${editPropertyPassiveIncome.toLocaleString()} per month`);
+                                        alert(`${t('alerts.passiveIncomeUpdated')} $${editPropertyPassiveIncome.toLocaleString()} ${t('alerts.perMonth')}`);
                                     }}
                                 >
-                                    Update Income
+                                    {t('modals.updateIncome')}
                                 </button>
                             </div>
                         </div>
 
                         <div className="property-sale-section">
-                            <h3>Sell Property</h3>
+                            <h3>{t('modals.sellProperty')}</h3>
 
                             <div className="property-current-info">
                                 <div className="info-grid">
                                     <div className="info-item">
-                                        <span className="info-label">Original Cost:</span>
+                                        <span className="info-label">{t('modals.originalCost')}:</span>
                                         <span className="info-value">${selectedPropertyAsset.totalCost.toLocaleString()}</span>
                                     </div>
                                     <div className="info-item">
-                                        <span className="info-label">Down Payment:</span>
+                                        <span className="info-label">{t('modals.downPayment')}:</span>
                                         <span className="info-value">${selectedPropertyAsset.downPayment.toLocaleString()}</span>
                                     </div>
                                     <div className="info-item">
-                                        <span className="info-label">Mortgage:</span>
+                                        <span className="info-label">{t('modals.mortgage')}:</span>
                                         <span className="info-value">${selectedPropertyAsset.mortgage.toLocaleString()}</span>
                                     </div>
                                     <div className="info-item">
-                                        <span className="info-label">Monthly Income:</span>
+                                        <span className="info-label">{t('modals.monthlyIncome')}:</span>
                                         <span className="info-value positive">+${editPropertyPassiveIncome.toLocaleString()}</span>
                                     </div>
                                 </div>
                             </div>
 
                             <div className="input-group">
-                                <label>Selling Price:</label>
+                                <label>{t('modals.sellingPrice')}:</label>
                                 <input
                                     type="number"
                                     min="1"
                                     value={propertySellPrice}
                                     onChange={(e) => setPropertySellPrice(parseInt(e.target.value) || 0)}
-                                    placeholder="Enter selling price"
+                                    placeholder={t('modals.enterSellingPrice')}
                                     onWheel={(e) => e.currentTarget.blur()}
                                 />
                             </div>
 
                             <div className="sale-summary">
-                                <p>Selling Price: <strong>${propertySellPrice.toLocaleString()}</strong></p>
-                                <p>Mortgage to Pay Off: <strong>${selectedPropertyAsset.mortgage.toLocaleString()}</strong></p>
-                                <p className="net-proceeds">Net Proceeds: <strong>${(propertySellPrice - selectedPropertyAsset.mortgage).toLocaleString()}</strong></p>
+                                <p>{t('modals.sellingPrice')} <strong>${propertySellPrice.toLocaleString()}</strong></p>
+                                <p>{t('modals.mortgageToPayOff')} <strong>${selectedPropertyAsset.mortgage.toLocaleString()}</strong></p>
+                                <p className="net-proceeds">{t('modals.netProceeds')} <strong>${(propertySellPrice - selectedPropertyAsset.mortgage).toLocaleString()}</strong></p>
                                 {propertySellPrice < selectedPropertyAsset.mortgage && (
-                                    <p className="warning-note">⚠️ Selling price is less than mortgage!</p>
+                                    <p className="warning-note">⚠️ {t('modals.sellingPriceLessThanMortgage')}</p>
                                 )}
                             </div>
 
@@ -1582,7 +1555,7 @@ function GamePage() {
                                     onClick={handleSellPropertyAsset}
                                     disabled={propertySellPrice <= 0 || propertySellPrice < selectedPropertyAsset.mortgage}
                                 >
-                                    Sell Property
+                                    {t('modals.sellProperty')}
                                 </button>
                             </div>
                         </div>
@@ -1592,7 +1565,7 @@ function GamePage() {
                                 className="modal-btn cancel-btn"
                                 onClick={() => setShowPropertyAssetModal(false)}
                             >
-                                Close
+                                {t('modals.close')}
                             </button>
                         </div>
                     </div>
@@ -1604,28 +1577,28 @@ function GamePage() {
                 <div className="modal-overlay congrats-overlay">
                     <div className="modal-content congrats-modal">
                         <div className="congrats-header">
-                            <h2 className="congrats-title">🎉 Congratulations! 🎉</h2>
+                            <h2 className="congrats-title">{t('congratulations.title')}</h2>
                         </div>
                         <div className="congrats-body">
                             <p className="congrats-message">
-                                You got out of the rat race. Now enjoy your life on the fast track!
+                                {t('congratulations.message')}
                             </p>
                             <div className="financial-summary-congrats">
                                 <div className="summary-item">
-                                    <span>Your Passive Income:</span>
+                                    <span>{t('game.passiveIncome')}:</span>
                                     <span className="positive">${totalPassiveIncome.toLocaleString()}/month</span>
                                 </div>
                                 <div className="summary-item">
-                                    <span>Your Total Expenses:</span>
+                                    <span>{t('game.totalExpenses')}:</span>
                                     <span>${totalExpenses.toLocaleString()}/month</span>
                                 </div>
                                 <div className="summary-item net-cash-flow">
-                                    <span>Monthly Surplus:</span>
+                                    <span>{t('game.monthlySurplus')}:</span>
                                     <span className="positive">+${(totalPassiveIncome - totalExpenses).toLocaleString()}/month</span>
                                 </div>
                             </div>
                             <p className="congrats-submessage">
-                                You've achieved financial freedom! Your assets now generate enough income to cover all your expenses.
+                                {t('congratulations.achievedFinancialFreedom')}
                             </p>
                         </div>
                         <div className="modal-actions">
@@ -1633,11 +1606,12 @@ function GamePage() {
                                 className="modal-btn continue-btn"
                                 onClick={() => navigate('/fast-track', {
                                     state: {
-                                        passiveIncome: totalPassiveIncome
+                                        passiveIncome: totalPassiveIncome,
+                                        darkMode: darkMode
                                     }
                                 })}
                             >
-                                Continue to Fast Track
+                                {t('congratulations.continueToFastTrack')}
                             </button>
                         </div>
                     </div>
