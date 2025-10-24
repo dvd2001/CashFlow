@@ -1350,23 +1350,23 @@ function GamePage() {
                         <div className="asset-info-section">
                             <div className="info-grid">
                                 <div className="info-item">
-                                    <span className="info-label">{t('modals.currentQuantity')}:</span>
+                                    <span className="info-label">{t('modals.currentQuantity')}</span>
                                     <span className="info-value">{selectedPaperAsset.quantity}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">{t('modals.pricePerUnit')}:</span>
+                                    <span className="info-label">{t('modals.pricePerUnit')}</span>
                                     <span className="info-value">${selectedPaperAsset.pricePerUnit.toLocaleString()}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">{t('modals.monthlyIncomePerUnit')}:</span>
+                                    <span className="info-label">{t('modals.monthlyIncomePerUnit')}</span>
                                     <span className="info-value positive">+${selectedPaperAsset.passiveIncomePerUnit.toLocaleString()}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">{t('modals.totalMonthlyIncome')}:</span>
+                                    <span className="info-label">{t('modals.totalMonthlyIncome')}</span>
                                     <span className="info-value positive">+${(selectedPaperAsset.passiveIncomePerUnit * selectedPaperAsset.quantity).toLocaleString()}</span>
                                 </div>
                                 <div className="info-item">
-                                    <span className="info-label">{t('modals.totalValue')}:</span>
+                                    <span className="info-label">{t('modals.totalValue')}</span>
                                     <span className="info-value">${(selectedPaperAsset.quantity * selectedPaperAsset.pricePerUnit).toLocaleString()}</span>
                                 </div>
                             </div>
@@ -1510,19 +1510,19 @@ function GamePage() {
                             <div className="property-current-info">
                                 <div className="info-grid">
                                     <div className="info-item">
-                                        <span className="info-label">{t('modals.originalCost')}:</span>
+                                        <span className="info-label">{t('modals.originalCost')}</span>
                                         <span className="info-value">${selectedPropertyAsset.totalCost.toLocaleString()}</span>
                                     </div>
                                     <div className="info-item">
-                                        <span className="info-label">{t('modals.downPayment')}:</span>
+                                        <span className="info-label">{t('modals.downPayment')}</span>
                                         <span className="info-value">${selectedPropertyAsset.downPayment.toLocaleString()}</span>
                                     </div>
                                     <div className="info-item">
-                                        <span className="info-label">{t('modals.mortgage')}:</span>
+                                        <span className="info-label">{t('modals.mortgage')}</span>
                                         <span className="info-value">${selectedPropertyAsset.mortgage.toLocaleString()}</span>
                                     </div>
                                     <div className="info-item">
-                                        <span className="info-label">{t('modals.monthlyIncome')}:</span>
+                                        <span className="info-label">{t('modals.monthlyIncome')}</span>
                                         <span className="info-value positive">+${editPropertyPassiveIncome.toLocaleString()}</span>
                                     </div>
                                 </div>
