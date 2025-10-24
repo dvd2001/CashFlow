@@ -328,8 +328,14 @@ function GamePage() {
     }
 
     const handleBuyPropertyAssetConfirm = () => {
-        if (!selectedPropertyType || propertyDownPayment <= 0 || propertyTotalCost <= 0) {
+        if (!selectedPropertyType || propertyTotalCost <= 0) {
             alert(t('alerts.fillAllFields'))
+            return
+        }
+
+        // Allow zero down payment, but ensure it's not negative
+        if (propertyDownPayment < 0) {
+            alert(t('alerts.invalidDownPayment'))
             return
         }
 
@@ -356,12 +362,16 @@ function GamePage() {
         // Add to property assets
         setPropertyAssets(prev => [...prev, newPropertyAsset])
 
-        // Deduct down payment from savings
-        setSavings(prev => prev - propertyDownPayment)
+        // Deduct down payment from savings (only if down payment > 0)
+        if (propertyDownPayment > 0) {
+            setSavings(prev => prev - propertyDownPayment)
+        }
 
         // Show success message
+        const downPaymentText = propertyDownPayment === 0 ? t('alerts.noDownPayment') : `${t('alerts.downPayment')}: $${propertyDownPayment.toLocaleString()}`;
+
         alert(`${t('alerts.purchased')} ${selectedPropertyType}!\n\n` +
-            `${t('alerts.downPayment')}: $${propertyDownPayment.toLocaleString()}\n` +
+            `${downPaymentText}\n` +
             `${t('alerts.totalCost')}: $${propertyTotalCost.toLocaleString()}\n` +
             `${t('alerts.mortgage')}: $${propertyMortgage.toLocaleString()}\n` +
             `${t('alerts.monthlyPassiveIncome')}: $${propertyPassiveIncome.toLocaleString()}\n\n` +
@@ -1350,7 +1360,7 @@ function GamePage() {
                                 onClick={handleBuyPropertyAssetConfirm}
                                 disabled={
                                     !selectedPropertyType ||
-                                    propertyDownPayment <= 0 ||
+                                    propertyDownPayment < 0 ||
                                     propertyTotalCost <= 0 ||
                                     propertyDownPayment + propertyMortgage !== propertyTotalCost ||
                                     propertyDownPayment > savings
