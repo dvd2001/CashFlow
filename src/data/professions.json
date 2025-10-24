@@ -1,7 +1,10 @@
 [
     {
         "value": "airlinePilot",
-        "label": "Air Pilot",
+        "label": {
+            "en": "Air Pilot",
+            "hu": "Pilóta"
+        },
         "payment": 9500,
         "taxes": 2350,
         "mortgagePayment": 1330,
@@ -20,7 +23,10 @@
     },
     {
         "value": "businessManager",
-        "label": "Business Manager",
+        "label": {
+            "en": "Business Manager",
+            "hu": "Üzleti Menedzser"
+        },
         "payment": 4600,
         "taxes": 910,
         "mortgagePayment": 700,
@@ -37,7 +43,10 @@
     },
     {
         "value": "doctor",
-        "label": "Doctor",
+        "label": {
+            "en": "Doctor",
+            "hu": "Orvos"
+        },
         "payment": 13200,
         "taxes": 3420,
         "mortgagePayment": 1900,
@@ -54,7 +63,10 @@
     },
     {
         "value": "engineer",
-        "label": "Engineer",
+        "label": {
+            "en": "Engineer",
+            "hu": "Mérnök"
+        },
         "payment": 4900,
         "taxes": 1050,
         "mortgagePayment": 700,
@@ -71,7 +83,10 @@
     },
     {
         "value": "janitor",
-        "label": "Janitor",
+        "label": {
+            "en": "Janitor",
+            "hu": "Portás"
+        },
         "payment": 1600,
         "taxes": 280,
         "mortgagePayment": 200,
@@ -88,7 +103,10 @@
     },
     {
         "value": "lawyer",
-        "label": "Lawyer",
+        "label": {
+            "en": "Lawyer",
+            "hu": "Ügyvéd"
+        },
         "payment": 7500,
         "taxes": 1830,
         "mortgagePayment": 1100,
@@ -105,7 +123,10 @@
     },
     {
         "value": "mechanic",
-        "label": "Mechanic",
+        "label": {
+            "en": "Mechanic",
+            "hu": "Műszerész"
+        },
         "payment": 2000,
         "taxes": 360,
         "mortgagePayment": 300,
@@ -122,7 +143,10 @@
     },
     {
         "value": "nurse",
-        "label": "Nurse",
+        "label": {
+            "en": "Nurse",
+            "hu": "Ápoló"
+        },
         "payment": 3100,
         "taxes": 600,
         "mortgagePayment": 400,
@@ -139,7 +163,10 @@
     },
     {
         "value": "policeOfficer",
-        "label": "Police Officer",
+        "label": {
+            "en": "Police Officer",
+            "hu": "Rendőrtiszt"
+        },
         "payment": 3000,
         "taxes": 580,
         "mortgagePayment": 400,
@@ -156,7 +183,10 @@
     },
     {
         "value": "secretary",
-        "label": "Secretary",
+        "label": {
+            "en": "Secretary",
+            "hu": "Titkár"
+        },
         "payment": 2500,
         "taxes": 460,
         "mortgagePayment": 400,
@@ -173,7 +203,10 @@
     },
     {
         "value": "teacher",
-        "label": "Teacher",
+        "label": {
+            "en": "Teacher",
+            "hu": "Tanár"
+        },
         "payment": 3300,
         "taxes": 630,
         "mortgagePayment": 500,
@@ -190,7 +223,10 @@
     },
     {
         "value": "truckDriver",
-        "label": "Truck Driver",
+        "label": {
+            "en": "Truck Driver",
+            "hu": "Teherautó Vezető"
+        },
         "payment": 2500,
         "taxes": 460,
         "mortgagePayment": 400,
