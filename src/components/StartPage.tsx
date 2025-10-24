@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import professions from '../data/professions.json'
 
@@ -9,16 +9,54 @@ interface Profession {
 
 function StartPage() {
     const [selectedProfession, setSelectedProfession] = useState<string>(professions[0].value)
+    const [darkMode, setDarkMode] = useState<boolean>(false)
     const navigate = useNavigate()
 
     const handleStartGame = () => {
         const selected = professions.find(p => p.value === selectedProfession)
-        navigate('/game', { state: { profession: selected } })
+        navigate('/game', { state: { profession: selected, darkMode } })
     }
 
+    const toggleDarkMode = () => {
+        const newDarkMode = !darkMode
+        setDarkMode(newDarkMode)
+
+        if (newDarkMode) {
+            document.body.classList.add('dark-mode')
+            localStorage.setItem('darkMode', 'true')
+        } else {
+            document.body.classList.remove('dark-mode')
+            localStorage.setItem('darkMode', 'false')
+        }
+    }
+
+    // And in the component, initialize from localStorage
+    useEffect(() => {
+        const savedDarkMode = localStorage.getItem('darkMode') === 'true'
+        setDarkMode(savedDarkMode)
+        if (savedDarkMode) {
+            document.body.classList.add('dark-mode')
+        }
+    }, [])
+
     return (
-        <div className="app-container">
+        <div className={`app-container ${darkMode ? 'dark-mode' : ''}`}>
             <div className="content-card">
+                {/* Dark Mode Toggle */}
+                <div className="dark-mode-toggle">
+                    <label className="toggle-label">
+                        <span>Dark Mode</span>
+                        <div className="toggle-switch">
+                            <input
+                                type="checkbox"
+                                checked={darkMode}
+                                onChange={toggleDarkMode}
+                            />
+                            <span className="slider"></span>
+                        </div>
+                    </label>
+                </div>
+
                 <h1 className="title">CashFlow</h1>
 
                 <select

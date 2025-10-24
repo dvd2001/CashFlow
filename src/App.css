@@ -2249,3 +2249,821 @@ input[type="number"]::-webkit-inner-spin-button {
   color: #a0aec0;
   font-weight: 600;
 }
+
+/* Dark Mode Styles */
+body.dark-mode {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+  color: #e2e8f0;
+}
+
+.dark-mode .app-container {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+}
+
+.dark-mode .content-card {
+  background: #2d3748;
+  color: #e2e8f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .title {
+  color: #e2e8f0;
+}
+
+.dark-mode .game-select {
+  background: #4a5568;
+  color: #e2e8f0;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode .game-select:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+.dark-mode .start-button {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: white;
+}
+
+/* Dark Mode Toggle */
+.dark-mode-toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.toggle-label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #4a5568;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.dark-mode .toggle-label {
+  color: #e2e8f0;
+}
+
+.toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.slider {
+  background-color: #667eea;
+}
+
+input:checked+.slider:before {
+  transform: translateX(26px);
+}
+
+/* Game Page Dark Mode */
+.dark-mode .game-page {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%) !important;
+}
+
+.dark-mode .left-panel,
+.dark-mode .right-panel {
+  background: #2d3748;
+  color: #e2e8f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .profession-display {
+  background: #4a5568;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode .profession-display h2 {
+  color: #e2e8f0;
+}
+
+.dark-mode .salary-display {
+  background: #4a5568;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode .financial-summary {
+  background: #4a5568;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode .section {
+  background: #4a5568;
+  border: 1px solid #4a5568;
+}
+
+.dark-mode .section-title {
+  color: #e2e8f0;
+  border-bottom: 2px solid #667eea;
+}
+
+.dark-mode .item-name {
+  color: #e2e8f0;
+}
+
+.dark-mode .item-amount {
+  color: #e2e8f0;
+}
+
+.dark-mode .children-section {
+  background: #4a5568;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode .children-input label {
+  color: #e2e8f0;
+}
+
+.dark-mode .children-input input {
+  background: #2d3748;
+  color: #e2e8f0;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode .children-input input:focus {
+  border-color: #667eea;
+}
+
+.dark-mode .child-expense-note {
+  color: #a0aec0;
+}
+
+/* Asset Cards Dark Mode */
+.dark-mode .asset-card,
+.dark-mode .property-card {
+  background: #4a5568;
+  color: #e2e8f0;
+  border: 1px solid #4a5568;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .asset-card:hover,
+.dark-mode .property-card:hover {
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .asset-name,
+.dark-mode .property-name {
+  color: #e2e8f0;
+}
+
+.dark-mode .detail-label {
+  color: #a0aec0;
+}
+
+.dark-mode .detail-value {
+  color: #e2e8f0;
+}
+
+/* Empty State Dark Mode */
+.dark-mode .empty-state {
+  background: #4a5568;
+  color: #a0aec0;
+  border: 2px dashed #4a5568;
+}
+
+/* Savings Section Dark Mode */
+.dark-mode .savings-section {
+  background: #2d3748;
+  color: #e2e8f0;
+  box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.dark-mode .savings-btn {
+  border: 2px solid #e2e8f0;
+  color: #e2e8f0;
+  background: transparent;
+}
+
+.dark-mode .savings-btn:hover {
+  background: #e2e8f0;
+  color: #2d3748;
+}
+
+/* Modal Dark Mode */
+/* General Dark Mode Text Fixes */
+.dark-mode {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode h1,
+.dark-mode h2,
+.dark-mode h3,
+.dark-mode h4,
+.dark-mode h5,
+.dark-mode h6 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode span {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode label {
+  color: #a0aec0 !important;
+}
+
+.dark-mode strong {
+  color: #e2e8f0 !important;
+}
+
+/* Fix Modal Text */
+.dark-mode .modal-content h2,
+.dark-mode .modal-content h3,
+.dark-mode .modal-content p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .modal-content label {
+  color: #a0aec0 !important;
+}
+
+/* Fix Success/Error Messages */
+.dark-mode .success {
+  color: #48bb78 !important;
+}
+
+.dark-mode .error {
+  color: #e53e3e !important;
+}
+
+.dark-mode .warning-note {
+  color: #ed8936 !important;
+}
+
+.dark-mode .info-note {
+  color: #4299e1 !important;
+}
+
+/* Fix Asset Card Text */
+.dark-mode .asset-card-header,
+.dark-mode .property-card-header {
+  border-bottom: 2px solid #4a5568 !important;
+}
+
+.dark-mode .asset-detail,
+.dark-mode .property-detail {
+  border-bottom: 1px solid #4a5568 !important;
+}
+
+.dark-mode .asset-detail:last-child,
+.dark-mode .property-detail:last-child {
+  border-bottom: none !important;
+}
+
+.dark-mode .modal-content {
+  background: #2d3748;
+  color: #e2e8f0;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+}
+
+.dark-mode .modal-title {
+  color: #e2e8f0;
+  border-bottom: 2px solid #4a5568;
+}
+
+.dark-mode .liability-option,
+.dark-mode .loan-type-option,
+.dark-mode .paper-asset-option {
+  background: #4a5568;
+  border: 2px solid #4a5568;
+  color: #e2e8f0;
+}
+
+.dark-mode .liability-option:hover,
+.dark-mode .loan-type-option:hover,
+.dark-mode .paper-asset-option:hover {
+  border-color: #667eea;
+  background: #4a5568;
+}
+
+.dark-mode .liability-option.selected,
+.dark-mode .loan-type-option.selected,
+.dark-mode .paper-asset-option.selected {
+  border-color: #48bb78;
+  background: #2d5c48;
+}
+
+.dark-mode .paper-asset-select,
+.dark-mode .property-asset-select {
+  background: #4a5568;
+  color: #e2e8f0;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode .paper-asset-select:focus,
+.dark-mode .property-asset-select:focus {
+  border-color: #667eea;
+}
+
+.dark-mode input[type="number"],
+.dark-mode input[type="text"] {
+  background: #4a5568;
+  color: #e2e8f0;
+  border: 2px solid #4a5568;
+}
+
+.dark-mode input[type="number"]:focus,
+.dark-mode input[type="text"]:focus {
+  border-color: #667eea;
+}
+
+.dark-mode .paper-asset-summary,
+.dark-mode .property-asset-summary,
+.dark-mode .repay-summary,
+.dark-mode .loan-summary {
+  background: #4a5568;
+  border: 1px solid #4a5568;
+}
+
+/* Buttons Dark Mode */
+.dark-mode .action-btn {
+  color: #2d3748;
+}
+
+.dark-mode .back-button {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+.dark-mode .back-button:hover {
+  background: #5a6576;
+}
+
+.dark-mode .modal-btn.cancel-btn {
+  background: #4a5568;
+  color: #e2e8f0;
+}
+
+.dark-mode .modal-btn.cancel-btn:hover {
+  background: #5a6576;
+}
+
+/* Fix Congratulations Modal in Dark Mode */
+.dark-mode .congrats-modal {
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%) !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .congrats-title {
+  color: #e2e8f0 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode .congrats-message {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .congrats-submessage {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .financial-summary-congrats {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .financial-summary-congrats .summary-item span {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .financial-summary-congrats .summary-item .positive {
+  color: #48bb78 !important;
+}
+
+.dark-mode .financial-summary-congrats .net-cash-flow span {
+  color: #48bb78 !important;
+}
+
+.dark-mode .continue-btn {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+  color: white !important;
+}
+
+.dark-mode .financial-summary-congrats {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Amount Options Dark Mode */
+.dark-mode .amount-options button,
+.dark-mode .quantity-options button {
+  background: #4a5568;
+  color: #e2e8f0;
+  border: 1px solid #4a5568;
+}
+
+.dark-mode .amount-options button:hover,
+.dark-mode .quantity-options button:hover {
+  background: #5a6576;
+  border-color: #667eea;
+}
+
+/* Fix Left Panel Text in Dark Mode */
+.dark-mode .financial-summary .summary-item span,
+.dark-mode .salary-info span,
+.dark-mode .summary-item.net-cash-flow span {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .summary-item span:first-child {
+  color: #a0aec0 !important;
+  font-weight: 600;
+}
+
+.dark-mode .summary-item span:last-child {
+  color: #e2e8f0 !important;
+  font-weight: 700;
+}
+
+.dark-mode .summary-item.net-cash-flow span:last-child {
+  color: #48bb78 !important;
+  /* Keep positive cash flow green */
+}
+
+.dark-mode .salary-info span:first-child {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .salary-info span:last-child {
+  color: #e2e8f0 !important;
+}
+
+/* Fix Section Titles in Left Panel */
+.dark-mode .panel-title {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .section-title {
+  color: #e2e8f0 !important;
+  border-bottom: 2px solid #667eea !important;
+}
+
+/* Fix Action Buttons Text */
+.dark-mode .action-btn {
+  color: #2d3748 !important;
+  /* Keep button text dark for readability */
+}
+
+.dark-mode .back-button {
+  color: #e2e8f0 !important;
+}
+
+/* Fix Children Section Text */
+.dark-mode .children-input label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .child-expense-note {
+  color: #a0aec0 !important;
+}
+
+/* Fix Input Placeholders in Dark Mode */
+.dark-mode input::placeholder {
+  color: #a0aec0 !important;
+  opacity: 0.7;
+}
+
+.dark-mode textarea::placeholder {
+  color: #a0aec0 !important;
+  opacity: 0.7;
+}
+
+.dark-mode select {
+  color: #e2e8f0 !important;
+  background-color: #4a5568 !important;
+}
+
+.dark-mode select option {
+  color: #e2e8f0 !important;
+  background-color: #4a5568 !important;
+}
+
+/* Fix Progress Bar in Dark Mode */
+.dark-mode .goal-progress h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .progress-bar {
+  background: #4a5568 !important;
+}
+
+.dark-mode .progress-fill {
+  background: linear-gradient(90deg, #48bb78, #38a169) !important;
+}
+
+.dark-mode .progress-text {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .goal-achieved {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+  color: white !important;
+}
+
+/* Ensure Button Text is Readable in Dark Mode */
+.dark-mode .payday-btn {
+  color: #2d3748 !important;
+}
+
+.dark-mode .repay-btn {
+  color: white !important;
+}
+
+.dark-mode .loan-btn {
+  color: white !important;
+}
+
+.dark-mode .buy-asset-btn {
+  color: white !important;
+}
+
+.dark-mode .modal-btn.repay-modal-btn,
+.dark-mode .modal-btn.get-loan-btn,
+.dark-mode .modal-btn.buy-paper-asset-btn,
+.dark-mode .modal-btn.buy-property-asset-btn,
+.dark-mode .modal-btn.update-btn,
+.dark-mode .modal-btn.sell-btn {
+  color: white !important;
+}
+
+/* Fix Paper Asset Edit Modal in Dark Mode */
+.dark-mode .asset-info-section {
+  background: #4a5568 !important;
+  border: 1px solid #4a5568 !important;
+}
+
+.dark-mode .asset-management-section,
+.dark-mode .asset-sale-section,
+.dark-mode .property-edit-section,
+.dark-mode .property-sale-section {
+  border-bottom: 1px solid #4a5568 !important;
+}
+
+.dark-mode .asset-management-section h3,
+.dark-mode .asset-sale-section h3,
+.dark-mode .property-edit-section h3,
+.dark-mode .property-sale-section h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .input-group label {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .sale-summary,
+.dark-mode .property-current-info {
+  background: #4a5568 !important;
+  border: 1px solid #4a5568 !important;
+}
+
+.dark-mode .sale-summary p,
+.dark-mode .property-current-info .info-item {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .net-proceeds {
+  border-top: 2px solid #5a6576 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Fix Info Grid in Dark Mode */
+.dark-mode .info-grid .info-item {
+  border-bottom: 1px solid #5a6576 !important;
+}
+
+.dark-mode .info-grid .info-item:last-child {
+  border-bottom: none !important;
+}
+
+.dark-mode .info-label {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .info-value {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .info-value.positive {
+  color: #48bb78 !important;
+}
+
+.dark-mode .info-value.negative {
+  color: #e53e3e !important;
+}
+
+/* Fix Property Edit Modal Specific Issues */
+.dark-mode .property-current-info {
+  background: #4a5568 !important;
+  border: 1px solid #5a6576 !important;
+  border-left: 4px solid #667eea !important;
+}
+
+.dark-mode .property-edit-section {
+  background: #4a5568 !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.dark-mode .property-sale-section {
+  background: #4a5568 !important;
+  padding: 1rem !important;
+  border-radius: 8px !important;
+}
+
+/* Fix Modal Section Headers */
+.dark-mode .asset-management-section h3,
+.dark-mode .asset-sale-section h3,
+.dark-mode .property-edit-section h3,
+.dark-mode .property-sale-section h3 {
+  border-bottom: 1px solid #5a6576 !important;
+  padding-bottom: 0.5rem !important;
+  margin-bottom: 1rem !important;
+  color: #e2e8f0 !important;
+}
+
+/* Fix Action Buttons in Modals */
+.dark-mode .action-buttons-horizontal .modal-btn {
+  color: white !important;
+}
+
+.dark-mode .action-buttons-horizontal .update-btn {
+  background: #4299e1 !important;
+}
+
+.dark-mode .action-buttons-horizontal .update-btn:hover {
+  background: #3182ce !important;
+}
+
+.dark-mode .action-buttons-horizontal .sell-btn {
+  background: #ed8936 !important;
+}
+
+.dark-mode .action-buttons-horizontal .sell-btn:hover {
+  background: #dd6b20 !important;
+}
+
+.dark-mode .action-buttons-horizontal .sell-btn:disabled {
+  background: #a0aec0 !important;
+  color: #4a5568 !important;
+}
+
+/* Fix Input Fields in Dark Mode Modals */
+.dark-mode .input-group input {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+  border: 2px solid #5a6576 !important;
+}
+
+.dark-mode .input-group input:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3) !important;
+}
+
+.dark-mode .input-group input::placeholder {
+  color: #a0aec0 !important;
+  opacity: 0.7 !important;
+}
+
+/* Fix Quantity Options in Dark Mode */
+.dark-mode .quantity-options button {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+  border: 1px solid #5a6576 !important;
+}
+
+.dark-mode .quantity-options button:hover {
+  background: #5a6576 !important;
+  border-color: #667eea !important;
+}
+
+/* Fix Specific Text Elements in Editing Views */
+.dark-mode .asset-info-section .info-item,
+.dark-mode .property-current-info .info-item {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .sale-summary strong,
+.dark-mode .property-current-info strong {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .warning-note {
+  color: #ed8936 !important;
+  background: rgba(237, 137, 54, 0.1) !important;
+  padding: 0.5rem !important;
+  border-radius: 4px !important;
+  border-left: 3px solid #ed8936 !important;
+}
+
+/* Fix Text in Summary Sections */
+.dark-mode .paper-asset-summary p,
+.dark-mode .property-asset-summary p,
+.dark-mode .repay-summary p,
+.dark-mode .loan-summary p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-summary strong,
+.dark-mode .property-asset-summary strong,
+.dark-mode .repay-summary strong,
+.dark-mode .loan-summary strong {
+  color: #e2e8f0 !important;
+}
+
+/* Fix Modal Overlay */
+.dark-mode .modal-overlay {
+  background: rgba(0, 0, 0, 0.8) !important;
+}
+
+.dark-mode .modal-content {
+  background: #2d3748 !important;
+  color: #e2e8f0 !important;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode .modal-title {
+  color: #e2e8f0 !important;
+  border-bottom: 2px solid #4a5568 !important;
+}
+
+/* Fix Modal Action Buttons */
+.dark-mode .modal-actions .modal-btn {
+  color: white !important;
+}
+
+.dark-mode .modal-actions .cancel-btn {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .modal-actions .cancel-btn:hover {
+  background: #5a6576 !important;
+}
+
+/* Fix Buy Asset Modals */
+.dark-mode .paper-asset-details h3,
+.dark-mode .property-asset-details h3 {
+  color: #e2e8f0 !important;
+  border-bottom: 1px solid #4a5568 !important;
+}
+
+.dark-mode .asset-preview-card {
+  background: #4a5568 !important;
+  border-left: 4px solid #667eea !important;
+}
+
+.dark-mode .asset-preview-card h4 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .preview-item .preview-label {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .preview-item .preview-value {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .preview-item .preview-value.positive {
+  color: #48bb78 !important;
+}

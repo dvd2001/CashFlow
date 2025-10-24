@@ -14,12 +14,13 @@ interface FastTrackAsset {
 
 interface LocationState {
     passiveIncome: number
+    darkMode?: boolean
 }
 
 function FastTrackPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { passiveIncome } = (location.state as LocationState) || { passiveIncome: 0 };
+    const { passiveIncome, darkMode } = (location.state as LocationState) || { passiveIncome: 0 };
 
     const [playerAssets, setPlayerAssets] = useState<FastTrackAsset[]>([]);
     const [showBuyAssetModal, setShowBuyAssetModal] = useState(false);
@@ -156,7 +157,7 @@ function FastTrackPage() {
     const progressPercentage = Math.min(100, ((totalCashFlow - initialCashFlow) / 50000) * 100);
 
     return (
-        <div className="game-page">
+        <div className={`game-page ${darkMode ? 'dark-mode' : ''}`}>
             <div className="game-container">
                 {/* Left Side - Fixed Panel */}
                 <div className="left-panel">

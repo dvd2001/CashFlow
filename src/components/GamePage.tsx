@@ -23,6 +23,7 @@ interface Profession {
 
 interface LocationState {
     profession: Profession
+    darkMode?: boolean
 }
 
 interface Liability {
@@ -57,7 +58,7 @@ interface PropertyAsset {
 function GamePage() {
     const location = useLocation()
     const navigate = useNavigate()
-    const { profession } = location.state as LocationState
+    const { profession, darkMode } = location.state as LocationState
     const [numberOfChildren, setNumberOfChildren] = useState(0)
     const [bankLoan, setBankLoan] = useState(0)
     const [savings, setSavings] = useState(profession.savings) // Use profession savings
@@ -687,7 +688,7 @@ function GamePage() {
 
 
     return (
-        <div className="game-page">
+        <div className={`game-page ${darkMode ? 'dark-mode' : ''}`}>
             <div className="game-container">
                 {/* Left Side - Fixed Panel */}
                 <div className="left-panel">
