@@ -253,6 +253,34 @@
             "continueToFastTrack": "Continue to Fast Track",
             "backToStartPage": "Back to Start Page",
             "achievedFinancialFreedom": "You've achieved financial freedom! Your assets now generate enough income to cover all your expenses."
+        },
+        "paperAssets": {
+            "depositCertificate": "Deposit Certificate",
+            "2BIG": "2BIG",
+            "GRO4US": "GRO4US",
+            "MYT4U": "MYT4U",
+            "OK4U": "OK4U",
+            "ON2U": "ON2U"
+        },
+        "propertyAssets": {
+            "condo2_1": "Condo 2/1",
+            "house3_2": "House 3/2",
+            "widgetsMakingCompany": "Widgets Making Company",
+            "softwareCompany": "Software Company",
+            "goldCoinPiecesOf8": "Gold Coin pieces of 8",
+            "krugerrands": "10 one-ounce Krugerrands",
+            "rawLand10Acres": "10 Acres Raw Land",
+            "sisterInLaw": "Sister- In-Law",
+            "automatedBusiness": "Automated Business",
+            "smallShoppingMall": "Small Shopping Mall",
+            "pizzaFranchise": "Pizza Franchise",
+            "duplex": "Duplex",
+            "fourPlex": "4-plex",
+            "eightPlex": "8-plex",
+            "rawLand20Acres": "20 Acers Raw Land",
+            "apartmentHouse": "Apartment House",
+            "limitedPartner": "Limited Partner",
+            "bedAndBreakfast": "Bed & Breakfast"
         }
     },
     "hu": {
@@ -509,6 +537,34 @@
             "continueToFastTrack": "Tovább a Gyorsító Sávra",
             "backToStartPage": "Vissza a Kezdőoldalra",
             "achievedFinancialFreedom": "Elérted a pénzügyi függetlenséget! Az eszközeid most már elég jövedelmet termelnek, hogy fedezzék az összes kiadásodat."
+        },
+        "paperAssets": {
+            "depositCertificate": "Letéti Jegy",
+            "2BIG": "2BIG",
+            "GRO4US": "GRO4US",
+            "MYT4U": "MYT4U",
+            "OK4U": "OK4U",
+            "ON2U": "ON2U"
+        },
+        "propertyAssets": {
+            "condo2_1": "Lakás 2/1",
+            "house3_2": "Ház 3/2",
+            "widgetsMakingCompany": "Szerkentyű Gyártó Cég",
+            "softwareCompany": "Szoftver Cég",
+            "goldCoinPiecesOf8": "Új Világ 8-as Aranyérme",
+            "krugerrands": "10 egy unciás Krugerrand",
+            "rawLand10Acres": "4HA Föld",
+            "sisterInLaw": "Sógornő",
+            "automatedBusiness": "Automatizált Üzlet",
+            "smallShoppingMall": "Kis Bevásárlóközpont",
+            "pizzaFranchise": "Pizza Franchise",
+            "duplex": "2-lakásos",
+            "fourPlex": "4-lakásos",
+            "eightPlex": "8-lakásos",
+            "rawLand20Acres": "8HA Föld",
+            "apartmentHouse": "Apartmanház",
+            "limitedPartner": "Csendestárs",
+            "bedAndBreakfast": "Panzió"
         }
     }
 }

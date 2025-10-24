@@ -2990,3 +2990,95 @@ input:checked+.slider:before {
 .dark-mode .repay-summary strong {
   color: #e2e8f0 !important;
 }
+
+/* Mobile responsive for dark mode toggle only */
+@media (max-width: 768px) {
+  .app-container {
+    padding-top: 60px;
+    /* Reduced space since no box */
+    position: relative;
+  }
+
+  .dark-mode-toggle {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    background: transparent !important;
+    /* Remove background */
+    padding: 0 !important;
+    /* Remove padding */
+    border-radius: 0 !important;
+    /* Remove border radius */
+    box-shadow: none !important;
+    /* Remove shadow */
+    margin: 0;
+  }
+
+  .dark-mode .dark-mode-toggle {
+    background: transparent !important;
+    /* Remove dark mode background */
+    box-shadow: none !important;
+    /* Remove dark mode shadow */
+  }
+
+  .content-card {
+    margin-top: 0;
+  }
+
+  /* Adjust the toggle label for mobile */
+  .dark-mode-toggle .toggle-label {
+    margin: 0;
+    gap: 0.5rem;
+  }
+
+  /* Keep language selection inside the card on mobile */
+  .language-selection {
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    background: #f7fafc;
+    border-radius: 10px;
+    border: 2px solid #e2e8f0;
+  }
+
+  .dark-mode .language-selection {
+    background: #4a5568;
+    border: 2px solid #4a5568;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 480px) {
+  .app-container {
+    padding-top: 50px;
+    /* Less space needed without box */
+  }
+
+  .dark-mode-toggle {
+    top: 15px;
+    right: 15px;
+  }
+
+  .dark-mode-toggle .toggle-label {
+    font-size: 0.9rem;
+  }
+
+  .toggle-switch {
+    width: 50px;
+    height: 28px;
+  }
+
+  .slider:before {
+    height: 20px;
+    width: 20px;
+  }
+
+  input:checked+.slider:before {
+    transform: translateX(22px);
+  }
+}
+
+/* Ensure text color is visible in dark mode */
+.dark-mode .dark-mode-toggle .toggle-label {
+  color: #e2e8f0 !important;
+}

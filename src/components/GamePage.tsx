@@ -117,26 +117,33 @@ function GamePage() {
     const [paperAssets, setPaperAssets] = useState<PaperAsset[]>([])
     const [propertyAssets, setPropertyAssets] = useState<PropertyAsset[]>([])
 
-    const paperAssetTypes = ['Deposit Certificate', '2BIG', 'GRO4US', 'MYT4U', 'OK4U', 'ON2U']
+    const paperAssetTypes = [
+        { value: 'depositCertificate', labelKey: 'paperAssets.depositCertificate' },
+        { value: '2BIG', labelKey: 'paperAssets.2BIG' },
+        { value: 'GRO4US', labelKey: 'paperAssets.GRO4US' },
+        { value: 'MYT4U', labelKey: 'paperAssets.MYT4U' },
+        { value: 'OK4U', labelKey: 'paperAssets.OK4U' },
+        { value: 'ON2U', labelKey: 'paperAssets.ON2U' }
+    ]
     const propertyTypes = [
-        'Condo 2/1',
-        'House 3/2',
-        'Widgets Making Company',
-        'Software Company',
-        'Gold Coin pieces of 8',
-        '10 one-ounce Krugerrands',
-        '10 Acres Raw Land',
-        'Sister- In-Law',
-        'Automated Business',
-        'Small Shopping Mall',
-        'Pizza Franchise',
-        'Duplex',
-        '4-plex',
-        '8-plex',
-        '20 Acers Raw Land',
-        'Apartment House',
-        'Limited Partner',
-        'Bed & Breakfast'
+        { value: 'condo2_1', labelKey: 'propertyAssets.condo2_1' },
+        { value: 'house3_2', labelKey: 'propertyAssets.house3_2' },
+        { value: 'widgetsMakingCompany', labelKey: 'propertyAssets.widgetsMakingCompany' },
+        { value: 'softwareCompany', labelKey: 'propertyAssets.softwareCompany' },
+        { value: 'goldCoinPiecesOf8', labelKey: 'propertyAssets.goldCoinPiecesOf8' },
+        { value: 'krugerrands', labelKey: 'propertyAssets.krugerrands' },
+        { value: 'rawLand10Acres', labelKey: 'propertyAssets.rawLand10Acres' },
+        { value: 'sisterInLaw', labelKey: 'propertyAssets.sisterInLaw' },
+        { value: 'automatedBusiness', labelKey: 'propertyAssets.automatedBusiness' },
+        { value: 'smallShoppingMall', labelKey: 'propertyAssets.smallShoppingMall' },
+        { value: 'pizzaFranchise', labelKey: 'propertyAssets.pizzaFranchise' },
+        { value: 'duplex', labelKey: 'propertyAssets.duplex' },
+        { value: 'fourPlex', labelKey: 'propertyAssets.fourPlex' },
+        { value: 'eightPlex', labelKey: 'propertyAssets.eightPlex' },
+        { value: 'rawLand20Acres', labelKey: 'propertyAssets.rawLand20Acres' },
+        { value: 'apartmentHouse', labelKey: 'propertyAssets.apartmentHouse' },
+        { value: 'limitedPartner', labelKey: 'propertyAssets.limitedPartner' },
+        { value: 'bedAndBreakfast', labelKey: 'propertyAssets.bedAndBreakfast' }
     ]
 
     // Calculate total passive income from all paper assets (per unit * quantity)
@@ -296,7 +303,7 @@ function GamePage() {
         // Create new paper asset with passive income per unit
         const newPaperAsset: PaperAsset = {
             id: Date.now().toString(),
-            name: selectedPaperAssetType,
+            name: t(paperAssetTypes.find(a => a.value === selectedPaperAssetType)?.labelKey || selectedPaperAssetType),
             quantity: paperAssetQuantity,
             pricePerUnit: paperAssetPrice,
             passiveIncomePerUnit: paperAssetPassiveIncome
@@ -339,7 +346,7 @@ function GamePage() {
         // Create new property asset
         const newPropertyAsset: PropertyAsset = {
             id: Date.now().toString(),
-            name: selectedPropertyType,
+            name: t(propertyTypes.find(p => p.value === selectedPropertyType)?.labelKey || selectedPropertyType),
             downPayment: propertyDownPayment,
             totalCost: propertyTotalCost,
             mortgage: propertyMortgage,
@@ -1157,6 +1164,7 @@ function GamePage() {
                         <div className="paper-asset-selection">
                             <div className="paper-asset-input-group">
                                 <label htmlFor="paper-asset-type">{t('modals.selectAssetType')}</label>
+                                {/* In the Buy Paper Asset Modal */}
                                 <select
                                     id="paper-asset-type"
                                     className="paper-asset-select"
@@ -1165,8 +1173,8 @@ function GamePage() {
                                 >
                                     <option value="">{t('modals.chooseAssetType')}</option>
                                     {paperAssetTypes.map((assetType, index) => (
-                                        <option key={index} value={assetType}>
-                                            {assetType}
+                                        <option key={index} value={assetType.value}>
+                                            {t(assetType.labelKey)}
                                         </option>
                                     ))}
                                 </select>
@@ -1250,6 +1258,7 @@ function GamePage() {
                         <div className="property-asset-selection">
                             <div className="property-asset-input-group">
                                 <label htmlFor="property-type">{t('modals.selectAssetType')}</label>
+                                {/* In the Buy Property Asset Modal */}
                                 <select
                                     id="property-type"
                                     className="property-asset-select"
@@ -1258,8 +1267,8 @@ function GamePage() {
                                 >
                                     <option value="">{t('modals.choosePropertyType')}</option>
                                     {propertyTypes.map((propertyType, index) => (
-                                        <option key={index} value={propertyType}>
-                                            {propertyType}
+                                        <option key={index} value={propertyType.value}>
+                                            {t(propertyType.labelKey)}
                                         </option>
                                     ))}
                                 </select>

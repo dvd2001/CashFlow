@@ -21,7 +21,7 @@
         "value": "quickFoodMarts",
         "label": {
             "en": "Quick Food Marts",
-            "hu": "GyorsétkeztetőKözpontok"
+            "hu": "Gyorsétkeztető Központok"
         },
         "downPayment": 120000,
         "passiveIncome": 5000

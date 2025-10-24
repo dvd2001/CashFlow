@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useLanguage } from '../contexts/languageContext' // Import the language context
+import { useLanguage } from '../contexts/languageContext' // Make sure this is imported
 
 // Import your JSON data
 import fastTrackAssetsData from '../data/fastTrackAssets.json'
@@ -24,7 +24,7 @@ interface LocationState {
 function FastTrackPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { t } = useLanguage(); // Get translation function
+    const { language, t } = useLanguage(); // Get the current language
     const { passiveIncome, darkMode } = (location.state as LocationState) || { passiveIncome: 0 };
 
     const [playerAssets, setPlayerAssets] = useState<FastTrackAsset[]>([]);
@@ -155,7 +155,8 @@ function FastTrackPage() {
         // Deduct down payment from savings
         setSavings(prev => prev - selectedAsset.downPayment);
 
-        alert(`${t('alerts.purchased')} ${selectedAsset.label.en} ${t('alerts.for')} $${selectedAsset.downPayment.toLocaleString()}!\n\n` +
+        // Use the translated label in the alert
+        alert(`${t('alerts.purchased')} ${selectedAsset.label[language]} ${t('alerts.for')} $${selectedAsset.downPayment.toLocaleString()}!\n\n` +
             `${t('game.monthlyPassiveIncome')}: $${selectedAsset.passiveIncome.toLocaleString()}\n` +
             `${t('alerts.willIncreaseCashFlow')} $${selectedAsset.passiveIncome.toLocaleString()}`);
 
@@ -266,7 +267,8 @@ function FastTrackPage() {
                                     playerAssets.map(asset => (
                                         <div key={asset.id} className="asset-card">
                                             <div className="asset-card-header">
-                                                <h3 className="asset-name">{asset.label.en}</h3>
+                                                {/* Use the current language for the asset name */}
+                                                <h3 className="asset-name">{asset.label[language]}</h3>
                                             </div>
                                             <div className="asset-card-details">
                                                 <div className="asset-detail">
@@ -358,7 +360,8 @@ function FastTrackPage() {
                                     <option value="">{t('modals.chooseAssetType')}</option>
                                     {fastTrackAssetsData.map((asset, index) => (
                                         <option key={index} value={asset.value}>
-                                            {asset.label.en}
+                                            {/* Use the current language for the dropdown options */}
+                                            {asset.label[language]}
                                         </option>
                                     ))}
                                 </select>
@@ -370,7 +373,8 @@ function FastTrackPage() {
                                 <h3>{t('modals.purchaseDetails')}:</h3>
 
                                 <div className="asset-preview-card">
-                                    <h4>{selectedAsset.label.en}</h4>
+                                    {/* Use the current language for the asset name */}
+                                    <h4>{selectedAsset.label[language]}</h4>
                                     <div className="asset-preview-details">
                                         <div className="preview-item">
                                             <span className="preview-label">{t('modals.downPayment')}:</span>
