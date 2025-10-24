@@ -2220,3 +2220,32 @@ input[type="number"]::-webkit-inner-spin-button {
     justify-content: center;
   }
 }
+
+/* Negative income styling */
+.property-income.negative {
+  background: #e53e3e;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.property-income.zero {
+  background: #a0aec0;
+  color: white;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.detail-value.negative {
+  color: #e53e3e;
+  font-weight: 600;
+}
+
+.detail-value.zero {
+  color: #a0aec0;
+  font-weight: 600;
+}

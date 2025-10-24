@@ -307,7 +307,7 @@ function GamePage() {
     }
 
     const handleBuyPropertyAssetConfirm = () => {
-        if (!selectedPropertyType || propertyDownPayment <= 0 || propertyTotalCost <= 0 || propertyPassiveIncome === 0) {
+        if (!selectedPropertyType || propertyDownPayment <= 0 || propertyTotalCost <= 0) {
             alert('Please fill in all fields correctly.')
             return
         }
@@ -343,7 +343,7 @@ function GamePage() {
             `Down payment: $${propertyDownPayment.toLocaleString()}\n` +
             `Total cost: $${propertyTotalCost.toLocaleString()}\n` +
             `Mortgage: $${propertyMortgage.toLocaleString()}\n` +
-            `Monthly passive income: $${propertyPassiveIncome.toLocaleString()}\n\n` +
+            `Monthly passive income: ${propertyPassiveIncome >= 0 ? '+' : ''}$${propertyPassiveIncome.toLocaleString()}\n\n` +
             `Your total passive income increased to $${(totalPassiveIncome + propertyPassiveIncome).toLocaleString()}`)
 
         // Close modal and reset form
@@ -856,7 +856,9 @@ function GamePage() {
                                         >
                                             <div className="property-card-header">
                                                 <h3 className="property-name">{property.name}</h3>
-                                                <span className="property-income positive">+${property.passiveIncome.toLocaleString()}/month</span>
+                                                <span className={`property-income ${property.passiveIncome >= 0 ? 'positive' : 'negative'}`}>
+                                                    {property.passiveIncome >= 0 ? '+' : ''}${property.passiveIncome.toLocaleString()}/month
+                                                </span>
                                             </div>
                                             <div className="property-card-details">
                                                 <div className="property-detail-grid">
@@ -1328,8 +1330,7 @@ function GamePage() {
                                     <p>Down Payment: <strong>${propertyDownPayment.toLocaleString()}</strong></p>
                                     <p>Total Cost: <strong>${propertyTotalCost.toLocaleString()}</strong></p>
                                     <p>Mortgage: <strong>${propertyMortgage.toLocaleString()}</strong></p>
-                                    <p>Monthly Passive Income: <strong>${propertyPassiveIncome.toLocaleString()}</strong></p>
-                                    <p>Available Savings: <strong>${savings.toLocaleString()}</strong></p>
+                                    <p>Monthly Passive Income: <strong>{propertyPassiveIncome >= 0 ? '+' : ''}${propertyPassiveIncome.toLocaleString()}</strong></p>                                    <p>Available Savings: <strong>${savings.toLocaleString()}</strong></p>
                                     <p className={savings >= propertyDownPayment ? 'success' : 'error'}>
                                         {savings >= propertyDownPayment ? '✓ Sufficient funds for down payment' : '✗ Insufficient funds for down payment'}
                                     </p>
@@ -1354,7 +1355,6 @@ function GamePage() {
                                     !selectedPropertyType ||
                                     propertyDownPayment <= 0 ||
                                     propertyTotalCost <= 0 ||
-                                    propertyPassiveIncome === 0 ||
                                     propertyDownPayment + propertyMortgage !== propertyTotalCost ||
                                     propertyDownPayment > savings
                                 }
