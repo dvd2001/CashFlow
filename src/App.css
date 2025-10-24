@@ -3082,3 +3082,168 @@ input:checked+.slider:before {
 .dark-mode .dark-mode-toggle .toggle-label {
   color: #e2e8f0 !important;
 }
+
+/* Fix congratulations modals in dark mode */
+.dark-mode .congrats-modal {
+  background: linear-gradient(135deg, #2d3748 0%, #4a5568 100%) !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .congrats-title {
+  color: #e2e8f0 !important;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5) !important;
+}
+
+.dark-mode .congrats-message {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .congrats-submessage {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .financial-summary-congrats {
+  background: rgba(255, 255, 255, 0.1) !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .financial-summary-congrats .summary-item {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .financial-summary-congrats .summary-item span {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .financial-summary-congrats .summary-item .positive {
+  color: #48bb78 !important;
+}
+
+.dark-mode .financial-summary-congrats .net-cash-flow span {
+  color: #48bb78 !important;
+}
+
+.dark-mode .continue-btn {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+  color: white !important;
+}
+
+.dark-mode .continue-btn:hover {
+  background: linear-gradient(135deg, #38a169 0%, #2f855a 100%) !important;
+}
+
+/* Fix goal achieved section in dark mode */
+.dark-mode .goal-achieved {
+  background: linear-gradient(135deg, #48bb78 0%, #38a169 100%) !important;
+  color: white !important;
+}
+
+/* Fix progress bar in dark mode */
+.dark-mode .goal-progress h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .progress-bar {
+  background: #4a5568 !important;
+}
+
+.dark-mode .progress-fill {
+  background: linear-gradient(90deg, #48bb78, #38a169) !important;
+}
+
+.dark-mode .progress-text {
+  color: #e2e8f0 !important;
+}
+
+/* Fix dream modal in dark mode */
+.dark-mode .dream-modal-content p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .dream-summary {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-left: 4px solid #e4a9c8 !important;
+}
+
+.dark-mode .dream-summary p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .dream-summary strong {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .dream-note {
+  color: #a0aec0 !important;
+}
+
+/* Fix Fast Track asset preview card in dark mode */
+.dark-mode .asset-preview-card {
+  background: #4a5568 !important;
+  border-left: 4px solid #667eea !important;
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .asset-preview-card h4 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .preview-item .preview-label {
+  color: #a0aec0 !important;
+}
+
+.dark-mode .preview-item .preview-value {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .preview-item .preview-value.positive {
+  color: #48bb78 !important;
+}
+
+/* Fix Fast Track modal text in dark mode */
+.dark-mode .paper-asset-details h3 {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-input-group label {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-summary p {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-summary strong {
+  color: #e2e8f0 !important;
+}
+
+.dark-mode .paper-asset-summary .success {
+  color: #48bb78 !important;
+}
+
+.dark-mode .paper-asset-summary .error {
+  color: #e53e3e !important;
+}
+
+/* Fix Fast Track select dropdown in dark mode */
+.dark-mode .paper-asset-select {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+  border: 2px solid #5a6576 !important;
+}
+
+.dark-mode .paper-asset-select:focus {
+  border-color: #667eea !important;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3) !important;
+}
+
+.dark-mode .paper-asset-select option {
+  background: #4a5568 !important;
+  color: #e2e8f0 !important;
+}
+
+/* Fix Fast Track modal title */
+.dark-mode .modal-title {
+  color: #e2e8f0 !important;
+  border-bottom: 2px solid #4a5568 !important;
+}
