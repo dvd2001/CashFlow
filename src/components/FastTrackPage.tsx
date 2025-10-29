@@ -59,6 +59,51 @@ function FastTrackPage() {
     // Set savings to initial cash flow
     const [savings, setSavings] = useState(initialCashFlow);
 
+    // Add page leaving confirmation
+    useEffect(() => {
+        let shouldBlockNavigation = true;
+
+        const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+            if (shouldBlockNavigation) {
+                e.preventDefault();
+                e.returnValue = t('alerts.leavePageConfirmation');
+                return t('alerts.leavePageConfirmation');
+            }
+        };
+
+        const handlePopState = (e: PopStateEvent) => {
+            if (shouldBlockNavigation) {
+                // Show confirmation dialog
+                const confirmLeave = window.confirm(t('alerts.leavePageConfirmation'));
+
+                if (!confirmLeave) {
+                    // If user cancels, push current state back to history
+                    window.history.pushState(null, '', window.location.href);
+                    // Also prevent any React Router navigation
+                    e.preventDefault();
+                    e.stopPropagation();
+                } else {
+                    // User confirmed - allow navigation
+                    shouldBlockNavigation = false;
+                }
+            }
+        };
+
+        // Add current page to history
+        window.history.pushState(null, '', window.location.href);
+
+        // Add event listeners
+        window.addEventListener('beforeunload', handleBeforeUnload);
+        window.addEventListener('popstate', handlePopState, true); // Use capture phase
+
+        return () => {
+            // Clean up event listeners
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+            window.removeEventListener('popstate', handlePopState, true);
+            shouldBlockNavigation = false;
+        };
+    }, [t]);
+
     // Check for win conditions
     useEffect(() => {
         const cashFlowIncrease = totalCashFlow - initialCashFlow;
@@ -166,7 +211,9 @@ function FastTrackPage() {
     };
 
     const handleBackToGame = () => {
-        navigate('/');
+        if (window.confirm(t('alerts.leavePageConfirmation'))) {
+            navigate('/');
+        }
     };
 
     const handleCongratsContinue = () => {

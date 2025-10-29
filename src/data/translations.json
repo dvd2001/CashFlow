@@ -126,7 +126,8 @@
             "allSavingsGone": "All your savings are gone.",
             "noSavingsToHalve": "No savings to be halved!",
             "noSavingsToLose": "No savings to lose!",
-            "willIncreaseCashFlow": "This will increase your additional cash flow by"
+            "willIncreaseCashFlow": "This will increase your additional cash flow by",
+            "leavePageConfirmation": "Are you sure you want to leave this page? Your progress may not be saved."
         },
         "modals": {
             "repayLiability": "Repay Liability",
@@ -411,7 +412,8 @@
             "allSavingsGone": "Az összes megtakarításod eltűnt.",
             "noSavingsToHalve": "Nincs megtakarítás a felezéshez!",
             "noSavingsToLose": "Nincs megtakarítás a elvesztéshez!",
-            "willIncreaseCashFlow": "Ez növelni fogja a további cash flow-dat"
+            "willIncreaseCashFlow": "Ez növelni fogja a további cash flow-dat",
+            "leavePageConfirmation": "Biztosan elhagyja ezt az oldalt? A folyamatban lévő játék előrehaladása nem lesz mentve."
         },
         "modals": {
             "repayLiability": "Kötelezettség Kifizetése",
