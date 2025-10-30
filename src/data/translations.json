@@ -131,7 +131,15 @@
             "noSavingsToHalve": "No savings to be halved!",
             "noSavingsToLose": "No savings to lose!",
             "willIncreaseCashFlow": "This will increase your additional cash flow by",
-            "leavePageConfirmation": "Are you sure you want to leave this page? Your progress may not be saved."
+            "leavePageConfirmation": "Are you sure you want to leave this page? Your progress may not be saved.",
+            "noIncomeForCharity": "You don't have any income to donate to charity.",
+            "insufficientSavingsForCharity": "Insufficient savings for charity donation.",
+            "charityConfirmation": "Are you sure you want to donate 10% of your total income ($${amount}) to charity?",
+            "charityDonated": "Thank you for your charitable donation of $${amount}!",
+            "noExpensesToDownsize": "You don't have any expenses to downsize.",
+            "insufficientSavingsForDownsizing": "Insufficient savings for downsizing operation.",
+            "downsizingConfirmation": "Are you sure you want to downsize your lifestyle? This will cost $${amount} (your total monthly expenses).",
+            "downsizingCompleted": "Downsizing completed! You've reduced your lifestyle expenses by $${amount}."
         },
         "modals": {
             "repayLiability": "Repay Liability",
@@ -422,7 +430,15 @@
             "noSavingsToHalve": "Nincs megtakarítás a felezéshez!",
             "noSavingsToLose": "Nincs megtakarítás a elvesztéshez!",
             "willIncreaseCashFlow": "Ez növelni fogja a további cash flow-dat",
-            "leavePageConfirmation": "Biztosan elhagyja ezt az oldalt? A folyamatban lévő játék előrehaladása nem lesz mentve."
+            "leavePageConfirmation": "Biztosan elhagyja ezt az oldalt? A folyamatban lévő játék előrehaladása nem lesz mentve.",
+            "noIncomeForCharity": "Nincs bevételed a jótékonysághoz.",
+            "insufficientSavingsForCharity": "Nincs elég megtakarításod jótékonykodni",
+            "charityConfirmation": "Biztos hogy jótékonyságra szeretnéd fordítani 10%-át ($${amount}) a teljes bevételednek?",
+            "charityDonated": "Köszzönjük a nagylelkű jótékonyságod $${amount}!",
+            "noExpensesToDownsize": "Nincs kiadásod a leépítéshez.",
+            "insufficientSavingsForDownsizing": "Nincs elég megtakarításod a leépítés kifizetéséhez.",
+            "downsizingConfirmation": "Biztos, hogy a leépítésre akartál menni? Ez $${amount}-ba fog neked kerülni (1 havi kiadásod).",
+            "downsizingCompleted": "Leépítés teljesítve! Kifizetted az 1 havi kiadásod $${amount}."
         },
         "modals": {
             "repayLiability": "Kötelezettség Kifizetése",

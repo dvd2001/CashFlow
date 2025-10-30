@@ -742,11 +742,38 @@ function GamePage() {
     }
 
     const handleCharity = () => {
-        alert('Charity functionality to be implemented');
+        const charityAmount = Math.round(totalIncome * 0.10); // 10% of total income
+        if (charityAmount <= 0) {
+            alert(t('alerts.noIncomeForCharity'));
+            return;
+        }
+
+        if (charityAmount > savings) {
+            alert(t('alerts.insufficientSavingsForCharity'));
+            return;
+        }
+
+        if (window.confirm(t('alerts.charityConfirmation').replace('${amount}', charityAmount.toLocaleString()))) {
+            setSavings(prev => prev - charityAmount);
+            alert(t('alerts.charityDonated').replace('${amount}', charityAmount.toLocaleString()));
+        }
     }
 
     const handleDownsizing = () => {
-        alert('Downsizing functionality to be implemented');
+        if (totalExpenses <= 0) {
+            alert(t('alerts.noExpensesToDownsize'));
+            return;
+        }
+
+        if (totalExpenses > savings) {
+            alert(t('alerts.insufficientSavingsForDownsizing'));
+            return;
+        }
+
+        if (window.confirm(t('alerts.downsizingConfirmation').replace('${amount}', totalExpenses.toLocaleString()))) {
+            setSavings(prev => prev - totalExpenses);
+            alert(t('alerts.downsizingCompleted').replace('${amount}', totalExpenses.toLocaleString()));
+        }
     }
 
     return (
