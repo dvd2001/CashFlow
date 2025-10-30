@@ -136,6 +136,7 @@ function GamePage() {
         { value: 'sisterInLaw', labelKey: 'propertyAssets.sisterInLaw' },
         { value: 'automatedBusiness', labelKey: 'propertyAssets.automatedBusiness' },
         { value: 'smallShoppingMall', labelKey: 'propertyAssets.smallShoppingMall' },
+        { value: 'carWash', labelKey: 'propertyAssets.carWash' },
         { value: 'pizzaFranchise', labelKey: 'propertyAssets.pizzaFranchise' },
         { value: 'duplex', labelKey: 'propertyAssets.duplex' },
         { value: 'fourPlex', labelKey: 'propertyAssets.fourPlex' },
