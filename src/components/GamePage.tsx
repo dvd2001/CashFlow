@@ -822,15 +822,33 @@ function GamePage() {
                         <div className="children-section">
                             <div className="children-input">
                                 <label htmlFor="children-count">{t('game.numberOfChildren')}:</label>
-                                <input
-                                    type="number"
-                                    id="children-count"
-                                    min="0"
-                                    max="3"
-                                    value={numberOfChildren}
-                                    onChange={(e) => handleChildrenChange(parseInt(e.target.value) || 0)}
-                                    onWheel={(e) => e.currentTarget.blur()}
-                                />
+                                <div className="children-controls">
+                                    <button
+                                        className="children-btn minus-btn"
+                                        onClick={() => handleChildrenChange(Math.max(0, numberOfChildren - 1))}
+                                        disabled={numberOfChildren <= 0}
+                                    >
+                                        -
+                                    </button>
+                                    <input
+                                        type="number"
+                                        id="children-count"
+                                        min="0"
+                                        max="3"
+                                        value={numberOfChildren}
+                                        onChange={(e) => handleChildrenChange(parseInt(e.target.value) || 0)}
+                                        onWheel={(e) => e.currentTarget.blur()}
+                                        readOnly
+                                        className="children-input-field"
+                                    />
+                                    <button
+                                        className="children-btn plus-btn"
+                                        onClick={() => handleChildrenChange(Math.min(3, numberOfChildren + 1))}
+                                        disabled={numberOfChildren >= 3}
+                                    >
+                                        +
+                                    </button>
+                                </div>
                                 <div className="child-expense-note">
                                     {t('game.expensePerChild')}: ${perChildExpense}
                                 </div>
