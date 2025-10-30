@@ -741,6 +741,14 @@ function GamePage() {
         setSelectedPropertyAsset(null)
     }
 
+    const handleCharity = () => {
+        alert('Charity functionality to be implemented');
+    }
+
+    const handleDownsizing = () => {
+        alert('Downsizing functionality to be implemented');
+    }
+
     return (
         <div className={`game-page ${darkMode ? 'dark-mode' : ''}`}>
             <div className="game-container">
@@ -811,11 +819,17 @@ function GamePage() {
                             <button className="action-btn payday-btn" onClick={handlePayday}>
                                 {t('game.payday')}
                             </button>
-                            <button className="action-btn repay-btn" onClick={handleRepayLiability}>
+                            <button className="action-btn repay-liability-btn" onClick={handleRepayLiability}>
                                 {t('game.repayLiability')}
                             </button>
                             <button className="action-btn loan-btn" onClick={handleGetLoan}>
                                 {t('game.getLoan')}
+                            </button>
+                            <button className="action-btn charity-btn" onClick={handleCharity}>
+                                {t('game.charity')}
+                            </button>
+                            <button className="action-btn downsizing-btn" onClick={handleDownsizing}>
+                                {t('game.downsizing')}
                             </button>
                         </div>
 

@@ -54,7 +54,9 @@
             "noFastTrackAssets": "No fast track assets yet",
             "clickToAddFirstFastTrack": "Click \"Buy Asset\" to add your first fast track investment",
             "month": "month",
-            "monthlyPassiveIncome": "Monthly passive income:"
+            "monthlyPassiveIncome": "Monthly passive income:",
+            "charity": "Charity",
+            "downsizing": "Downsizing"
         },
         "expenses": {
             "taxes": "Taxes",
@@ -343,7 +345,9 @@
             "noFastTrackAssets": "Még nincsenek gyorsító sáv eszközeid",
             "clickToAddFirstFastTrack": "Kattints az \"Eszköz Vásárlás\" gombra az első gyorsító sáv befektetésedhez",
             "month": "hó",
-            "monthlyPassiveIncome": "Havi Passzív Jövedelem:"
+            "monthlyPassiveIncome": "Havi Passzív Jövedelem:",
+            "charity": "Jótékonyság",
+            "downsizing": "Leépítés"
         },
         "expenses": {
             "taxes": "Adók",

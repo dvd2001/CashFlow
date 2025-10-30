@@ -356,17 +356,17 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
 .repay-btn {
-  background: #ed8936;
-  color: white;
+  background: #829fcf;
+  color: #2d3748;
 }
 
 .repay-btn:hover {
-  background: #dd6b20;
+  background: #627aa0;
 }
 
 .loan-btn {
   background: #9f7aea;
-  color: white;
+  color: #2d3748;
 }
 
 .loan-btn:hover {
@@ -554,6 +554,9 @@ input[type="number"]::-webkit-inner-spin-button {
 
 /* For very small screens */
 @media (max-width: 480px) {
+  .action-buttons {
+    grid-template-columns: 1fr;
+  }
 
   .asset-header,
   .property-header {
@@ -2184,8 +2187,14 @@ input[type="number"]::-webkit-inner-spin-button {
   }
 
   .action-buttons {
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 1fr;
     gap: 0.5rem;
+  }
+
+  /* Ensure all buttons have consistent styling on mobile */
+  .action-btn {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.85rem;
   }
 
   .assets-cards-container {
@@ -3329,4 +3338,62 @@ input:checked+.slider:before {
 .dark-mode .children-input-field:focus {
   border-color: #667eea;
   box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}
+
+/* Update repay button to blue */
+.repay-liability-btn {
+  background: #829fcf;
+  color: #2d3748;
+}
+
+.repay-liability-btn:hover {
+  background: #627aa0;
+}
+
+/* New charity button (orange) */
+.charity-btn {
+  background: #ed8936;
+  color: #2d3748;
+}
+
+.charity-btn:hover {
+  background: #dd6b20;
+}
+
+/* New downsizing button (purple) */
+.downsizing-btn {
+  background: #9f7aea;
+  color: #2d3748;
+}
+
+.downsizing-btn:hover {
+  background: #805ad5;
+}
+
+/* Dark mode styles for new buttons */
+.dark-mode .repay-liability-btn {
+  background: #829fcf;
+  color: #2d3748;
+}
+
+.dark-mode .repay-liability-btn:hover {
+  background: #627aa0;
+}
+
+.dark-mode .charity-btn {
+  background: #ed8936;
+  color: #2d3748;
+}
+
+.dark-mode .charity-btn:hover {
+  background: #dd6b20;
+}
+
+.dark-mode .downsizing-btn {
+  background: #9f7aea;
+  color: #2d3748;
+}
+
+.dark-mode .downsizing-btn:hover {
+  background: #805ad5;
 }
