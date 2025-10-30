@@ -220,6 +220,22 @@ function FastTrackPage() {
         navigate('/');
     };
 
+    const handleDeleteAsset = (assetId: string) => {
+        const assetToDelete = playerAssets.find(asset => asset.id === assetId);
+
+        if (!assetToDelete) return;
+
+        if (window.confirm(t('alerts.confirmDeleteAsset'))) {
+            // Refund the down payment to savings
+            setSavings(prev => prev + assetToDelete.downPayment);
+
+            // Remove the asset from player assets
+            setPlayerAssets(prev => prev.filter(asset => asset.id !== assetId));
+
+            alert(`${t('alerts.assetDeleted')}\n${t('alerts.refundAmount')}: $${assetToDelete.downPayment.toLocaleString()}`);
+        }
+    };
+
     const progressPercentage = Math.min(100, ((totalCashFlow - initialCashFlow) / 50000) * 100);
 
     return (
@@ -314,8 +330,14 @@ function FastTrackPage() {
                                     playerAssets.map(asset => (
                                         <div key={asset.id} className="asset-card">
                                             <div className="asset-card-header">
-                                                {/* Use the current language for the asset name */}
                                                 <h3 className="asset-name">{asset.label[language]}</h3>
+                                                <button
+                                                    className="delete-asset-btn"
+                                                    onClick={() => handleDeleteAsset(asset.id)}
+                                                    title={t('modals.deleteAsset')}
+                                                >
+                                                    ✕
+                                                </button>
                                             </div>
                                             <div className="asset-card-details">
                                                 <div className="asset-detail">

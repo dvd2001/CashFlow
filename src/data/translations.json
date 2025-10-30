@@ -139,7 +139,10 @@
             "noExpensesToDownsize": "You don't have any expenses to downsize.",
             "insufficientSavingsForDownsizing": "Insufficient savings for downsizing operation.",
             "downsizingConfirmation": "Are you sure you want to downsize your lifestyle? This will cost $${amount} (your total monthly expenses).",
-            "downsizingCompleted": "Downsizing completed! You've reduced your lifestyle expenses by $${amount}."
+            "downsizingCompleted": "Downsizing completed! You've reduced your lifestyle expenses by $${amount}.",
+            "confirmDeleteAsset": "Are you sure you want to delete this asset? The down payment will be refunded to your savings.",
+            "assetDeleted": "Asset successfully deleted.",
+            "refundAmount": "Refunded amount"
         },
         "modals": {
             "repayLiability": "Repay Liability",
@@ -243,7 +246,8 @@
             "dreamPrice": "Dream Price:",
             "enterDreamPrice": "Enter the price of your dream",
             "buyMyDream": "Buy My Dream!",
-            "buyDreamNote": "Buying your dream will complete your Fast Track journey!"
+            "buyDreamNote": "Buying your dream will complete your Fast Track journey!",
+            "deleteAsset": "Delete Asset"
         },
         "fastTrack": {
             "fastTrack": "Fast Track",
@@ -438,7 +442,10 @@
             "noExpensesToDownsize": "Nincs kiadásod a leépítéshez.",
             "insufficientSavingsForDownsizing": "Nincs elég megtakarításod a leépítés kifizetéséhez.",
             "downsizingConfirmation": "Biztos, hogy a leépítésre akartál menni? Ez $${amount}-ba fog neked kerülni (1 havi kiadásod).",
-            "downsizingCompleted": "Leépítés teljesítve! Kifizetted az 1 havi kiadásod $${amount}."
+            "downsizingCompleted": "Leépítés teljesítve! Kifizetted az 1 havi kiadásod $${amount}.",
+            "confirmDeleteAsset": "Biztosan törölni szeretnéd ezt az eszközt? Az előleg visszatérítésre kerül a megtakarításaidhoz.",
+            "assetDeleted": "Eszköz sikeresen törölve.",
+            "refundAmount": "Visszatérített összeg"
         },
         "modals": {
             "repayLiability": "Kötelezettség Kifizetése",
@@ -542,7 +549,8 @@
             "dreamPrice": "Álom Ára:",
             "enterDreamPrice": "Add meg az álmod árát",
             "buyMyDream": "Vedd Meg Az Álmod!",
-            "buyDreamNote": "Az álmod megvásárlása befejezi a Gyorsító Sáv utazásodat!"
+            "buyDreamNote": "Az álmod megvásárlása befejezi a Gyorsító Sáv utazásodat!",
+            "deleteAsset": "Eszköz Törlése"
         },
         "fastTrack": {
             "fastTrack": "Gyorsító Sáv",
