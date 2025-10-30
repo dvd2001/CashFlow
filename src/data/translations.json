@@ -297,7 +297,9 @@
             "fourPlex": "4-plex",
             "eightPlex": "8-plex",
             "rawLand20Acres": "20 Acers Raw Land",
-            "apartmentHouse": "Apartment House",
+            "apartmentHouse12": "Apartment House (12 units)",
+            "apartmentHouse24": "Apartment House (24 units)",
+            "apartmentHouse60": "Apartment House (60 units)",
             "limitedPartner": "Limited Partner",
             "bedAndBreakfast": "Bed & Breakfast"
         }
@@ -600,7 +602,9 @@
             "fourPlex": "4-lakásos",
             "eightPlex": "8-lakásos",
             "rawLand20Acres": "8HA Föld",
-            "apartmentHouse": "Apartmanház",
+            "apartmentHouse12": "Apartmanház (12 egység)",
+            "apartmentHouse24": "Apartmanház (24 egység)",
+            "apartmentHouse60": "Apartmanház (60 egység)",
             "limitedPartner": "Csendestárs",
             "bedAndBreakfast": "Panzió"
         }

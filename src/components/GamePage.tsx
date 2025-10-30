@@ -142,7 +142,9 @@ function GamePage() {
         { value: 'fourPlex', labelKey: 'propertyAssets.fourPlex' },
         { value: 'eightPlex', labelKey: 'propertyAssets.eightPlex' },
         { value: 'rawLand20Acres', labelKey: 'propertyAssets.rawLand20Acres' },
-        { value: 'apartmentHouse', labelKey: 'propertyAssets.apartmentHouse' },
+        { value: 'apartmentHouse12', labelKey: 'propertyAssets.apartmentHouse12' },
+        { value: 'apartmentHouse24', labelKey: 'propertyAssets.apartmentHouse24' },
+        { value: 'apartmentHouse60', labelKey: 'propertyAssets.apartmentHouse60' },
         { value: 'limitedPartner', labelKey: 'propertyAssets.limitedPartner' },
         { value: 'bedAndBreakfast', labelKey: 'propertyAssets.bedAndBreakfast' }
     ]
