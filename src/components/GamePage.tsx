@@ -755,26 +755,26 @@ function GamePage() {
 
                         <div className="salary-display">
                             <div className="salary-info">
-                                <span>{t('game.monthlySalary')}:</span>
+                                <span>{t('game.monthlySalary')}</span>
                                 <span>${salary.toLocaleString()}</span>
                             </div>
                         </div>
 
                         <div className="financial-summary">
                             <div className="summary-item">
-                                <span>{t('game.totalIncome')}:</span>
+                                <span>{t('game.totalIncome')}</span>
                                 <span>${totalIncome}</span>
                             </div>
                             <div className="summary-item">
-                                <span>{t('game.passiveIncome')}:</span>
+                                <span>{t('game.passiveIncome')}</span>
                                 <span>${totalPassiveIncome}</span>
                             </div>
                             <div className="summary-item">
-                                <span>{t('game.totalExpenses')}:</span>
+                                <span>{t('game.totalExpenses')}</span>
                                 <span>${totalExpenses}</span>
                             </div>
                             <div className="summary-item net-cash-flow">
-                                <span>{t('game.monthlyCashFlow')}:</span>
+                                <span>{t('game.monthlyCashFlow')}</span>
                                 <span>${monthlyCashFlow}</span>
                             </div>
                         </div>
@@ -1665,16 +1665,16 @@ function GamePage() {
                             </p>
                             <div className="financial-summary-congrats">
                                 <div className="summary-item">
-                                    <span>{t('game.passiveIncome')}:</span>
-                                    <span className="positive">${totalPassiveIncome.toLocaleString()}/month</span>
+                                    <span>{t('game.passiveIncome')}</span>
+                                    <span className="positive">${totalPassiveIncome.toLocaleString()}/{t('game.month')}</span>
                                 </div>
                                 <div className="summary-item">
-                                    <span>{t('game.totalExpenses')}:</span>
-                                    <span>${totalExpenses.toLocaleString()}/month</span>
+                                    <span>{t('game.totalExpenses')}</span>
+                                    <span>${totalExpenses.toLocaleString()}/{t('game.month')}</span>
                                 </div>
                                 <div className="summary-item net-cash-flow">
-                                    <span>{t('game.monthlySurplus')}:</span>
-                                    <span className="positive">+${(totalPassiveIncome - totalExpenses).toLocaleString()}/month</span>
+                                    <span>{t('game.monthlySurplus')}</span>
+                                    <span className="positive">+${(totalPassiveIncome - totalExpenses).toLocaleString()}/{t('game.month')}</span>
                                 </div>
                             </div>
                             <p className="congrats-submessage">

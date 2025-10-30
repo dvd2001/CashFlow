@@ -232,23 +232,23 @@ function FastTrackPage() {
 
                         <div className="financial-summary">
                             <div className="summary-item">
-                                <span>{t('fastTrack.initialCashFlow')}:</span>
+                                <span>{t('fastTrack.initialCashFlow')}</span>
                                 <span className="positive">+${initialCashFlow.toLocaleString()}</span>
                             </div>
                             <div className="summary-item">
-                                <span>{t('fastTrack.additionalCashFlow')}:</span>
+                                <span>{t('fastTrack.additionalCashFlow')}</span>
                                 <span className="positive">+${additionalCashFlow.toLocaleString()}</span>
                             </div>
                             <div className="summary-item net-cash-flow">
-                                <span>{t('fastTrack.totalCashFlow')}:</span>
+                                <span>{t('fastTrack.totalCashFlow')}</span>
                                 <span className="positive">+${totalCashFlow.toLocaleString()}</span>
                             </div>
                             <div className="summary-item">
-                                <span>{t('fastTrack.goalCashFlow')}:</span>
+                                <span>{t('fastTrack.goalCashFlow')}</span>
                                 <span>+${goalCashFlow.toLocaleString()}</span>
                             </div>
                             <div className="summary-item">
-                                <span>{t('fastTrack.progress')}:</span>
+                                <span>{t('fastTrack.progress')}</span>
                                 <span>{progressPercentage.toFixed(1)}%</span>
                             </div>
                         </div>
@@ -319,11 +319,11 @@ function FastTrackPage() {
                                             </div>
                                             <div className="asset-card-details">
                                                 <div className="asset-detail">
-                                                    <span className="detail-label">{t('modals.downPayment')}:</span>
+                                                    <span className="detail-label">{t('modals.downPayment')}</span>
                                                     <span className="detail-value">${asset.downPayment.toLocaleString()}</span>
                                                 </div>
                                                 <div className="asset-detail">
-                                                    <span className="detail-label">{t('game.monthlyPassiveIncome')}:</span>
+                                                    <span className="detail-label">{t('game.monthlyPassiveIncome')}</span>
                                                     <span className="detail-value positive">
                                                         +${asset.passiveIncome.toLocaleString()}
                                                     </span>
@@ -385,7 +385,7 @@ function FastTrackPage() {
 
                         <div className="paper-asset-selection">
                             <div className="paper-asset-input-group">
-                                <label htmlFor="fast-track-asset-type">{t('modals.selectAssetType')}:</label>
+                                <label htmlFor="fast-track-asset-type">{t('modals.selectAssetType')}</label>
                                 <select
                                     id="fast-track-asset-type"
                                     className="paper-asset-select"
@@ -417,18 +417,18 @@ function FastTrackPage() {
 
                         {selectedAsset && (
                             <div className="paper-asset-details">
-                                <h3>{t('modals.purchaseDetails')}:</h3>
+                                <h3>{t('modals.purchaseDetails')}</h3>
 
                                 <div className="asset-preview-card">
                                     {/* Use the current language for the asset name */}
                                     <h4>{selectedAsset.label[language]}</h4>
                                     <div className="asset-preview-details">
                                         <div className="preview-item">
-                                            <span className="preview-label">{t('modals.downPayment')}:</span>
+                                            <span className="preview-label">{t('modals.downPayment')}</span>
                                             <span className="preview-value">${selectedAsset.downPayment.toLocaleString()}</span>
                                         </div>
                                         <div className="preview-item">
-                                            <span className="preview-label">{t('game.monthlyPassiveIncome')}:</span>
+                                            <span className="preview-label">{t('game.monthlyPassiveIncome')}</span>
                                             <span className="preview-value positive">+${selectedAsset.passiveIncome.toLocaleString()}</span>
                                         </div>
                                     </div>
@@ -470,7 +470,7 @@ function FastTrackPage() {
                         <div className="dream-modal-content">
                             <p>{t('modals.whatIsDreamPrice')}</p>
                             <div className="paper-asset-input-group">
-                                <label>{t('modals.dreamPrice')}:</label>
+                                <label>{t('modals.dreamPrice')}</label>
                                 <input
                                     type="number"
                                     min="0"
@@ -481,8 +481,8 @@ function FastTrackPage() {
                                 />
                             </div>
                             <div className="dream-summary">
-                                <p>{t('modals.dreamPrice')}: <strong>${dreamPrice.toLocaleString()}</strong></p>
-                                <p>{t('modals.availableSavings')}: <strong>${savings.toLocaleString()}</strong></p>
+                                <p>{t('modals.dreamPrice')} <strong>${dreamPrice.toLocaleString()}</strong></p>
+                                <p>{t('modals.availableSavings')} <strong>${savings.toLocaleString()}</strong></p>
                                 <p className={savings >= dreamPrice ? 'success' : 'error'}>
                                     {savings >= dreamPrice ? t('modals.sufficientFunds') : t('modals.insufficientFunds')}
                                 </p>
@@ -522,19 +522,19 @@ function FastTrackPage() {
                             {dreamBought && (
                                 <div className="financial-summary-congrats">
                                     <div className="summary-item">
-                                        <span>{t('modals.dreamPrice')}:</span>
+                                        <span>{t('modals.dreamPrice')}</span>
                                         <span>${dreamPrice.toLocaleString()}</span>
                                     </div>
                                 </div>
                             )}
                             <div className="financial-summary-congrats">
                                 <div className="summary-item">
-                                    <span>{t('fastTrack.totalCashFlow')}:</span>
+                                    <span>{t('fastTrack.totalCashFlow')}</span>
                                     <span className="positive">${totalCashFlow.toLocaleString()}</span>
                                 </div>
                                 {!dreamBought && (
                                     <div className="summary-item">
-                                        <span>{t('fastTrack.cashFlowIncrease')}:</span>
+                                        <span>{t('fastTrack.cashFlowIncrease')}</span>
                                         <span className="positive">+${(totalCashFlow - initialCashFlow).toLocaleString()}</span>
                                     </div>
                                 )}

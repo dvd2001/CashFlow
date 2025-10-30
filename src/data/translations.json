@@ -23,11 +23,11 @@
         },
         "game": {
             "yourProfession": "Your Profession",
-            "monthlySalary": "Monthly Salary",
-            "totalIncome": "Total Income",
-            "passiveIncome": "Passive Income",
-            "totalExpenses": "Total Expenses",
-            "monthlyCashFlow": "Monthly Cash Flow",
+            "monthlySalary": "Monthly Salary:",
+            "totalIncome": "Total Income:",
+            "passiveIncome": "Passive Income:",
+            "totalExpenses": "Total Expenses:",
+            "monthlyCashFlow": "Monthly Cash Flow:",
             "expenses": "Expenses",
             "liabilities": "Liabilities",
             "payday": "Payday",
@@ -52,7 +52,9 @@
             "addFundsPrompt": "Enter amount to add to savings:",
             "withdrawPrompt": "Enter amount to withdraw from savings:",
             "noFastTrackAssets": "No fast track assets yet",
-            "clickToAddFirstFastTrack": "Click \"Buy Asset\" to add your first fast track investment"
+            "clickToAddFirstFastTrack": "Click \"Buy Asset\" to add your first fast track investment",
+            "month": "month",
+            "monthlyPassiveIncome": "Monthly passive income:"
         },
         "expenses": {
             "taxes": "Taxes",
@@ -228,7 +230,7 @@
             "enterSellingPrice": "Enter selling price",
             "buyFastTrackAsset": "Buy Fast Track Asset",
             "whatIsDreamPrice": "What is the price of your dream?",
-            "dreamPrice": "Dream Price",
+            "dreamPrice": "Dream Price:",
             "enterDreamPrice": "Enter the price of your dream",
             "buyMyDream": "Buy My Dream!",
             "buyDreamNote": "Buying your dream will complete your Fast Track journey!"
@@ -236,18 +238,18 @@
         "fastTrack": {
             "fastTrack": "Fast Track",
             "fastTrackAssets": "Fast Track Assets",
-            "initialCashFlow": "Initial Cash Flow",
-            "additionalCashFlow": "Additional Cash Flow",
-            "totalCashFlow": "Total Cash Flow",
-            "goalCashFlow": "Goal Cash Flow",
-            "progress": "Progress",
+            "initialCashFlow": "Initial Cash Flow:",
+            "additionalCashFlow": "Additional Cash Flow:",
+            "totalCashFlow": "Total Cash Flow:",
+            "goalCashFlow": "Goal Cash Flow:",
+            "progress": "Progress:",
             "cashflowDay": "Cashflow Day",
             "taxAudit": "Tax Audit/Lawsuit",
             "divorce": "Divorce",
             "buyYourDream": "Buy Your Dream",
             "goalIncrease": "Goal: Increase Cash Flow by $50,000",
             "goalAchieved": "🎉 Goal Achieved! You've increased your cash flow by $50,000! 🎉",
-            "cashFlowIncrease": "Cash Flow Increase"
+            "cashFlowIncrease": "Cash Flow Increase:"
         },
         "congratulations": {
             "title": "🎉 Congratulations! 🎉",
@@ -310,11 +312,11 @@
         },
         "game": {
             "yourProfession": "Szakmád",
-            "monthlySalary": "Havi Fizetés",
-            "totalIncome": "Összes Jövedelem",
-            "passiveIncome": "Passzív Jövedelem",
-            "totalExpenses": "Összes Kiadás",
-            "monthlyCashFlow": "Havi Cash Flow",
+            "monthlySalary": "Havi Fizetés:",
+            "totalIncome": "Összes Jövedelem:",
+            "passiveIncome": "Passzív Jövedelem:",
+            "totalExpenses": "Összes Kiadás:",
+            "monthlyCashFlow": "Havi Cash Flow:",
             "expenses": "Kiadások",
             "liabilities": "Források",
             "payday": "Fizetésnap",
@@ -339,7 +341,9 @@
             "addFundsPrompt": "Add meg a megtakarításhoz hozzáadandó összeget:",
             "withdrawPrompt": "Add meg a megtakarításból kivételre szánt összeget:",
             "noFastTrackAssets": "Még nincsenek gyorsító sáv eszközeid",
-            "clickToAddFirstFastTrack": "Kattints az \"Eszköz Vásárlás\" gombra az első gyorsító sáv befektetésedhez"
+            "clickToAddFirstFastTrack": "Kattints az \"Eszköz Vásárlás\" gombra az első gyorsító sáv befektetésedhez",
+            "month": "hó",
+            "monthlyPassiveIncome": "Havi Passzív Jövedelem:"
         },
         "expenses": {
             "taxes": "Adók",
@@ -515,7 +519,7 @@
             "enterSellingPrice": "Add meg az eladási árat",
             "buyFastTrackAsset": "Gyorsító Sáv Eszköz Vásárlás",
             "whatIsDreamPrice": "Mi az álmod ára?",
-            "dreamPrice": "Álom Ára",
+            "dreamPrice": "Álom Ára:",
             "enterDreamPrice": "Add meg az álmod árát",
             "buyMyDream": "Vedd Meg Az Álmod!",
             "buyDreamNote": "Az álmod megvásárlása befejezi a Gyorsító Sáv utazásodat!"
@@ -523,18 +527,18 @@
         "fastTrack": {
             "fastTrack": "Gyorsító Sáv",
             "fastTrackAssets": "Gyorsító Sáv Eszközök",
-            "initialCashFlow": "Kezdeti Cash Flow",
-            "additionalCashFlow": "További Cash Flow",
-            "totalCashFlow": "Összes Cash Flow",
-            "goalCashFlow": "Cél Cash Flow",
-            "progress": "Előrehaladás",
+            "initialCashFlow": "Kezdeti Cash Flow:",
+            "additionalCashFlow": "További Cash Flow:",
+            "totalCashFlow": "Összes Cash Flow:",
+            "goalCashFlow": "Cél Cash Flow:",
+            "progress": "Előrehaladás:",
             "cashflowDay": "Cashflow Day",
             "taxAudit": "Adóellenőrzés/Polgári Per",
             "divorce": "Válás",
             "buyYourDream": "Álmod Megvásárlása",
             "goalIncrease": "Cél: Növeld a Cash Flow-d $50,000-rel",
             "goalAchieved": "🎉 Cél Elérve! $50,000-rel növelted a Cash Flow-d! 🎉",
-            "cashFlowIncrease": "Cash Flow Növekedés"
+            "cashFlowIncrease": "Cash Flow Növekedés:"
         },
         "congratulations": {
             "title": "🎉 Gratulálok! 🎉",
