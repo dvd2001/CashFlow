@@ -161,6 +161,24 @@ function FastTrackPage() {
         setDreamPrice(0); // Reset dream price when opening modal
     };
 
+    const handleCharity = () => {
+        const charityAmount = 100000;
+
+        if (savings < charityAmount) {
+            alert(t('alerts.insufficientSavingsForCharity'));
+            return;
+        }
+
+        const confirmCharity = window.confirm(
+            `${t('alerts.charityConfirmation').replace('${amount}', charityAmount.toLocaleString())}\n\n${t('game.savings')}: $${savings.toLocaleString()}`
+        );
+
+        if (confirmCharity) {
+            setSavings(prev => prev - charityAmount);
+            alert(t('alerts.charityDonated').replace('${amount}', charityAmount.toLocaleString()));
+        }
+    };
+
     const handleConfirmBuyDream = () => {
         if (dreamPrice <= 0) {
             alert(t('alerts.enterValidDreamPrice'));
@@ -297,6 +315,9 @@ function FastTrackPage() {
                             </button>
                             <button className="action-btn divorce-btn" onClick={handleDivorce}>
                                 {t('fastTrack.divorce')}
+                            </button>
+                            <button className="action-btn charity-btn" onClick={handleCharity}>
+                                {t('game.charity')}
                             </button>
                             <button className="action-btn buy-dream-btn" onClick={handleBuyDream}>
                                 {t('fastTrack.buyYourDream')}
