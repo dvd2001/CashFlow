@@ -1432,13 +1432,41 @@ function GamePage() {
                                 </div>
                                 <div className="property-asset-input-group">
                                     <label>{t('modals.monthlyPassiveIncome')}</label>
-                                    <input
-                                        type="number"
-                                        value={propertyPassiveIncome}
-                                        onChange={(e) => handlePropertyPassiveIncomeChange(parseInt(e.target.value) || 0)}
-                                        placeholder={t('modals.enterMonthlyPassiveIncome')}
-                                        onWheel={(e) => e.currentTarget.blur()}
-                                    />
+
+                                    {/* Amount Input */}
+                                    <div className="passive-income-input-group">
+                                        <label>{t('modals.amount')}:</label>
+                                        <input
+                                            type="number"
+                                            value={Math.abs(propertyPassiveIncome)}
+                                            onChange={(e) => {
+                                                const value = parseInt(e.target.value) || 0;
+                                                handlePropertyPassiveIncomeChange(propertyPassiveIncome >= 0 ? value : -value);
+                                            }}
+                                            placeholder={t('modals.enterAmount')}
+                                            onWheel={(e) => e.currentTarget.blur()}
+                                            className="passive-income-amount-input"
+                                        />
+                                    </div>
+
+                                    {/* Toggle Switch for Positive/Negative */}
+                                    <div className="passive-income-toggle">
+                                        <span className="passive-income-label">{t('modals.incomeType')}:</span>
+                                        <span className={`passive-income-status ${propertyPassiveIncome >= 0 ? 'positive' : 'negative'}`}>
+                                            {propertyPassiveIncome >= 0 ? t('modals.positive') : t('modals.negative')}
+                                        </span>
+                                        <label className="passive-income-toggle-switch">
+                                            <input
+                                                type="checkbox"
+                                                checked={propertyPassiveIncome >= 0}
+                                                onChange={(e) => {
+                                                    const isPositive = e.target.checked;
+                                                    handlePropertyPassiveIncomeChange(isPositive ? Math.abs(propertyPassiveIncome) : -Math.abs(propertyPassiveIncome));
+                                                }}
+                                            />
+                                            <span className="passive-income-slider"></span>
+                                        </label>
+                                    </div>
                                 </div>
 
                                 <div className="property-asset-summary">

@@ -3435,3 +3435,119 @@ input:checked+.slider:before {
     font-size: 1.1rem;
   }
 }
+
+/* Passive Income Toggle Styles */
+.passive-income-toggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.passive-income-label {
+  color: #2d3748;
+  font-weight: 600;
+  font-size: 1rem;
+  min-width: 80px;
+}
+
+.dark-mode .passive-income-label {
+  color: #e2e8f0;
+}
+
+.passive-income-status {
+  font-weight: 700;
+  font-size: 0.9rem;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  min-width: 80px;
+  text-align: center;
+}
+
+.passive-income-status.positive {
+  background: #48bb78;
+  color: white;
+}
+
+.passive-income-status.negative {
+  background: #e53e3e;
+  color: white;
+}
+
+.passive-income-toggle-switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 28px;
+  margin: 0;
+}
+
+.passive-income-toggle-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.passive-income-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #e53e3e;
+  transition: .4s;
+  border-radius: 34px;
+}
+
+.passive-income-slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked+.passive-income-slider {
+  background-color: #48bb78;
+}
+
+input:checked+.passive-income-slider:before {
+  transform: translateX(32px);
+}
+
+.passive-income-input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.passive-income-amount-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 2px solid #e2e8f0;
+  border-radius: 8px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.passive-income-amount-input:focus {
+  outline: none;
+  border-color: #667eea;
+}
+
+.dark-mode .passive-income-amount-input {
+  background: #4a5568;
+  color: #e2e8f0;
+  border-color: #5a6576;
+}
+
+.dark-mode .passive-income-amount-input:focus {
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.3);
+}

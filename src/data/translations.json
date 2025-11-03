@@ -247,7 +247,11 @@
             "enterDreamPrice": "Enter the price of your dream",
             "buyMyDream": "Buy My Dream!",
             "buyDreamNote": "Buying your dream will complete your Fast Track journey!",
-            "deleteAsset": "Delete Asset"
+            "deleteAsset": "Delete Asset",
+            "incomeType": "Income Type",
+            "positive": "Income",
+            "negative": "Expense",
+            "amount": "Amount"
         },
         "fastTrack": {
             "fastTrack": "Fast Track",
@@ -552,7 +556,11 @@
             "enterDreamPrice": "Add meg az álmod árát",
             "buyMyDream": "Vedd Meg Az Álmod!",
             "buyDreamNote": "Az álmod megvásárlása befejezi a Gyorsító Sáv utazásodat!",
-            "deleteAsset": "Eszköz Törlése"
+            "deleteAsset": "Eszköz Törlése",
+            "incomeType": "Bevétel Típusa",
+            "positive": "Bevétel",
+            "negative": "Kiadás",
+            "amount": "Összeg"
         },
         "fastTrack": {
             "fastTrack": "Gyorsító Sáv",
