@@ -251,7 +251,8 @@
             "incomeType": "Income Type",
             "positive": "Income",
             "negative": "Expense",
-            "amount": "Amount"
+            "amount": "Amount",
+            "units": "Units"
         },
         "fastTrack": {
             "fastTrack": "Fast Track",
@@ -560,7 +561,8 @@
             "incomeType": "Bevétel Típusa",
             "positive": "Bevétel",
             "negative": "Kiadás",
-            "amount": "Összeg"
+            "amount": "Összeg",
+            "units": "Egység"
         },
         "fastTrack": {
             "fastTrack": "Gyorsító Sáv",
