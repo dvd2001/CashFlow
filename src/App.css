@@ -1321,6 +1321,7 @@ input[type="number"]::-webkit-inner-spin-button {
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 1.5rem;
   margin-top: 1rem;
+  margin-bottom: 6rem;
 }
 
 /* Asset Card Styles */
@@ -1478,6 +1479,7 @@ input[type="number"]::-webkit-inner-spin-button {
   .assets-cards-container {
     grid-template-columns: 1fr;
     gap: 1rem;
+    margin-bottom: 6rem;
   }
 
   .asset-card-header,
@@ -1500,6 +1502,7 @@ input[type="number"]::-webkit-inner-spin-button {
 @media (max-width: 480px) {
   .assets-cards-container {
     grid-template-columns: 1fr;
+    margin-bottom: 6rem;
   }
 
   .asset-card,
@@ -2202,6 +2205,7 @@ input[type="number"]::-webkit-inner-spin-button {
   .assets-cards-container {
     grid-template-columns: 1fr;
     gap: 1rem;
+    margin-bottom: 6rem;
   }
 }
 
