@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useLanguage } from '../contexts/languageContext'
+import FastTrackLeftPanel from '../components/panels/FastTrackLeftPanel'
+import FastTrackRightPanel from '../components/panels/FastTrackRightPanel'
+import FastTrackSavingsSection from '../components/panels/FastTrackSavingsSection'
 import BuyFastTrackAssetModal from '../components/modals/BuyFastTrackAssetModal'
 import BuyDreamModal from '../components/modals/BuyDreamModal'
 import FastTrackCongratsModal from '../components/modals/FastTrackCongratsModal'
@@ -30,6 +33,7 @@ function FastTrackPage() {
     const { language, t } = useLanguage();
     const { passiveIncome, darkMode } = (location.state as LocationState) || { passiveIncome: 0 };
 
+    // State management
     const [playerAssets, setPlayerAssets] = useState<FastTrackAsset[]>([]);
     const [showBuyAssetModal, setShowBuyAssetModal] = useState(false);
     const [selectedAsset, setSelectedAsset] = useState<FastTrackAsset | null>(null);
@@ -39,13 +43,17 @@ function FastTrackPage() {
     const [congratsMessage, setCongratsMessage] = useState('');
     const [dreamPrice, setDreamPrice] = useState(0);
 
-    // Calculate initial cash flow from game page passive income
+    // Helper function for type-safe language access
+    const getAssetLabel = (asset: FastTrackAsset, lang: string): string => {
+        return lang === 'hu' ? asset.label.hu : asset.label.en;
+    };
+
+    // Financial calculations
     const calculateInitialCashFlow = () => {
         const roundedPassiveIncome = Math.ceil(passiveIncome / 1000) * 1000;
         return roundedPassiveIncome * 100;
     };
 
-    // Calculate additional cash flow from Fast Track assets - directly add passive income
     const calculateAdditionalCashFlow = () => {
         return playerAssets.reduce((sum, asset) => {
             return sum + asset.passiveIncome;
@@ -55,13 +63,14 @@ function FastTrackPage() {
     const initialCashFlow = calculateInitialCashFlow();
     const additionalCashFlow = calculateAdditionalCashFlow();
     const totalCashFlow = initialCashFlow + additionalCashFlow;
-
     const goalCashFlow = initialCashFlow + 50000;
 
     // Set savings to initial cash flow
     const [savings, setSavings] = useState(initialCashFlow);
 
-    // Add page leaving confirmation
+    const progressPercentage = Math.min(100, ((totalCashFlow - initialCashFlow) / 50000) * 100);
+
+    // Effects
     useEffect(() => {
         let shouldBlockNavigation = true;
 
@@ -123,7 +132,7 @@ function FastTrackPage() {
         }
     }, [])
 
-    // Button handlers
+    // Handler functions
     const handleCashflowDay = () => {
         setSavings(prev => prev + totalCashFlow);
         alert(`Cashflow Day! $${totalCashFlow.toLocaleString()} ${t('alerts.addedToSavings')}`);
@@ -175,7 +184,7 @@ function FastTrackPage() {
         setPlayerAssets(prev => [...prev, newPlayerAsset]);
         setSavings(prev => prev - asset.downPayment);
 
-        alert(`${t('alerts.purchased')} ${asset.label[language]} ${t('alerts.for')} $${asset.downPayment.toLocaleString()}!\n\n` +
+        alert(`${t('alerts.purchased')} ${getAssetLabel(asset, language)} ${t('alerts.for')} $${asset.downPayment.toLocaleString()}!\n\n` +
             `${t('game.monthlyPassiveIncome')}: $${asset.passiveIncome.toLocaleString()}\n` +
             `${t('alerts.willIncreaseCashFlow')} $${asset.passiveIncome.toLocaleString()}`);
 
@@ -212,171 +221,44 @@ function FastTrackPage() {
         }
     };
 
-    const progressPercentage = Math.min(100, ((totalCashFlow - initialCashFlow) / 50000) * 100);
+    const handleAddFunds = (amount: number) => {
+        setSavings(prev => prev + amount)
+    }
+
+    const handleWithdraw = (amount: number) => {
+        setSavings(prev => prev - amount)
+    }
 
     return (
         <div className={`game-page ${darkMode ? 'dark-mode' : ''}`}>
             <div className="game-container">
-                {/* Left Side - Fixed Panel */}
-                <div className="left-panel">
-                    <div className="panel-content">
-                        <h1 className="panel-title">{t('fastTrack.fastTrack')}</h1>
+                <FastTrackLeftPanel
+                    initialCashFlow={initialCashFlow}
+                    additionalCashFlow={additionalCashFlow}
+                    totalCashFlow={totalCashFlow}
+                    goalCashFlow={goalCashFlow}
+                    progressPercentage={progressPercentage}
+                    onCashflowDay={handleCashflowDay}
+                    onTaxAudit={handleTaxAudit}
+                    onDivorce={handleDivorce}
+                    onCharity={handleCharity}
+                    onBuyDream={() => setShowDreamModal(true)}
+                    onBackToGame={handleBackToGame}
+                />
 
-                        <div className="financial-summary">
-                            <div className="summary-item">
-                                <span>{t('fastTrack.initialCashFlow')}</span>
-                                <span className="positive">+${initialCashFlow.toLocaleString()}</span>
-                            </div>
-                            <div className="summary-item">
-                                <span>{t('fastTrack.additionalCashFlow')}</span>
-                                <span className="positive">+${additionalCashFlow.toLocaleString()}</span>
-                            </div>
-                            <div className="summary-item net-cash-flow">
-                                <span>{t('fastTrack.totalCashFlow')}</span>
-                                <span className="positive">+${totalCashFlow.toLocaleString()}</span>
-                            </div>
-                            <div className="summary-item">
-                                <span>{t('fastTrack.goalCashFlow')}</span>
-                                <span>+${goalCashFlow.toLocaleString()}</span>
-                            </div>
-                            <div className="summary-item">
-                                <span>{t('fastTrack.progress')}</span>
-                                <span>{progressPercentage.toFixed(1)}%</span>
-                            </div>
-                        </div>
-
-                        <div className="goal-progress">
-                            <h3>{t('fastTrack.goalIncrease')}</h3>
-                            <div className="progress-bar">
-                                <div
-                                    className="progress-fill"
-                                    style={{ width: `${progressPercentage}%` }}
-                                ></div>
-                            </div>
-                            <div className="progress-text">
-                                <span>+${(totalCashFlow - initialCashFlow).toLocaleString()} / +$50,000</span>
-                            </div>
-                            {totalCashFlow >= goalCashFlow && (
-                                <div className="goal-achieved">
-                                    {t('fastTrack.goalAchieved')}
-                                </div>
-                            )}
-                        </div>
-
-                        {/* Action Buttons */}
-                        <div className="action-buttons">
-                            <button className="action-btn cashflow-day-btn" onClick={handleCashflowDay}>
-                                {t('fastTrack.cashflowDay')}
-                            </button>
-                            <button className="action-btn tax-audit-btn" onClick={handleTaxAudit}>
-                                {t('fastTrack.taxAudit')}
-                            </button>
-                            <button className="action-btn divorce-btn" onClick={handleDivorce}>
-                                {t('fastTrack.divorce')}
-                            </button>
-                            <button className="action-btn charity-btn" onClick={handleCharity}>
-                                {t('game.charity')}
-                            </button>
-                            <button className="action-btn buy-dream-btn" onClick={() => setShowDreamModal(true)}>
-                                {t('fastTrack.buyYourDream')}
-                            </button>
-                        </div>
-
-                        <button
-                            className="back-button"
-                            onClick={handleBackToGame}
-                        >
-                            {t('congratulations.backToStartPage')}
-                        </button>
-                    </div>
-                </div>
-
-                {/* Right Side - Scrollable Content */}
-                <div className="right-panel">
-                    <div className="scroll-content">
-                        <section className="assets-section">
-                            <div className="section-header">
-                                <h2 className="section-main-title">{t('fastTrack.fastTrackAssets')}</h2>
-                                <button
-                                    className="buy-asset-btn"
-                                    onClick={() => setShowBuyAssetModal(true)}
-                                >
-                                    {t('game.buyAsset')}
-                                </button>
-                            </div>
-                            <div className="assets-cards-container">
-                                {playerAssets.length > 0 ? (
-                                    playerAssets.map(asset => (
-                                        <div key={asset.id} className="asset-card">
-                                            <div className="asset-card-header">
-                                                <h3 className="asset-name">{asset.label[language]}</h3>
-                                                <button
-                                                    className="delete-asset-btn"
-                                                    onClick={() => handleDeleteAsset(asset.id)}
-                                                    title={t('modals.deleteAsset')}
-                                                >
-                                                    ✕
-                                                </button>
-                                            </div>
-                                            <div className="asset-card-details">
-                                                <div className="asset-detail">
-                                                    <span className="detail-label">{t('modals.downPayment')}</span>
-                                                    <span className="detail-value">${asset.downPayment.toLocaleString()}</span>
-                                                </div>
-                                                <div className="asset-detail">
-                                                    <span className="detail-label">{t('game.monthlyPassiveIncome')}</span>
-                                                    <span className="detail-value positive">
-                                                        +${asset.passiveIncome.toLocaleString()}
-                                                    </span>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    ))
-                                ) : (
-                                    <div className="empty-state">
-                                        <p>{t('game.noFastTrackAssets')}</p>
-                                        <p className="empty-state-subtitle">{t('game.clickToAddFirstFastTrack')}</p>
-                                    </div>
-                                )}
-                            </div>
-                        </section>
-                    </div>
-                </div>
+                <FastTrackRightPanel
+                    playerAssets={playerAssets}
+                    onBuyAsset={() => setShowBuyAssetModal(true)}
+                    onDeleteAsset={handleDeleteAsset}
+                    language={language}
+                />
             </div>
 
-            {/* Fixed Savings Section at Bottom */}
-            <div className="savings-section">
-                <div className="savings-content">
-                    <div className="savings-info">
-                        <span className="savings-label">{t('game.savings')}:</span>
-                        <span className="savings-amount">${savings.toLocaleString()}</span>
-                    </div>
-                    <div className="savings-actions">
-                        <button
-                            className="savings-btn add-btn"
-                            onClick={() => {
-                                const amount = parseInt(prompt(t('game.addFundsPrompt')) || '0')
-                                if (amount > 0) setSavings(prev => prev + amount)
-                            }}
-                        >
-                            {t('game.addFunds')}
-                        </button>
-                        <button
-                            className="savings-btn withdraw-btn"
-                            onClick={() => {
-                                const amount = parseInt(prompt(t('game.withdrawPrompt')) || '0')
-                                if (amount > 0 && amount <= savings) {
-                                    setSavings(prev => prev - amount)
-                                } else if (amount > savings) {
-                                    alert(t('alerts.insufficientSavings'))
-                                }
-                            }}
-                        >
-                            {t('game.withdraw')}
-                        </button>
-                    </div>
-                </div>
-            </div>
+            <FastTrackSavingsSection
+                savings={savings}
+                onAddFunds={handleAddFunds}
+                onWithdraw={handleWithdraw}
+            />
 
             {/* Modal Components */}
             <BuyFastTrackAssetModal

@@ -1,8 +1,5 @@
 import { useLanguage } from '../../contexts/languageContext';
 
-// Define a type for supported languages
-type SupportedLanguage = 'en' | 'hu';
-
 interface FastTrackAsset {
     id: string
     value: string
@@ -22,7 +19,7 @@ interface BuyFastTrackAssetModalProps {
     setSelectedAsset: (asset: FastTrackAsset | null) => void
     savings: number
     fastTrackAssetsData: any[]
-    language: SupportedLanguage  // Use the specific type here
+    language: string
 }
 
 function BuyFastTrackAssetModal({
@@ -36,6 +33,11 @@ function BuyFastTrackAssetModal({
     language
 }: BuyFastTrackAssetModalProps) {
     const { t } = useLanguage();
+
+    // Helper function for type-safe language access
+    const getAssetLabel = (asset: FastTrackAsset, lang: string): string => {
+        return lang === 'hu' ? asset.label.hu : asset.label.en;
+    };
 
     if (!show) return null;
 
@@ -67,8 +69,7 @@ function BuyFastTrackAssetModal({
                             <option value="">{t('modals.chooseAssetType')}</option>
                             {fastTrackAssetsData.map((asset, index) => (
                                 <option key={index} value={asset.value}>
-                                    {/* Use the language prop which is now type-safe */}
-                                    {asset.label[language]}
+                                    {getAssetLabel(asset, language)}
                                 </option>
                             ))}
                         </select>
@@ -80,8 +81,7 @@ function BuyFastTrackAssetModal({
                         <h3>{t('modals.purchaseDetails')}</h3>
 
                         <div className="asset-preview-card">
-                            {/* Use the language prop which is now type-safe */}
-                            <h4>{selectedAsset.label[language]}</h4>
+                            <h4>{getAssetLabel(selectedAsset, language)}</h4>
                             <div className="asset-preview-details">
                                 <div className="preview-item">
                                     <span className="preview-label">{t('modals.downPayment')}</span>
