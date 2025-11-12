@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useLanguage } from '../contexts/languageContext' // Make sure this is imported
+import { useLanguage } from '../contexts/languageContext'
+import BuyFastTrackAssetModal from '../components/modals/BuyFastTrackAssetModal'
+import BuyDreamModal from '../components/modals/BuyDreamModal'
+import FastTrackCongratsModal from '../components/modals/FastTrackCongratsModal'
 
 // Import your JSON data
 import fastTrackAssetsData from '../data/fastTrackAssets.json'
@@ -24,7 +27,7 @@ interface LocationState {
 function FastTrackPage() {
     const location = useLocation();
     const navigate = useNavigate();
-    const { language, t } = useLanguage(); // Get the current language
+    const { language, t } = useLanguage();
     const { passiveIncome, darkMode } = (location.state as LocationState) || { passiveIncome: 0 };
 
     const [playerAssets, setPlayerAssets] = useState<FastTrackAsset[]>([]);
@@ -45,7 +48,6 @@ function FastTrackPage() {
     // Calculate additional cash flow from Fast Track assets - directly add passive income
     const calculateAdditionalCashFlow = () => {
         return playerAssets.reduce((sum, asset) => {
-            // Directly add the passive income to additional cash flow
             return sum + asset.passiveIncome;
         }, 0);
     };
@@ -54,7 +56,7 @@ function FastTrackPage() {
     const additionalCashFlow = calculateAdditionalCashFlow();
     const totalCashFlow = initialCashFlow + additionalCashFlow;
 
-    const goalCashFlow = initialCashFlow + 50000; // Goal is initial + $50,000
+    const goalCashFlow = initialCashFlow + 50000;
 
     // Set savings to initial cash flow
     const [savings, setSavings] = useState(initialCashFlow);
@@ -73,31 +75,23 @@ function FastTrackPage() {
 
         const handlePopState = (e: PopStateEvent) => {
             if (shouldBlockNavigation) {
-                // Show confirmation dialog
                 const confirmLeave = window.confirm(t('alerts.leavePageConfirmation'));
 
                 if (!confirmLeave) {
-                    // If user cancels, push current state back to history
                     window.history.pushState(null, '', window.location.href);
-                    // Also prevent any React Router navigation
                     e.preventDefault();
                     e.stopPropagation();
                 } else {
-                    // User confirmed - allow navigation
                     shouldBlockNavigation = false;
                 }
             }
         };
 
-        // Add current page to history
         window.history.pushState(null, '', window.location.href);
-
-        // Add event listeners
         window.addEventListener('beforeunload', handleBeforeUnload);
-        window.addEventListener('popstate', handlePopState, true); // Use capture phase
+        window.addEventListener('popstate', handlePopState, true);
 
         return () => {
-            // Clean up event listeners
             window.removeEventListener('beforeunload', handleBeforeUnload);
             window.removeEventListener('popstate', handlePopState, true);
             shouldBlockNavigation = false;
@@ -121,7 +115,6 @@ function FastTrackPage() {
         const savedDarkMode = localStorage.getItem('darkMode')
         if (savedDarkMode) {
             const isDarkMode = JSON.parse(savedDarkMode)
-            // Apply dark mode class to body if needed
             if (isDarkMode) {
                 document.body.classList.add('dark-mode')
             } else {
@@ -132,7 +125,6 @@ function FastTrackPage() {
 
     // Button handlers
     const handleCashflowDay = () => {
-        // Add total cash flow to savings
         setSavings(prev => prev + totalCashFlow);
         alert(`Cashflow Day! $${totalCashFlow.toLocaleString()} ${t('alerts.addedToSavings')}`);
     };
@@ -156,11 +148,6 @@ function FastTrackPage() {
         }
     };
 
-    const handleBuyDream = () => {
-        setShowDreamModal(true);
-        setDreamPrice(0); // Reset dream price when opening modal
-    };
-
     const handleCharity = () => {
         const charityAmount = 100000;
 
@@ -179,53 +166,28 @@ function FastTrackPage() {
         }
     };
 
-    const handleConfirmBuyDream = () => {
-        if (dreamPrice <= 0) {
-            alert(t('alerts.enterValidDreamPrice'));
-            return;
-        }
+    const handleBuyAsset = (asset: FastTrackAsset) => {
+        const newPlayerAsset: FastTrackAsset = {
+            ...asset,
+            id: Date.now().toString()
+        };
 
-        if (dreamPrice > savings) {
-            alert(t('alerts.insufficientSavings'));
-            return;
-        }
+        setPlayerAssets(prev => [...prev, newPlayerAsset]);
+        setSavings(prev => prev - asset.downPayment);
 
-        // Deduct dream price from savings
+        alert(`${t('alerts.purchased')} ${asset.label[language]} ${t('alerts.for')} $${asset.downPayment.toLocaleString()}!\n\n` +
+            `${t('game.monthlyPassiveIncome')}: $${asset.passiveIncome.toLocaleString()}\n` +
+            `${t('alerts.willIncreaseCashFlow')} $${asset.passiveIncome.toLocaleString()}`);
+
+        setShowBuyAssetModal(false);
+        setSelectedAsset(null);
+    };
+
+    const handleConfirmBuyDream = (dreamPrice: number) => {
         setSavings(prev => prev - dreamPrice);
         setDreamBought(true);
         setShowDreamModal(false);
-    };
-
-    const handleBuyAsset = () => {
-        if (!selectedAsset) {
-            alert(t('alerts.selectAsset'));
-            return;
-        }
-
-        if (selectedAsset.downPayment > savings) {
-            alert(t('alerts.insufficientSavings'));
-            return;
-        }
-
-        const newPlayerAsset: FastTrackAsset = {
-            ...selectedAsset,
-            id: Date.now().toString() // Add unique ID
-        };
-
-        // Add to player assets
-        setPlayerAssets(prev => [...prev, newPlayerAsset]);
-
-        // Deduct down payment from savings
-        setSavings(prev => prev - selectedAsset.downPayment);
-
-        // Use the translated label in the alert
-        alert(`${t('alerts.purchased')} ${selectedAsset.label[language]} ${t('alerts.for')} $${selectedAsset.downPayment.toLocaleString()}!\n\n` +
-            `${t('game.monthlyPassiveIncome')}: $${selectedAsset.passiveIncome.toLocaleString()}\n` +
-            `${t('alerts.willIncreaseCashFlow')} $${selectedAsset.passiveIncome.toLocaleString()}`);
-
-        // Close modal and reset form
-        setShowBuyAssetModal(false);
-        setSelectedAsset(null);
+        setDreamPrice(dreamPrice);
     };
 
     const handleBackToGame = () => {
@@ -244,12 +206,8 @@ function FastTrackPage() {
         if (!assetToDelete) return;
 
         if (window.confirm(t('alerts.confirmDeleteAsset'))) {
-            // Refund the down payment to savings
             setSavings(prev => prev + assetToDelete.downPayment);
-
-            // Remove the asset from player assets
             setPlayerAssets(prev => prev.filter(asset => asset.id !== assetId));
-
             alert(`${t('alerts.assetDeleted')}\n${t('alerts.refundAmount')}: $${assetToDelete.downPayment.toLocaleString()}`);
         }
     };
@@ -319,7 +277,7 @@ function FastTrackPage() {
                             <button className="action-btn charity-btn" onClick={handleCharity}>
                                 {t('game.charity')}
                             </button>
-                            <button className="action-btn buy-dream-btn" onClick={handleBuyDream}>
+                            <button className="action-btn buy-dream-btn" onClick={() => setShowDreamModal(true)}>
                                 {t('fastTrack.buyYourDream')}
                             </button>
                         </div>
@@ -420,180 +378,34 @@ function FastTrackPage() {
                 </div>
             </div>
 
-            {/* Buy Asset Modal */}
-            {showBuyAssetModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <h2 className="modal-title">{t('modals.buyFastTrackAsset')}</h2>
+            {/* Modal Components */}
+            <BuyFastTrackAssetModal
+                show={showBuyAssetModal}
+                onClose={() => setShowBuyAssetModal(false)}
+                onBuy={handleBuyAsset}
+                selectedAsset={selectedAsset}
+                setSelectedAsset={setSelectedAsset}
+                savings={savings}
+                fastTrackAssetsData={fastTrackAssetsData}
+                language={language}
+            />
 
-                        <div className="paper-asset-selection">
-                            <div className="paper-asset-input-group">
-                                <label htmlFor="fast-track-asset-type">{t('modals.selectAssetType')}</label>
-                                <select
-                                    id="fast-track-asset-type"
-                                    className="paper-asset-select"
-                                    value={selectedAsset?.value || ''}
-                                    onChange={(e) => {
-                                        const asset = fastTrackAssetsData.find(a => a.value === e.target.value);
-                                        if (asset) {
-                                            // Convert the JSON data to match our interface
-                                            const selectedAssetData: FastTrackAsset = {
-                                                ...asset,
-                                                id: '' // Will be set when purchased
-                                            };
-                                            setSelectedAsset(selectedAssetData);
-                                        } else {
-                                            setSelectedAsset(null);
-                                        }
-                                    }}
-                                >
-                                    <option value="">{t('modals.chooseAssetType')}</option>
-                                    {fastTrackAssetsData.map((asset, index) => (
-                                        <option key={index} value={asset.value}>
-                                            {/* Use the current language for the dropdown options */}
-                                            {asset.label[language]}
-                                        </option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
+            <BuyDreamModal
+                show={showDreamModal}
+                onClose={() => setShowDreamModal(false)}
+                onConfirm={handleConfirmBuyDream}
+                savings={savings}
+            />
 
-                        {selectedAsset && (
-                            <div className="paper-asset-details">
-                                <h3>{t('modals.purchaseDetails')}</h3>
-
-                                <div className="asset-preview-card">
-                                    {/* Use the current language for the asset name */}
-                                    <h4>{selectedAsset.label[language]}</h4>
-                                    <div className="asset-preview-details">
-                                        <div className="preview-item">
-                                            <span className="preview-label">{t('modals.downPayment')}</span>
-                                            <span className="preview-value">${selectedAsset.downPayment.toLocaleString()}</span>
-                                        </div>
-                                        <div className="preview-item">
-                                            <span className="preview-label">{t('game.monthlyPassiveIncome')}</span>
-                                            <span className="preview-value positive">+${selectedAsset.passiveIncome.toLocaleString()}</span>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="paper-asset-summary">
-                                    <p>{t('modals.availableSavings')} <strong>${savings.toLocaleString()}</strong></p>
-                                    <p className={savings >= selectedAsset.downPayment ? 'success' : 'error'}>
-                                        {savings >= selectedAsset.downPayment ? t('modals.sufficientFunds') : t('modals.insufficientFunds')}
-                                    </p>
-                                </div>
-                            </div>
-                        )}
-
-                        <div className="modal-actions">
-                            <button
-                                className="modal-btn cancel-btn"
-                                onClick={() => setShowBuyAssetModal(false)}
-                            >
-                                {t('modals.cancel')}
-                            </button>
-                            <button
-                                className="modal-btn buy-paper-asset-btn"
-                                onClick={handleBuyAsset}
-                                disabled={!selectedAsset || selectedAsset.downPayment > savings}
-                            >
-                                {t('game.buyAsset')}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Buy Dream Modal */}
-            {showDreamModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
-                        <h2 className="modal-title">{t('fastTrack.buyYourDream')}</h2>
-                        <div className="dream-modal-content">
-                            <p>{t('modals.whatIsDreamPrice')}</p>
-                            <div className="paper-asset-input-group">
-                                <label>{t('modals.dreamPrice')}</label>
-                                <input
-                                    type="number"
-                                    min="0"
-                                    value={dreamPrice}
-                                    onChange={(e) => setDreamPrice(parseInt(e.target.value) || 0)}
-                                    placeholder={t('modals.enterDreamPrice')}
-                                    onWheel={(e) => e.currentTarget.blur()}
-                                />
-                            </div>
-                            <div className="dream-summary">
-                                <p>{t('modals.dreamPrice')} <strong>${dreamPrice.toLocaleString()}</strong></p>
-                                <p>{t('modals.availableSavings')} <strong>${savings.toLocaleString()}</strong></p>
-                                <p className={savings >= dreamPrice ? 'success' : 'error'}>
-                                    {savings >= dreamPrice ? t('modals.sufficientFunds') : t('modals.insufficientFunds')}
-                                </p>
-                            </div>
-                            <p className="dream-note">{t('modals.buyDreamNote')}</p>
-                        </div>
-                        <div className="modal-actions">
-                            <button
-                                className="modal-btn cancel-btn"
-                                onClick={() => setShowDreamModal(false)}
-                            >
-                                {t('modals.cancel')}
-                            </button>
-                            <button
-                                className="modal-btn buy-dream-confirm-btn"
-                                onClick={handleConfirmBuyDream}
-                                disabled={dreamPrice <= 0 || dreamPrice > savings}
-                            >
-                                {t('modals.buyMyDream')}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* Congratulations Modal */}
-            {showCongratsModal && (
-                <div className="modal-overlay congrats-overlay">
-                    <div className="modal-content congrats-modal">
-                        <div className="congrats-header">
-                            <h2 className="congrats-title">{t('congratulations.title')}</h2>
-                        </div>
-                        <div className="congrats-body">
-                            <p className="congrats-message">
-                                {congratsMessage}
-                            </p>
-                            {dreamBought && (
-                                <div className="financial-summary-congrats">
-                                    <div className="summary-item">
-                                        <span>{t('modals.dreamPrice')}</span>
-                                        <span>${dreamPrice.toLocaleString()}</span>
-                                    </div>
-                                </div>
-                            )}
-                            <div className="financial-summary-congrats">
-                                <div className="summary-item">
-                                    <span>{t('fastTrack.totalCashFlow')}</span>
-                                    <span className="positive">${totalCashFlow.toLocaleString()}</span>
-                                </div>
-                                {!dreamBought && (
-                                    <div className="summary-item">
-                                        <span>{t('fastTrack.cashFlowIncrease')}</span>
-                                        <span className="positive">+${(totalCashFlow - initialCashFlow).toLocaleString()}</span>
-                                    </div>
-                                )}
-                            </div>
-                        </div>
-                        <div className="modal-actions">
-                            <button
-                                className="modal-btn continue-btn"
-                                onClick={handleCongratsContinue}
-                            >
-                                {t('congratulations.backToStartPage')}
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
+            <FastTrackCongratsModal
+                show={showCongratsModal}
+                onContinue={handleCongratsContinue}
+                message={congratsMessage}
+                dreamBought={dreamBought}
+                dreamPrice={dreamPrice}
+                totalCashFlow={totalCashFlow}
+                initialCashFlow={initialCashFlow}
+            />
         </div>
     );
 }
